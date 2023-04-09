@@ -31,6 +31,11 @@ namespace TaskManagerApp.Infra.Repositories
                 .AsNoTracking()
                 .FirstOrDefaultAsync(e => e.Id == id);
 
+        public virtual async Task<List<T>> GetManyByIdsAsync(List<int> ids)
+            => await _dbSet
+                .Where(x => ids.Contains(x.Id))
+                .ToListAsync();
+
         public async Task<T> InsertAsync(T entity)
         {
             await _dbSet.AddAsync(entity);

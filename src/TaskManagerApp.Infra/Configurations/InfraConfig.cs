@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace TaskManagerApp.Infra.Configurations
 {
-    public static class DependencyInjectionConfig
+    public static class InfraConfig
     {
         public static void AddInfraConfiguration(
             this IServiceCollection services,
@@ -18,14 +18,9 @@ namespace TaskManagerApp.Infra.Configurations
             bool isEnv = false
         )
         {
-            if (isEnv)
-            {
-                services.AddEnvDatabase();
-            }
-            else
-            {
-                services.AddDatabase(configuration);
-            }
+            if (isEnv) services.AddEnvDatabase();
+            else services.AddDatabase(configuration);
+            
             services.AddRepositories();
             services.MigrateDatabase();
         }
@@ -34,6 +29,13 @@ namespace TaskManagerApp.Infra.Configurations
         {
             services.AddTransient<IPhotoRepository, PhotoRepository>();
             services.AddTransient<ICardRepository, CardRepository>();
+            services.AddTransient<IGoalRepository, GoalRepository>();
+            services.AddTransient<IPresetTaskItemRepository, PresetTaskItemRepository>();
+            services.AddTransient<IProfileRepository, ProfileRepository>();
+            services.AddTransient<IProfileTypeRepository, ProfileTypeRepository>();
+            services.AddTransient<ITaskItemRepository, TaskItemRepository>();
+            services.AddTransient<ITimesheetRepository, TimesheetRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
         }
 
         private static void AddDatabase(

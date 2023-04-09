@@ -10,6 +10,8 @@
 
         Task<T?> GetByIdAsNoTrackingAsync(long id);
 
+        Task<List<T>> GetManyByIdsAsync(List<int> ids);
+
         Task<T> InsertAsync(T entity);
 
         Task<IEnumerable<T>> InsertAllAsync(IEnumerable<T> entities);

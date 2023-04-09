@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace TaskManagerApp.Infra.Configurations.EntityConfigurations
 {
-    internal class PhotoConfiguration : IEntityTypeConfiguration<Photo>
+    internal class PhotoConfiguration : BaseEntityConfiguration<Photo>
     {
-        public void Configure(EntityTypeBuilder<Photo> builder)
+        public override void ConfigureOtherProperties(EntityTypeBuilder<Photo> builder)
             => builder.Property(e => e.Base64).IsUnicode(false);
     }
 }

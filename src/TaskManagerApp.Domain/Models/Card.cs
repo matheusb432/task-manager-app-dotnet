@@ -1,5 +1,7 @@
 ﻿namespace TaskManagerApp.Domain.Models
 {
+    // TODO remove Card & Photo
+    // TODO seal all classes
     public sealed class Card : Entity
     {
         public int PhotoId { get; set; }

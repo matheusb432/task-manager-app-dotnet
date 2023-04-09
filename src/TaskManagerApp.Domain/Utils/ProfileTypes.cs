@@ -1,4 +1,4 @@
-﻿namespace TaskManagerApp.Application.Utils
+﻿namespace TaskManagerApp.Domain.Utils
 {
     public static class ProfileTypes
     {

@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace TaskManagerApp.Application.Configurations
 {
-    public static class DependencyInjectionConfig
+    public static class ApplicationConfig
     {
         public static void AddApplicationDependencyInjectionConfig(this IServiceCollection services)
         {
