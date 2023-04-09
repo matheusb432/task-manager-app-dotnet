@@ -1,24 +1,35 @@
+using TaskManagerApp.API.Configurations;
+using TaskManagerApp.Application.Configurations;
+using TaskManagerApp.Infra.Configurations;
+using TaskManagerApp.Infra.Utils;
+using Microsoft.AspNetCore.OData;
+
 var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
+var services = builder.Services;
 
-// Add services to the container.
+services.AddControllers().AddOData(
+    opt => opt.Count().Filter().OrderBy().SetMaxTop(50));
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+services.AddEndpointsApiExplorer();
+services.AddSwaggerGen();
+
+services.AddApplicationDependencyInjectionConfig();
+services.AddInfraConfiguration(configuration);
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
+app.UseCors(x => x.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin());
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+app.UseExceptionHandlerMiddleware();
 
 app.MapControllers();
 

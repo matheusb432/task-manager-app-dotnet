@@ -8,9 +8,18 @@
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
+
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
+    <PackageReference Include="FluentValidation" Version="11.5.2" />
+    <PackageReference Include="Microsoft.AspNetCore.OData" Version="8.1.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TaskManagerApp.Application\TaskManagerApp.Application.csproj" />
+    <ProjectReference Include="..\TaskManagerApp.Domain\TaskManagerApp.Domain.csproj" />
+    <ProjectReference Include="..\TaskManagerApp.Infra\TaskManagerApp.Infra.csproj" />
   </ItemGroup>
 
 </Project>

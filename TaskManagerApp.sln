@@ -3,7 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagerApp.API", "TaskManagerApp.API\TaskManagerApp.API.csproj", "{CC0EA49B-54DE-4100-A142-71B1B2744E54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagerApp.API", "src\TaskManagerApp.API\TaskManagerApp.API.csproj", "{48AE204D-0FE4-460E-ADBE-E521DBCE69E1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Presentation", "1 - Presentation", "{77EE345F-C269-466E-86E2-2946559D05C0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Application", "2 - Application", "{DDABE7DE-E5DC-417C-A3E1-5E7E9A759CA2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Domain", "3 - Domain", "{1CCFEEC4-CAF0-445D-97D5-A5F34CCCC040}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Infra", "4 - Infra", "{39794740-C9DA-4B91-9034-F8484A326EED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagerApp.Application", "src\TaskManagerApp.Application\TaskManagerApp.Application.csproj", "{1E30B5B9-E1D5-4350-A8DD-85F71E687197}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagerApp.Domain", "src\TaskManagerApp.Domain\TaskManagerApp.Domain.csproj", "{A369DCFD-C92F-44C6-9042-E0928D7F6639}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagerApp.Infra", "src\TaskManagerApp.Infra\TaskManagerApp.Infra.csproj", "{C56BF469-F174-4B67-AC06-A523A7EF73E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,13 +25,31 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CC0EA49B-54DE-4100-A142-71B1B2744E54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CC0EA49B-54DE-4100-A142-71B1B2744E54}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CC0EA49B-54DE-4100-A142-71B1B2744E54}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CC0EA49B-54DE-4100-A142-71B1B2744E54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48AE204D-0FE4-460E-ADBE-E521DBCE69E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48AE204D-0FE4-460E-ADBE-E521DBCE69E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48AE204D-0FE4-460E-ADBE-E521DBCE69E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48AE204D-0FE4-460E-ADBE-E521DBCE69E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E30B5B9-E1D5-4350-A8DD-85F71E687197}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E30B5B9-E1D5-4350-A8DD-85F71E687197}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E30B5B9-E1D5-4350-A8DD-85F71E687197}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E30B5B9-E1D5-4350-A8DD-85F71E687197}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A369DCFD-C92F-44C6-9042-E0928D7F6639}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A369DCFD-C92F-44C6-9042-E0928D7F6639}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A369DCFD-C92F-44C6-9042-E0928D7F6639}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A369DCFD-C92F-44C6-9042-E0928D7F6639}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C56BF469-F174-4B67-AC06-A523A7EF73E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C56BF469-F174-4B67-AC06-A523A7EF73E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C56BF469-F174-4B67-AC06-A523A7EF73E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C56BF469-F174-4B67-AC06-A523A7EF73E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{48AE204D-0FE4-460E-ADBE-E521DBCE69E1} = {77EE345F-C269-466E-86E2-2946559D05C0}
+		{1E30B5B9-E1D5-4350-A8DD-85F71E687197} = {DDABE7DE-E5DC-417C-A3E1-5E7E9A759CA2}
+		{A369DCFD-C92F-44C6-9042-E0928D7F6639} = {1CCFEEC4-CAF0-445D-97D5-A5F34CCCC040}
+		{C56BF469-F174-4B67-AC06-A523A7EF73E0} = {39794740-C9DA-4B91-9034-F8484A326EED}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {78E99DB5-7045-4CA5-9137-2523EF9379F0}
