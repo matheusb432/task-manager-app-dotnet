@@ -1,13 +1,9 @@
-﻿using TaskManagerApp.Domain.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using TaskManagerApp.Domain.Models;
 using TaskManagerApp.Infra.Interfaces;
-using Microsoft.EntityFrameworkCore;
 
 namespace TaskManagerApp.Infra.Repositories
 {
-    /// <summary>
-    /// Abstração de repositório para permitir uma camada intermediária entre as camadas de Infra e Application
-    /// </summary>
-    /// <typeparam name="T">Um modelo Entity que existe em TaskManagerAppContext</typeparam>
     public abstract class Repository<T> : IRepository<T>
         where T : Entity
     {

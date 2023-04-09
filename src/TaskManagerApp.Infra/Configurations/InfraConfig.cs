@@ -1,12 +1,12 @@
-﻿using TaskManagerApp.Infra.Extensions;
-using TaskManagerApp.Infra.Interfaces;
-using TaskManagerApp.Infra.Repositories;
-using TaskManagerApp.Infra.Utils;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TaskManagerApp.Infra.Extensions;
+using TaskManagerApp.Infra.Interfaces;
+using TaskManagerApp.Infra.Repositories;
+using TaskManagerApp.Infra.Utils;
 
 namespace TaskManagerApp.Infra.Configurations
 {
@@ -20,7 +20,7 @@ namespace TaskManagerApp.Infra.Configurations
         {
             if (isEnv) services.AddEnvDatabase();
             else services.AddDatabase(configuration);
-            
+
             services.AddRepositories();
             services.MigrateDatabase();
         }

@@ -1,5 +1,5 @@
-﻿using TaskManagerApp.Application.Extensions;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
+using TaskManagerApp.Application.Extensions;
 
 namespace TaskManagerApp.Application.Interfaces
 {

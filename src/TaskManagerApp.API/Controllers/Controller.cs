@@ -1,14 +1,11 @@
-﻿using System.Net;
-using FluentValidation.Results;
+﻿using FluentValidation.Results;
+using Microsoft.AspNetCore.Mvc;
+using System.Net;
 using TaskManagerApp.Application.Extensions;
 using TaskManagerApp.Application.Extensions.ViewModels;
-using Microsoft.AspNetCore.Mvc;
 
 namespace TaskManagerApp.API.Controllers
 {
-    /// <summary>
-    /// Controlador base que contém funcionalidades comuns entre todos os controladores da camada da Presentation
-    /// </summary>
     [ApiController]
     [Route("api/[controller]")]
     public abstract class Controller : ControllerBase

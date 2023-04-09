@@ -1,5 +1,5 @@
-﻿using System.Net;
-using AutoMapper;
+﻿using AutoMapper;
+using System.Net;
 using TaskManagerApp.Application.Extensions;
 using TaskManagerApp.Application.Interfaces;
 using TaskManagerApp.Application.ViewModels.Card;

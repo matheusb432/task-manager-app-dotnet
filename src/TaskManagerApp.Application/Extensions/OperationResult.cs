@@ -1,5 +1,5 @@
-﻿using System.Net;
-using FluentValidation.Results;
+﻿using FluentValidation.Results;
+using System.Net;
 
 namespace TaskManagerApp.Application.Extensions
 {

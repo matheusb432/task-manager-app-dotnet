@@ -11,8 +11,8 @@ namespace TaskManagerApp.Infra.Configurations.EntityConfigurations
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
-            builder.Property(x => x.Created).HasDefaultValueSql("getdate()");
-            builder.Property(x => x.Updated).HasDefaultValueSql("getdate()");
+            builder.Property(x => x.CreatedAt).HasDefaultValueSql("getdate()");
+            builder.Property(x => x.UpdatedAt).HasDefaultValueSql("getdate()");
 
             ConfigureOtherProperties(builder);
         }

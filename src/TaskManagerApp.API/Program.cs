@@ -1,8 +1,7 @@
+using Microsoft.AspNetCore.OData;
 using TaskManagerApp.API.Configurations;
 using TaskManagerApp.Application.Configurations;
 using TaskManagerApp.Infra.Configurations;
-using TaskManagerApp.Infra.Utils;
-using Microsoft.AspNetCore.OData;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;

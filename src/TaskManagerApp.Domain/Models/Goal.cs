@@ -9,8 +9,9 @@
         }
 
         public string Title { get; set; } = string.Empty;
-        public string Image { get; set; } = string.Empty;
+        public string? Image { get; set; }
         public string? Description { get; set; }
+        public bool Active { get; set; }
         public List<GoalStep> GoalSteps { get; set; }
         public List<GoalTaskItem> GoalTaskItems { get; set; }
     }

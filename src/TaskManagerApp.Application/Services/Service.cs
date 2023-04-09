@@ -1,16 +1,13 @@
-﻿using System.Net;
-using AutoMapper;
+﻿using AutoMapper;
 using FluentValidation;
 using FluentValidation.Results;
+using System.Net;
 using TaskManagerApp.Application.Extensions;
 using TaskManagerApp.Application.Extensions.ViewModels;
 using TaskManagerApp.Domain.Models;
 
 namespace TaskManagerApp.Application.Services
 {
-    /// <summary>
-    /// Serviço abstrato que permite o tratamento operações de resposta, erro e validação de endpoints da API
-    /// </summary>
     public abstract class Service
     {
         protected readonly IMapper Mapper;

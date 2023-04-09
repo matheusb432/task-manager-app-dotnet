@@ -1,6 +1,6 @@
-﻿using TaskManagerApp.Domain.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using TaskManagerApp.Domain.Models;
 using TaskManagerApp.Infra.Interfaces;
-using Microsoft.EntityFrameworkCore;
 
 namespace TaskManagerApp.Infra.Repositories
 {

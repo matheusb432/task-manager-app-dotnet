@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TaskManagerApp.Domain.Models;
 
 namespace TaskManagerApp.Infra.Configurations.EntityConfigurations
@@ -10,8 +9,7 @@ namespace TaskManagerApp.Infra.Configurations.EntityConfigurations
         {
             builder.Property(x => x.Title).IsUnicode(false).HasMaxLength(250);
             builder.HasOne(x => x.User).WithMany(x => x.PresetTaskItems).HasForeignKey(x => x.UserId);
-            // TODO validate if ok on optional FK
-            builder.HasOne(x => x.Profile).WithMany(x => x.PresetTaskItems).HasForeignKey(x => x.ProfileId);
+            builder.HasMany(x => x.ProfilePresetTaskItems).WithOne(x => x.PresetTaskItem).HasForeignKey(x => x.PresetTaskItemId);
         }
     }
 }

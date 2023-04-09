@@ -1,12 +1,12 @@
-﻿using System.Net;
-using AutoMapper;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
+using System.Net;
 using TaskManagerApp.Application.Extensions;
 using TaskManagerApp.Application.Interfaces;
 using TaskManagerApp.Application.Utils;
 using TaskManagerApp.Application.ViewModels.Photo;
 using TaskManagerApp.Domain.Models;
 using TaskManagerApp.Infra.Interfaces;
-using Microsoft.AspNetCore.Http;
 
 namespace TaskManagerApp.Application.Services
 {

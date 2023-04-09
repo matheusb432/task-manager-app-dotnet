@@ -1,6 +1,5 @@
-﻿using TaskManagerApp.Domain.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using TaskManagerApp.Domain.Models;
 
 namespace TaskManagerApp.Infra.Configurations.EntityConfigurations
 {

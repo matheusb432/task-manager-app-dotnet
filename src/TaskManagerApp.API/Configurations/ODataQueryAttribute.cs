@@ -1,8 +1,8 @@
-﻿using TaskManagerApp.Application.Extensions.ViewModels;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.OData.Extensions;
 using Microsoft.AspNetCore.OData.Query;
+using TaskManagerApp.Application.Extensions.ViewModels;
 
 namespace TaskManagerApp.API.Configurations
 {
