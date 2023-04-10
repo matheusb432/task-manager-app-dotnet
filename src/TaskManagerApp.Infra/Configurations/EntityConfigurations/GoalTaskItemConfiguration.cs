@@ -3,7 +3,7 @@ using TaskManagerApp.Domain.Models;
 
 namespace TaskManagerApp.Infra.Configurations.EntityConfigurations
 {
-    internal class GoalTaskItemConfiguration : BaseEntityConfiguration<GoalTaskItem>
+    internal sealed class GoalTaskItemConfiguration : BaseEntityConfiguration<GoalTaskItem>
     {
         public override void ConfigureOtherProperties(EntityTypeBuilder<GoalTaskItem> builder)
         {

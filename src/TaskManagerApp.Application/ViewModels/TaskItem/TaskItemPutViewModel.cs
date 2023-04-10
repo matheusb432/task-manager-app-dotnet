@@ -1,6 +1,6 @@
 ﻿namespace TaskManagerApp.Application.ViewModels.TaskItem
 {
-    public class TaskItemPutViewModel
+    public sealed class TaskItemPutViewModel
     {
         public TaskItemPutViewModel()
         {

@@ -4,7 +4,7 @@ using TaskManagerApp.Domain.Models;
 
 namespace TaskManagerApp.Infra.Configurations.EntityConfigurations
 {
-    internal class ProfilePresetTaskItemConfiguration : BaseEntityConfiguration<ProfilePresetTaskItem>
+    internal sealed class ProfilePresetTaskItemConfiguration : BaseEntityConfiguration<ProfilePresetTaskItem>
     {
         public override void ConfigureOtherProperties(EntityTypeBuilder<ProfilePresetTaskItem> builder)
         {

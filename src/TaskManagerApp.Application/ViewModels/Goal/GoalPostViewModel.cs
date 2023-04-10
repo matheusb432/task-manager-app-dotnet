@@ -1,6 +1,6 @@
 ﻿namespace TaskManagerApp.Application.ViewModels.Goal
 {
-    public class GoalPostViewModel
+    public sealed class GoalPostViewModel
     {
         public GoalPostViewModel()
         {

@@ -1,6 +1,6 @@
 ﻿namespace TaskManagerApp.Domain.Models
 {
-    public class User : Entity
+    public sealed class User : Entity
     {
         public User()
         {

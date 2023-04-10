@@ -3,7 +3,7 @@ using TaskManagerApp.Domain.Models;
 
 namespace TaskManagerApp.Infra.Configurations.EntityConfigurations
 {
-    internal class ProfileConfiguration : BaseEntityConfiguration<Profile>
+    internal sealed class ProfileConfiguration : BaseEntityConfiguration<Profile>
     {
         public override void ConfigureOtherProperties(EntityTypeBuilder<Profile> builder)
         {

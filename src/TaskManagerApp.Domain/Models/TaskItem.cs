@@ -1,6 +1,6 @@
 ﻿namespace TaskManagerApp.Domain.Models
 {
-    public class TaskItem : Entity
+    public sealed class TaskItem : Entity
     {
         public TaskItem()
         {

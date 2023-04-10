@@ -4,7 +4,7 @@ using TaskManagerApp.Domain.Models;
 
 namespace TaskManagerApp.Infra.Configurations.EntityConfigurations
 {
-    internal class GoalStepConfiguration : BaseEntityConfiguration<GoalStep>
+    internal sealed class GoalStepConfiguration : BaseEntityConfiguration<GoalStep>
     {
         public override void ConfigureOtherProperties(EntityTypeBuilder<GoalStep> builder)
         {

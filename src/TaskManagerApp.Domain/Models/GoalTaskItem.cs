@@ -1,6 +1,6 @@
 ﻿namespace TaskManagerApp.Domain.Models
 {
-    public class GoalTaskItem : Entity
+    public sealed class GoalTaskItem : Entity
     {
         public int GoalId { get; set; }
         public int TaskItemId { get; set; }

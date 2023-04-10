@@ -2,7 +2,7 @@
 
 namespace TaskManagerApp.Domain.Models.Validators
 {
-    public class GoalValidator : AbstractValidator<Goal>
+    public sealed class GoalValidator : AbstractValidator<Goal>
     {
         public GoalValidator()
         {

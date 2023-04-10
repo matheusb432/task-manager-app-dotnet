@@ -2,7 +2,7 @@
 
 namespace TaskManagerApp.Application.ViewModels.Goal
 {
-    public class GoalTaskItemPutViewModel
+    public sealed class GoalTaskItemPutViewModel
     {
         public int Id { get; set; }
         public int GoalId { get; set; }

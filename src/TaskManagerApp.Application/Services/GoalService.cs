@@ -7,7 +7,7 @@ using TaskManagerApp.Infra.Interfaces;
 
 namespace TaskManagerApp.Application.Services
 {
-    public class GoalService : EntityService<
+    public sealed class GoalService : EntityService<
         Goal,
         GoalViewModel,
         GoalPostViewModel,

@@ -1,6 +1,6 @@
 ﻿namespace TaskManagerApp.Application.ViewModels.Profile
 {
-    public class ProfileTypeViewModel
+    public sealed class ProfileTypeViewModel
     {
         public ProfileTypeViewModel()
         {

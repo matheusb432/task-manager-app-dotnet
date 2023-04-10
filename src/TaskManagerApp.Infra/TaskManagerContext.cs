@@ -12,10 +12,6 @@ namespace TaskManagerApp.Infra
         {
         }
 
-        // TODO remove Cards & Photos
-        public DbSet<Card> Cards { get; set; } = null!;
-
-        public DbSet<Photo> Photos { get; set; } = null!;
         public DbSet<Goal> Goals { get; set; } = null!;
         public DbSet<GoalStep> GoalSteps { get; set; } = null!;
         public DbSet<GoalTaskItem> GoalTaskItems { get; set; } = null!;

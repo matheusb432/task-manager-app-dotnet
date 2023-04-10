@@ -1,6 +1,6 @@
 ﻿namespace TaskManagerApp.Application.ViewModels.Profile
 {
-    public class ProfilePresetTaskItemViewModel
+    public sealed class ProfilePresetTaskItemViewModel
     {
         public int Id { get; set; }
         public int ProfileId { get; set; }

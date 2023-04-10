@@ -1,6 +1,6 @@
 ﻿namespace TaskManagerApp.Application.ViewModels.Goal
 {
-    public class GoalStepPutViewModel
+    public sealed class GoalStepPutViewModel
     {
         public int Id { get; set; }
         public string Title { get; set; } = string.Empty;

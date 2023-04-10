@@ -2,7 +2,7 @@
 
 namespace TaskManagerApp.Domain.Models.Validators
 {
-    public class ProfileValidator : AbstractValidator<Profile>
+    public sealed class ProfileValidator : AbstractValidator<Profile>
     {
         public ProfileValidator()
         {

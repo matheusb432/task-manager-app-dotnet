@@ -2,7 +2,7 @@
 
 namespace TaskManagerApp.Domain.Models.Validators
 {
-    public class UserValidator : AbstractValidator<User>
+    public sealed class UserValidator : AbstractValidator<User>
     {
         public UserValidator()
         {

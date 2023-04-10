@@ -3,7 +3,7 @@ using TaskManagerApp.Domain.Models;
 
 namespace TaskManagerApp.Application.Profiles
 {
-    public class TaskItemProfiles : AutoMapper.Profile
+    public sealed class TaskItemProfiles : AutoMapper.Profile
     {
         public TaskItemProfiles()
         {

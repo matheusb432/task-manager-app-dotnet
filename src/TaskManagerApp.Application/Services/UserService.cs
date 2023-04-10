@@ -7,7 +7,7 @@ using TaskManagerApp.Infra.Interfaces;
 
 namespace TaskManagerApp.Application.Services
 {
-    internal class UserService : EntityService<
+    internal sealed class UserService : EntityService<
         User,
         UserViewModel,
         UserPostViewModel,

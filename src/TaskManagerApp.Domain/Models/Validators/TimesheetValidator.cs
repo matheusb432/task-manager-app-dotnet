@@ -2,7 +2,7 @@
 
 namespace TaskManagerApp.Domain.Models.Validators
 {
-    public class TimesheetValidator : AbstractValidator<Timesheet>
+    public sealed class TimesheetValidator : AbstractValidator<Timesheet>
     {
         public TimesheetValidator()
         {

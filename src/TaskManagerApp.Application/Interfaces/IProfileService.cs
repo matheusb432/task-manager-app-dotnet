@@ -7,6 +7,8 @@ namespace TaskManagerApp.Application.Interfaces
     {
         OperationResult Query();
 
+        Task<OperationResult> FindTypes();
+
         Task<OperationResult> Insert(ProfilePostViewModel viewModel);
 
         Task<OperationResult> Update(int id, ProfilePutViewModel viewModel);

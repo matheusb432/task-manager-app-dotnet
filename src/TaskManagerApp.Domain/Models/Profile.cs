@@ -1,6 +1,6 @@
 ﻿namespace TaskManagerApp.Domain.Models
 {
-    public class Profile : Entity
+    public sealed class Profile : Entity
     {
         public Profile()
         {

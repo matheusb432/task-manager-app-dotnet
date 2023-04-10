@@ -4,7 +4,7 @@ using TaskManagerApp.Domain.Models;
 
 namespace TaskManagerApp.Infra.Configurations.EntityConfigurations
 {
-    internal class GoalConfiguration : BaseEntityConfiguration<Goal>
+    internal sealed class GoalConfiguration : BaseEntityConfiguration<Goal>
     {
         public override void ConfigureOtherProperties(EntityTypeBuilder<Goal> builder)
         {

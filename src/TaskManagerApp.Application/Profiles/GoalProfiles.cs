@@ -9,7 +9,7 @@ using TaskManagerApp.Domain.Models;
 
 namespace TaskManagerApp.Application.Profiles
 {
-    public class GoalProfiles : AutoMapper.Profile
+    public sealed class GoalProfiles : AutoMapper.Profile
     {
         public GoalProfiles()
         {

@@ -3,7 +3,7 @@ using TaskManagerApp.Domain.Models;
 
 namespace TaskManagerApp.Infra.Configurations.EntityConfigurations
 {
-    internal class TimesheetConfiguration : BaseEntityConfiguration<Timesheet>
+    internal sealed class TimesheetConfiguration : BaseEntityConfiguration<Timesheet>
     {
         public override void ConfigureOtherProperties(EntityTypeBuilder<Timesheet> builder)
         {

@@ -1,6 +1,6 @@
 ﻿namespace TaskManagerApp.Application.ViewModels.Timesheet
 {
-    public class TimesheetNotePutViewModel
+    public sealed class TimesheetNotePutViewModel
     {
         public int Id { get; set; }
         public string Comment { get; set; } = string.Empty;

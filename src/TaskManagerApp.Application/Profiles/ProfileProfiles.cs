@@ -3,7 +3,7 @@ using TaskManagerApp.Domain.Models;
 
 namespace TaskManagerApp.Application.Profiles
 {
-    public class ProfileProfiles : AutoMapper.Profile
+    public sealed class ProfileProfiles : AutoMapper.Profile
     {
         public ProfileProfiles()
         {

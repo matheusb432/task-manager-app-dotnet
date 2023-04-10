@@ -7,7 +7,7 @@ using TaskManagerApp.Infra.Interfaces;
 
 namespace TaskManagerApp.Application.Services
 {
-    internal class TaskItemService : EntityService<
+    internal sealed class TaskItemService : EntityService<
         TaskItem,
         TaskItemViewModel,
         TaskItemPostViewModel,

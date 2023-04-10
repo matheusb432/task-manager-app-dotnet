@@ -3,7 +3,7 @@ using TaskManagerApp.Domain.Utils;
 
 namespace TaskManagerApp.Domain.Models.Validators
 {
-    public class ProfileTypeValidator : AbstractValidator<ProfileType>
+    public sealed class ProfileTypeValidator : AbstractValidator<ProfileType>
     {
         public ProfileTypeValidator()
         {

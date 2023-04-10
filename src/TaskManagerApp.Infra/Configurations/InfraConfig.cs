@@ -22,13 +22,10 @@ namespace TaskManagerApp.Infra.Configurations
             else services.AddDatabase(configuration);
 
             services.AddRepositories();
-            services.MigrateDatabase();
         }
 
         private static void AddRepositories(this IServiceCollection services)
         {
-            services.AddTransient<IPhotoRepository, PhotoRepository>();
-            services.AddTransient<ICardRepository, CardRepository>();
             services.AddTransient<IGoalRepository, GoalRepository>();
             services.AddTransient<IPresetTaskItemRepository, PresetTaskItemRepository>();
             services.AddTransient<IProfileRepository, ProfileRepository>();
@@ -56,14 +53,5 @@ namespace TaskManagerApp.Infra.Configurations
                     opt.UseSqlServer(ConnectionStringBuilder.BuildEnvCnnStr("TaskManagerAppDB"))
                         .LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Error)
             );
-
-        private static void MigrateDatabase(this IServiceCollection services)
-        {
-            var serviceProvider = services.BuildServiceProvider();
-            var context = serviceProvider.GetRequiredService<TaskManagerContext>();
-
-            if (!context.Database.GetService<IRelationalDatabaseCreator>().Exists())
-                context.Database.Migrate();
-        }
     }
 }

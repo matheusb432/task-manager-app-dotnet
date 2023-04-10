@@ -2,7 +2,7 @@
 
 namespace TaskManagerApp.Application.ViewModels.Profile
 {
-    public class ProfileTypePostViewModel
+    public sealed class ProfileTypePostViewModel
     {
         public string Name { get; set; } = string.Empty;
         public string Type { get; set; } = ProfileTypes.Custom;

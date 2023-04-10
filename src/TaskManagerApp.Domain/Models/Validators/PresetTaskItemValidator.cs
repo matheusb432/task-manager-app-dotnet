@@ -2,7 +2,7 @@
 
 namespace TaskManagerApp.Domain.Models.Validators
 {
-    public class PresetTaskItemValidator : AbstractValidator<PresetTaskItem>
+    public sealed class PresetTaskItemValidator : AbstractValidator<PresetTaskItem>
     {
         public PresetTaskItemValidator()
         {

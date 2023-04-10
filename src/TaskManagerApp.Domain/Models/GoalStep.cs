@@ -1,6 +1,6 @@
 ﻿namespace TaskManagerApp.Domain.Models
 {
-    public class GoalStep : Entity
+    public sealed class GoalStep : Entity
     {
         public string Title { get; set; } = string.Empty;
         public string? Description { get; set; }

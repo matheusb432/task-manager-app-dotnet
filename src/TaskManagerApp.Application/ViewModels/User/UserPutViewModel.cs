@@ -1,6 +1,6 @@
 ﻿namespace TaskManagerApp.Application.ViewModels.User
 {
-    public class UserPutViewModel
+    public sealed class UserPutViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;

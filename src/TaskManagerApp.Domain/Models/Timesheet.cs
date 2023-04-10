@@ -1,6 +1,6 @@
 ﻿namespace TaskManagerApp.Domain.Models
 {
-    public class Timesheet : Entity
+    public sealed class Timesheet : Entity
     {
         public Timesheet()
         {

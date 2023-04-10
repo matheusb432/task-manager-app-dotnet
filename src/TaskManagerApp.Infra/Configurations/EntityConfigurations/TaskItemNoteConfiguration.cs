@@ -3,7 +3,7 @@ using TaskManagerApp.Domain.Models;
 
 namespace TaskManagerApp.Infra.Configurations.EntityConfigurations
 {
-    internal class TaskItemNoteConfiguration : BaseEntityConfiguration<TaskItemNote>
+    internal sealed class TaskItemNoteConfiguration : BaseEntityConfiguration<TaskItemNote>
     {
         public override void ConfigureOtherProperties(EntityTypeBuilder<TaskItemNote> builder)
         {

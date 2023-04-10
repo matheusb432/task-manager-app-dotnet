@@ -2,7 +2,7 @@
 
 namespace TaskManagerApp.Application.ViewModels.Profile
 {
-    public class ProfilePostViewModel
+    public sealed class ProfilePostViewModel
     {
         public ProfilePostViewModel()
         {

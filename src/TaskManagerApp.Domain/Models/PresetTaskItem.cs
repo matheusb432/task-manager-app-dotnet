@@ -1,6 +1,6 @@
 ﻿namespace TaskManagerApp.Domain.Models
 {
-    public class PresetTaskItem : Entity
+    public sealed class PresetTaskItem : Entity
     {
         public PresetTaskItem()
         {

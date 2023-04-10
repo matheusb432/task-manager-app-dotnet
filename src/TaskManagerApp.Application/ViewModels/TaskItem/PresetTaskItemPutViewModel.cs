@@ -1,6 +1,6 @@
 ﻿namespace TaskManagerApp.Application.ViewModels.TaskItem
 {
-    public class PresetTaskItemPutViewModel
+    public sealed class PresetTaskItemPutViewModel
     {
         public int Id { get; set; }
         public string Title { get; set; } = string.Empty;

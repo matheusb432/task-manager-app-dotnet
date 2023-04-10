@@ -3,7 +3,7 @@ using TaskManagerApp.Application.ViewModels.TaskItem;
 
 namespace TaskManagerApp.Application.ViewModels.User
 {
-    public class UserViewModel
+    public sealed class UserViewModel
     {
         public UserViewModel()
         {

@@ -10,7 +10,7 @@ using TaskManagerApp.Domain.Models;
 
 namespace TaskManagerApp.Application.Profiles
 {
-    public class TimesheetProfiles : AutoMapper.Profile
+    public sealed class TimesheetProfiles : AutoMapper.Profile
     {
         public TimesheetProfiles()
         {

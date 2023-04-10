@@ -7,7 +7,7 @@ using TaskManagerApp.Infra.Interfaces;
 
 namespace TaskManagerApp.Application.Services
 {
-    internal class TimesheetService : EntityService<
+    internal sealed class TimesheetService : EntityService<
         Timesheet,
         TimesheetViewModel,
         TimesheetPostViewModel,

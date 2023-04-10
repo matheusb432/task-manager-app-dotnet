@@ -3,7 +3,7 @@ using TaskManagerApp.Domain.Models;
 
 namespace TaskManagerApp.Infra.Configurations.EntityConfigurations
 {
-    public class UserConfiguration : BaseEntityConfiguration<User>
+    public sealed class UserConfiguration : BaseEntityConfiguration<User>
     {
         public override void ConfigureOtherProperties(EntityTypeBuilder<User> builder)
         {

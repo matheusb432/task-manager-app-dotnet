@@ -2,7 +2,7 @@
 
 namespace TaskManagerApp.Infra.Configurations.EntityConfigurations
 {
-    internal class ProfileTypeConfiguration : BaseEntityConfiguration<ProfileType>
+    internal sealed class ProfileTypeConfiguration : BaseEntityConfiguration<ProfileType>
     {
         public override void ConfigureOtherProperties(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<ProfileType> builder)
         {

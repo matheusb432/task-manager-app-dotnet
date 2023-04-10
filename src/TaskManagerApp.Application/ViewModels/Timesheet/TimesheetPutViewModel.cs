@@ -2,7 +2,7 @@
 
 namespace TaskManagerApp.Application.ViewModels.Timesheet
 {
-    public class TimesheetPutViewModel
+    public sealed class TimesheetPutViewModel
     {
         public TimesheetPutViewModel()
         {
