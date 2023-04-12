@@ -14,7 +14,7 @@ namespace TaskManagerApp.Application.Services
         where TPutVM : class
         where TV : AbstractValidator<T>, new()
     {
-        private readonly IRepository<T> _repo;
+        protected readonly IRepository<T> _repo;
 
         public EntityService(IMapper mapper, IRepository<T> repo) 
             : base(mapper)

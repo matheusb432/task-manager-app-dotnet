@@ -14,7 +14,6 @@ namespace TaskManagerApp.Application.ViewModels.Profile
         public short? TasksTarget { get; set; }
         public int UserId { get; set; }
         public int ProfileTypeId { get; set; }
-        public ProfileTypePostViewModel? ProfileType { get; set; }
         public List<PresetTaskItemPostViewModel> PresetTaskItems { get; set; }
     }
 }
