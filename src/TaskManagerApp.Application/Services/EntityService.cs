@@ -28,7 +28,7 @@ namespace TaskManagerApp.Application.Services
         {
             var entity = Mapper.Map<T>(viewModel);
             if (!EntityIsValid(new TV(), entity))
-                return Error();
+                return Error(HttpStatusCode.BadRequest);
 
             await _repo.InsertAsync(entity);
             return Success(entity.Id);

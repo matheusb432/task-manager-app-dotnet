@@ -27,9 +27,9 @@ namespace TaskManagerApp.Application.Services
             return new(new ValidationResult(failures), statusCode);
         }
 
-        protected OperationResult Success(object? obj = null) => new(obj);
+        protected OperationResult Success(object? obj = null, HttpStatusCode code = HttpStatusCode.OK) => new(obj, code);
 
-        protected OperationResult Success(long id) => new(new PostReturnViewModel(id));
+        protected OperationResult Success(long id, HttpStatusCode code = HttpStatusCode.Created) => new(new PostReturnViewModel(id), code);
 
         protected void NotifyError(string errorMessage)
         {

@@ -83,14 +83,116 @@ namespace TaskManagerApp.Tests.Services
             Assert.Equal(profile.ProfileTypeId, created.ProfileTypeId);
         }
 
+        [Fact]
+        public async Task Insert_WithInvalidProfile_ShouldReturnBadRequest()
+        {
+            var profile = new ProfilePostViewModel
+            {
+                HoursTarget = 10,
+                TasksTarget = 4,
+                UserId = 123,
+                ProfileTypeId = 1
+            };
+
+            var result = await _service.Insert(profile);
+
+            Assert.False(result.IsValid);
+            Assert.Equal(400, (int)result.StatusCode);
+        }
+
+        [Fact]
+        public async Task Update_WithValidProfile_ShouldReturnSuccess()
+        {
+            var id = 1;
+            var profile = new ProfilePutViewModel
+            {
+                Id = id,
+                Name = "Personal Weekdays Profile -- edit",
+                HoursTarget = 7,
+                TasksTarget = 4,
+                UserId = 123,
+                ProfileTypeId = 1
+            };
+
+            var result = await _service.Update(profile.Id, profile);
+            var updated = _profiles.FirstOrDefault(p => p.Id == id);
+
+            Assert.True(result.IsValid);
+            Assert.NotNull(updated);
+            Assert.Equal(profile.Name, updated.Name);
+            Assert.Equal(profile.HoursTarget, updated.HoursTarget);
+            Assert.Equal(profile.TasksTarget, updated.TasksTarget);
+            Assert.Equal(profile.UserId, updated.UserId);
+            Assert.Equal(profile.ProfileTypeId, updated.ProfileTypeId);
+        }
+
+        [Fact]
+        public async Task Update_WithInvalidProfile_ShouldReturnBadRequest()
+        {
+            var id = 1;
+            var profile = new ProfilePutViewModel
+            {
+                Id = id,
+                HoursTarget = 10,
+                TasksTarget = 4,
+                UserId = 123,
+                ProfileTypeId = 1
+            };
+
+            var result = await _service.Update(profile.Id, profile);
+
+            Assert.False(result.IsValid);
+            Assert.Equal(400, (int)result.StatusCode);
+        }
+
+        [Fact]
+        public async Task Delete_WithValidId_ShouldDeleteItem()
+        {
+            var id = 1;
+
+            var result = await _service.Delete(id);
+
+            Assert.True(result.IsValid);
+            Assert.Equal(200, (int)result.StatusCode);
+        }
+
+        [Fact]
+        public async Task Delete_WithInvalidId_ShouldReturnNotFound()
+        {
+            var id = 999;
+
+            var result = await _service.Delete(id);
+
+            Assert.False(result.IsValid);
+            Assert.Equal(404, (int)result.StatusCode);
+        }
+
         private void SetupMocks()
         {
             _repo
                 .Setup(x => x.InsertAsync(It.IsAny<Domain.Models.Profile>(), true))
-                .Callback((Domain.Models.Profile p, bool save) => {
+                .Callback((Domain.Models.Profile p, bool save) =>
+                {
                     p.Id = _profiles.Max(x => x.Id) + 1;
                     _profiles.Add(p);
                 });
+            _repo
+                .Setup(x => x.UpdateAsync(It.IsAny<Domain.Models.Profile>(), true))
+                .Callback((Domain.Models.Profile p, bool save) =>
+                {
+                    var toUpdate = _profiles.FirstOrDefault(x => x.Id == p.Id);
+
+                    if (toUpdate == null) return;
+
+                    _profiles.Remove(toUpdate);
+                    _profiles.Add(p);
+                });
+            _repo
+                .Setup(x => x.GetByIdAsNoTrackingAsync(It.IsAny<long>()))
+                .ReturnsAsync((long id) => _profiles.FirstOrDefault((x) => x.Id == id));
+            _repo
+                .Setup(x => x.DeleteAsync(It.IsAny<Domain.Models.Profile>(), It.IsAny<bool>()))
+                .Callback((Domain.Models.Profile p, bool save) => _profiles.Remove(p));
 
             _profileTypeRepo
                 .Setup(x => x.GetAllAsync())

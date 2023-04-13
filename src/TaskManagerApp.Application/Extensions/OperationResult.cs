@@ -18,10 +18,11 @@ namespace TaskManagerApp.Application.Extensions
 
         public OperationResult(ValidationResult? result) => Result = result;
 
-        public OperationResult(object? content)
+        public OperationResult(object? content, HttpStatusCode statusCode)
         {
             Result = new ValidationResult();
             Content = content;
+            StatusCode = statusCode;
         }
     }
 }
