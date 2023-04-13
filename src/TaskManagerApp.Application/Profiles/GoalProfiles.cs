@@ -13,13 +13,13 @@ namespace TaskManagerApp.Application.Profiles
     {
         public GoalProfiles()
         {
-            CreateMap<Goal, GoalViewModel>();
+            CreateMap<Goal, GoalViewModel>().ReverseMap();
             CreateMap<GoalPostViewModel, Goal>();
             CreateMap<GoalPutViewModel, Goal>();
-            CreateMap<GoalStep, GoalStepViewModel>();
+            CreateMap<GoalStep, GoalStepViewModel>().ReverseMap();
             CreateMap<GoalStepPostViewModel, GoalStep>();
             CreateMap<GoalStepPutViewModel, GoalStep>();
-            CreateMap<GoalTaskItem, GoalTaskItemViewModel>();
+            CreateMap<GoalTaskItem, GoalTaskItemViewModel>().ReverseMap();
             CreateMap<GoalTaskItemPostViewModel, GoalTaskItem>();
             CreateMap<GoalTaskItemPutViewModel, GoalTaskItem>();
         }

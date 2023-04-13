@@ -96,7 +96,7 @@ namespace TaskManagerApp.Infra.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "varchar(250)", unicode: false, maxLength: 250, nullable: false),
-                    Hours = table.Column<short>(type: "smallint", nullable: true),
+                    Time = table.Column<short>(type: "smallint", nullable: true),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getdate()"),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getdate()")
@@ -119,8 +119,9 @@ namespace TaskManagerApp.Infra.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "varchar(250)", unicode: false, maxLength: 250, nullable: false),
-                    HoursTarget = table.Column<short>(type: "smallint", nullable: true),
+                    TimeTarget = table.Column<short>(type: "smallint", nullable: true),
                     TasksTarget = table.Column<short>(type: "smallint", nullable: true),
+                    Priority = table.Column<short>(type: "smallint", nullable: false, defaultValue: (short)1),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     ProfileTypeId = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getdate()"),
@@ -201,7 +202,9 @@ namespace TaskManagerApp.Infra.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "varchar(250)", unicode: false, maxLength: 250, nullable: false),
-                    Hours = table.Column<short>(type: "smallint", nullable: false),
+                    Time = table.Column<short>(type: "smallint", nullable: true),
+                    Rating = table.Column<short>(type: "smallint", nullable: true),
+                    Importance = table.Column<short>(type: "smallint", nullable: false, defaultValue: (short)1),
                     TimesheetId = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getdate()"),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getdate()")
@@ -294,11 +297,11 @@ namespace TaskManagerApp.Infra.Migrations
                 columns: new[] { "Id", "CreatedAt", "DateRangeEnd", "DateRangeStart", "Name", "Type" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 4, 9, 21, 31, 19, 424, DateTimeKind.Local).AddTicks(8029), null, null, "Weekdays", "weekday" },
-                    { 2, new DateTime(2023, 4, 9, 21, 31, 19, 424, DateTimeKind.Local).AddTicks(8043), null, null, "Weekends", "weekend" },
-                    { 3, new DateTime(2023, 4, 9, 21, 31, 19, 424, DateTimeKind.Local).AddTicks(8075), null, null, "Holidays", "holiday" },
-                    { 4, new DateTime(2023, 4, 9, 21, 31, 19, 424, DateTimeKind.Local).AddTicks(8076), new DateTime(2023, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "January 2023", "custom" },
-                    { 5, new DateTime(2023, 4, 9, 21, 31, 19, 424, DateTimeKind.Local).AddTicks(8084), new DateTime(2022, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "2022", "custom" }
+                    { 1, new DateTime(2023, 4, 13, 20, 4, 15, 530, DateTimeKind.Local).AddTicks(1513), null, null, "Weekdays", "weekday" },
+                    { 2, new DateTime(2023, 4, 13, 20, 4, 15, 530, DateTimeKind.Local).AddTicks(1527), null, null, "Weekends", "weekend" },
+                    { 3, new DateTime(2023, 4, 13, 20, 4, 15, 530, DateTimeKind.Local).AddTicks(1529), null, null, "Holidays", "holiday" },
+                    { 4, new DateTime(2023, 4, 13, 20, 4, 15, 530, DateTimeKind.Local).AddTicks(1530), new DateTime(2023, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "January 2023", "custom" },
+                    { 5, new DateTime(2023, 4, 13, 20, 4, 15, 530, DateTimeKind.Local).AddTicks(1543), new DateTime(2022, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "2022", "custom" }
                 });
 
             migrationBuilder.CreateIndex(

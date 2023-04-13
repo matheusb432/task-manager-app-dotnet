@@ -19,17 +19,12 @@ namespace TaskManagerApp.API.Controllers
 
         private ActionResult ErrorResponse(OperationResult result)
         {
-            switch (result.StatusCode)
+            return result.StatusCode switch
             {
-                case HttpStatusCode.NotFound:
-                    return NotFound(MapErrorsToResponse(result.Result));
-
-                case HttpStatusCode.Conflict:
-                    return Conflict(MapErrorsToResponse(result.Result));
-
-                default:
-                    return BadRequest(MapErrorsToResponse(result.Result));
-            }
+                HttpStatusCode.NotFound => NotFound(MapErrorsToResponse(result.Result)),
+                HttpStatusCode.Conflict => Conflict(MapErrorsToResponse(result.Result)),
+                _ => BadRequest(MapErrorsToResponse(result.Result)),
+            };
         }
 
         private static ErrorViewModel MapErrorsToResponse(ValidationResult? validationResult)

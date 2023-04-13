@@ -12,7 +12,7 @@ using TaskManagerApp.Infra;
 namespace TaskManagerApp.Infra.Migrations
 {
     [DbContext(typeof(TaskManagerContext))]
-    [Migration("20230410003119_Initial")]
+    [Migration("20230413230415_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -155,7 +155,7 @@ namespace TaskManagerApp.Infra.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
-                    b.Property<short?>("Hours")
+                    b.Property<short?>("Time")
                         .HasColumnType("smallint");
 
                     b.Property<string>("Title")
@@ -192,19 +192,24 @@ namespace TaskManagerApp.Infra.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
-                    b.Property<short?>("HoursTarget")
-                        .HasColumnType("smallint");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(250)
                         .IsUnicode(false)
                         .HasColumnType("varchar(250)");
 
+                    b.Property<short>("Priority")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("smallint")
+                        .HasDefaultValue((short)1);
+
                     b.Property<int>("ProfileTypeId")
                         .HasColumnType("int");
 
                     b.Property<short?>("TasksTarget")
+                        .HasColumnType("smallint");
+
+                    b.Property<short?>("TimeTarget")
                         .HasColumnType("smallint");
 
                     b.Property<DateTime>("UpdatedAt")
@@ -301,7 +306,7 @@ namespace TaskManagerApp.Infra.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 4, 9, 21, 31, 19, 424, DateTimeKind.Local).AddTicks(8029),
+                            CreatedAt = new DateTime(2023, 4, 13, 20, 4, 15, 530, DateTimeKind.Local).AddTicks(1513),
                             Name = "Weekdays",
                             Type = "weekday",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
@@ -309,7 +314,7 @@ namespace TaskManagerApp.Infra.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 4, 9, 21, 31, 19, 424, DateTimeKind.Local).AddTicks(8043),
+                            CreatedAt = new DateTime(2023, 4, 13, 20, 4, 15, 530, DateTimeKind.Local).AddTicks(1527),
                             Name = "Weekends",
                             Type = "weekend",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
@@ -317,7 +322,7 @@ namespace TaskManagerApp.Infra.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2023, 4, 9, 21, 31, 19, 424, DateTimeKind.Local).AddTicks(8075),
+                            CreatedAt = new DateTime(2023, 4, 13, 20, 4, 15, 530, DateTimeKind.Local).AddTicks(1529),
                             Name = "Holidays",
                             Type = "holiday",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
@@ -325,7 +330,7 @@ namespace TaskManagerApp.Infra.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2023, 4, 9, 21, 31, 19, 424, DateTimeKind.Local).AddTicks(8076),
+                            CreatedAt = new DateTime(2023, 4, 13, 20, 4, 15, 530, DateTimeKind.Local).AddTicks(1530),
                             DateRangeEnd = new DateTime(2023, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateRangeStart = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "January 2023",
@@ -335,7 +340,7 @@ namespace TaskManagerApp.Infra.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2023, 4, 9, 21, 31, 19, 424, DateTimeKind.Local).AddTicks(8084),
+                            CreatedAt = new DateTime(2023, 4, 13, 20, 4, 15, 530, DateTimeKind.Local).AddTicks(1543),
                             DateRangeEnd = new DateTime(2022, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateRangeStart = new DateTime(2022, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "2022",
@@ -357,7 +362,15 @@ namespace TaskManagerApp.Infra.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
-                    b.Property<short>("Hours")
+                    b.Property<short>("Importance")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("smallint")
+                        .HasDefaultValue((short)1);
+
+                    b.Property<short?>("Rating")
+                        .HasColumnType("smallint");
+
+                    b.Property<short?>("Time")
                         .HasColumnType("smallint");
 
                     b.Property<int>("TimesheetId")

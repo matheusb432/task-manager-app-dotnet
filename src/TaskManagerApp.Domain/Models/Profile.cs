@@ -8,8 +8,9 @@
         }
 
         public string Name { get; set; } = string.Empty;
-        public short? HoursTarget { get; set; }
+        public short? TimeTarget { get; set; }
         public short? TasksTarget { get; set; }
+        public short Priority { get; set; }
         public int UserId { get; set; }
         public int ProfileTypeId { get; set; }
         public User? User { get; set; }

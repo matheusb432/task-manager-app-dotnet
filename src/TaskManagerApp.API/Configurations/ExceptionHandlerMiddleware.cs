@@ -24,9 +24,9 @@ namespace TaskManagerApp.API.Configurations
             }
         }
 
-        private Task HandleExceptionAsync(HttpContext context, Exception exception)
+        private static Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
-            var code = HttpStatusCode.InternalServerError;
+            const HttpStatusCode code = HttpStatusCode.InternalServerError;
 
             var exceptionMessage = exception.Message;
             var innerExceptionMessage = exception.InnerException?.Message;

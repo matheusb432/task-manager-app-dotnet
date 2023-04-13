@@ -17,7 +17,7 @@
                 MimeType = mimeType
             };
 
-        public static FileReturnViewModel FromImageBytes(byte[] content, string fileName = "image.png")
+        public static FileReturnViewModel FromImageBytes(byte[] content)
             => FromFileBytes(content, "image/png");
     }
 }

@@ -7,13 +7,16 @@ namespace TaskManagerApp.Application.Profiles
     {
         public TaskItemProfiles()
         {
-            CreateMap<TaskItem, TaskItemViewModel>();
-            CreateMap<TaskItemPostViewModel, TaskItem>();
-            CreateMap<TaskItemPutViewModel, TaskItem>();
-            CreateMap<PresetTaskItem, PresetTaskItemViewModel>();
+            CreateMap<TaskItem, TaskItemViewModel>().ReverseMap()
+                .ForMember(dest => dest.Importance, opt => opt.MapFrom(src => Math.Max(1, (int) src.Importance)));
+            CreateMap<TaskItemPostViewModel, TaskItem>()
+                .ForMember(dest => dest.Importance, opt => opt.MapFrom(src => Math.Max(1, (int)src.Importance)));
+            CreateMap<TaskItemPutViewModel, TaskItem>()
+                .ForMember(dest => dest.Importance, opt => opt.MapFrom(src => Math.Max(1, (int)src.Importance)));
+            CreateMap<PresetTaskItem, PresetTaskItemViewModel>().ReverseMap();
             CreateMap<PresetTaskItemPostViewModel, PresetTaskItem>();
             CreateMap<PresetTaskItemPutViewModel, PresetTaskItem>();
-            CreateMap<TaskItemNote, TaskItemNoteViewModel>();
+            CreateMap<TaskItemNote, TaskItemNoteViewModel>().ReverseMap();
             CreateMap<TaskItemNotePostViewModel, TaskItemNote>();
             CreateMap<TaskItemNotePutViewModel, TaskItemNote>();
         }

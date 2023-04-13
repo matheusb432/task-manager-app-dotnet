@@ -7,13 +7,13 @@ namespace TaskManagerApp.Application.Profiles
     {
         public ProfileProfiles()
         {
-            CreateMap<Profile, ProfileViewModel>();
+            CreateMap<Profile, ProfileViewModel>().ReverseMap();
             CreateMap<ProfilePostViewModel, Profile>();
             CreateMap<ProfilePutViewModel, Profile>();
-            CreateMap<ProfilePresetTaskItem, ProfilePresetTaskItemViewModel>();
+            CreateMap<ProfilePresetTaskItem, ProfilePresetTaskItemViewModel>().ReverseMap();
             CreateMap<ProfilePresetTaskItemPostViewModel, ProfilePresetTaskItem>();
             CreateMap<ProfilePresetTaskItemPutViewModel, ProfilePresetTaskItem>();
-            CreateMap<ProfileType, ProfileTypeViewModel>();
+            CreateMap<ProfileType, ProfileTypeViewModel>().ReverseMap();
             CreateMap<ProfileTypePostViewModel, ProfileType>();
             CreateMap<ProfileTypePutViewModel, ProfileType>();
         }

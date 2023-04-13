@@ -14,10 +14,10 @@ namespace TaskManagerApp.Application.Profiles
     {
         public TimesheetProfiles()
         {
-            CreateMap<Timesheet, TimesheetViewModel>();
+            CreateMap<Timesheet, TimesheetViewModel>().ReverseMap();
             CreateMap<TimesheetPostViewModel, Timesheet>();
             CreateMap<TimesheetPutViewModel, Timesheet>();
-            CreateMap<TimesheetNote, TimesheetNoteViewModel>();
+            CreateMap<TimesheetNote, TimesheetNoteViewModel>().ReverseMap();
             CreateMap<TimesheetNotePostViewModel, TimesheetNote>();
             CreateMap<TimesheetNotePutViewModel, TimesheetNote>();
         }

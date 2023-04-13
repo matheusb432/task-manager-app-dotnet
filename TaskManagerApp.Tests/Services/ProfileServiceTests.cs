@@ -62,8 +62,9 @@ namespace TaskManagerApp.Tests.Services
             var profile = new ProfilePostViewModel
             {
                 Name = "Personal Weekdays Profile",
-                HoursTarget = 10,
+                TimeTarget = 1000,
                 TasksTarget = 4,
+                Priority = 0,
                 UserId = 123,
                 ProfileTypeId = 1
             };
@@ -77,7 +78,7 @@ namespace TaskManagerApp.Tests.Services
             Assert.True(result.IsValid);
             Assert.NotNull(created);
             Assert.Equal(profile.Name, created.Name);
-            Assert.Equal(profile.HoursTarget, created.HoursTarget);
+            Assert.Equal(profile.TimeTarget, created.TimeTarget);
             Assert.Equal(profile.TasksTarget, created.TasksTarget);
             Assert.Equal(profile.UserId, created.UserId);
             Assert.Equal(profile.ProfileTypeId, created.ProfileTypeId);
@@ -88,7 +89,7 @@ namespace TaskManagerApp.Tests.Services
         {
             var profile = new ProfilePostViewModel
             {
-                HoursTarget = 10,
+                TimeTarget = 1000,
                 TasksTarget = 4,
                 UserId = 123,
                 ProfileTypeId = 1
@@ -108,8 +109,9 @@ namespace TaskManagerApp.Tests.Services
             {
                 Id = id,
                 Name = "Personal Weekdays Profile -- edit",
-                HoursTarget = 7,
+                TimeTarget = 700,
                 TasksTarget = 4,
+                Priority = 0,
                 UserId = 123,
                 ProfileTypeId = 1
             };
@@ -120,7 +122,7 @@ namespace TaskManagerApp.Tests.Services
             Assert.True(result.IsValid);
             Assert.NotNull(updated);
             Assert.Equal(profile.Name, updated.Name);
-            Assert.Equal(profile.HoursTarget, updated.HoursTarget);
+            Assert.Equal(profile.TimeTarget, updated.TimeTarget);
             Assert.Equal(profile.TasksTarget, updated.TasksTarget);
             Assert.Equal(profile.UserId, updated.UserId);
             Assert.Equal(profile.ProfileTypeId, updated.ProfileTypeId);
@@ -133,7 +135,7 @@ namespace TaskManagerApp.Tests.Services
             var profile = new ProfilePutViewModel
             {
                 Id = id,
-                HoursTarget = 10,
+                TimeTarget = 1000,
                 TasksTarget = 4,
                 UserId = 123,
                 ProfileTypeId = 1
@@ -229,8 +231,9 @@ namespace TaskManagerApp.Tests.Services
                 {
                         Id= 1,
                         Name= "Personal Weekdays Profile",
-                        HoursTarget= 10,
+                        TimeTarget= 1030,
                         TasksTarget= 4,
+                        Priority = 0,
                         UserId= 123,
                         ProfileTypeId= 1,
                 },
@@ -238,8 +241,9 @@ namespace TaskManagerApp.Tests.Services
                 {
                         Id= 2,
                         Name= "Personal Weekends Profile",
-                        HoursTarget= 4,
+                        TimeTarget= 400,
                         TasksTarget= 3,
+                        Priority = 0,
                         UserId= 123,
                         ProfileTypeId= 2,
                 },
@@ -247,7 +251,8 @@ namespace TaskManagerApp.Tests.Services
                 {
                         Id= 3,
                         Name= "Personal Holidays Profile",
-                        HoursTarget= 3,
+                        TimeTarget= 330,
+                        Priority = 1,
                         UserId= 323,
                         ProfileTypeId= 3,
                 },
@@ -255,7 +260,8 @@ namespace TaskManagerApp.Tests.Services
                 {
                         Id= 4,
                         Name= "Personal Custom Profile",
-                        HoursTarget= 4,
+                        TimeTarget= 430,
+                        Priority = 2,
                         UserId= 423,
                         ProfileTypeId= 4,
                 },
@@ -263,7 +269,8 @@ namespace TaskManagerApp.Tests.Services
                 {
                         Id= 5,
                         Name= "Personal Custom Profile",
-                        HoursTarget= 5,
+                        TimeTarget= 5,
+                        Priority = 2,
                         UserId= 523,
                         ProfileTypeId= 5,
                 },

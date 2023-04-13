@@ -7,7 +7,7 @@ namespace TaskManagerApp.Application.Profiles
     {
         public UserProfiles()
         {
-            CreateMap<User, UserViewModel>();
+            CreateMap<User, UserViewModel>().ReverseMap();
             CreateMap<UserPostViewModel, User>();
             CreateMap<UserPutViewModel, User>();
         }
