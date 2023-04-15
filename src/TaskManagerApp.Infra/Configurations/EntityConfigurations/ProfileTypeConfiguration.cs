@@ -1,4 +1,5 @@
-﻿using TaskManagerApp.Domain.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using TaskManagerApp.Domain.Models;
 
 namespace TaskManagerApp.Infra.Configurations.EntityConfigurations
 {
@@ -8,6 +9,8 @@ namespace TaskManagerApp.Infra.Configurations.EntityConfigurations
         {
             builder.Property(x => x.Name).IsUnicode(false).HasMaxLength(250);
             builder.Property(x => x.Type).IsUnicode(false).HasMaxLength(50);
+            builder.Property(x => x.DateRangeStart).HasColumnType("datetime");
+            builder.Property(x => x.DateRangeEnd).HasColumnType("datetime");
         }
     }
 }

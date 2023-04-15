@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskManagerApp.Infra;
 
@@ -11,9 +12,11 @@ using TaskManagerApp.Infra;
 namespace TaskManagerApp.Infra.Migrations
 {
     [DbContext(typeof(TaskManagerContext))]
-    partial class TaskManagerContextModelSnapshot : ModelSnapshot
+    [Migration("20230415171658_AddTimesheetUniqueIndex")]
+    partial class AddTimesheetUniqueIndex
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,7 +40,7 @@ namespace TaskManagerApp.Infra.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
+                        .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
                     b.Property<string>("Description")
@@ -57,7 +60,7 @@ namespace TaskManagerApp.Infra.Migrations
 
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
+                        .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
                     b.HasKey("Id");
@@ -75,7 +78,7 @@ namespace TaskManagerApp.Infra.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
+                        .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
                     b.Property<string>("Description")
@@ -96,7 +99,7 @@ namespace TaskManagerApp.Infra.Migrations
 
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
+                        .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
                     b.HasKey("Id");
@@ -116,7 +119,7 @@ namespace TaskManagerApp.Infra.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
+                        .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
                     b.Property<int>("GoalId")
@@ -127,7 +130,7 @@ namespace TaskManagerApp.Infra.Migrations
 
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
+                        .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
                     b.HasKey("Id");
@@ -149,7 +152,7 @@ namespace TaskManagerApp.Infra.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
+                        .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
                     b.Property<short?>("Time")
@@ -163,7 +166,7 @@ namespace TaskManagerApp.Infra.Migrations
 
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
+                        .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
                     b.Property<int>("UserId")
@@ -186,7 +189,7 @@ namespace TaskManagerApp.Infra.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
+                        .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
                     b.Property<string>("Name")
@@ -211,7 +214,7 @@ namespace TaskManagerApp.Infra.Migrations
 
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
+                        .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
                     b.Property<int>("UserId")
@@ -236,7 +239,7 @@ namespace TaskManagerApp.Infra.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
+                        .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
                     b.Property<int>("PresetTaskItemId")
@@ -247,7 +250,7 @@ namespace TaskManagerApp.Infra.Migrations
 
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
+                        .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
                     b.HasKey("Id");
@@ -269,14 +272,14 @@ namespace TaskManagerApp.Infra.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
+                        .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
                     b.Property<DateTime?>("DateRangeEnd")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DateRangeStart")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -292,7 +295,7 @@ namespace TaskManagerApp.Infra.Migrations
 
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
+                        .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
                     b.HasKey("Id");
@@ -356,7 +359,7 @@ namespace TaskManagerApp.Infra.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
+                        .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
                     b.Property<short>("Importance")
@@ -381,7 +384,7 @@ namespace TaskManagerApp.Infra.Migrations
 
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
+                        .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
                     b.HasKey("Id");
@@ -406,7 +409,7 @@ namespace TaskManagerApp.Infra.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
+                        .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
                     b.Property<int>("TaskItemId")
@@ -414,7 +417,7 @@ namespace TaskManagerApp.Infra.Migrations
 
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
+                        .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
                     b.HasKey("Id");
@@ -434,18 +437,18 @@ namespace TaskManagerApp.Infra.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
+                        .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
                     b.Property<DateTime>("Date")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool?>("Finished")
                         .HasColumnType("bit");
 
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
+                        .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
                     b.Property<int>("UserId")
@@ -476,7 +479,7 @@ namespace TaskManagerApp.Infra.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
+                        .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
                     b.Property<int>("TimesheetId")
@@ -484,7 +487,7 @@ namespace TaskManagerApp.Infra.Migrations
 
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
+                        .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
                     b.HasKey("Id");
@@ -504,7 +507,7 @@ namespace TaskManagerApp.Infra.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
+                        .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
                     b.Property<string>("Email")
@@ -519,7 +522,7 @@ namespace TaskManagerApp.Infra.Migrations
 
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
+                        .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
                     b.HasKey("Id");

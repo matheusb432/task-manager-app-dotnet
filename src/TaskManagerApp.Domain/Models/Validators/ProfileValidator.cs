@@ -9,7 +9,6 @@ namespace TaskManagerApp.Domain.Models.Validators
             RuleFor(x => x.Name).NotEmpty().MaximumLength(250);
             RuleFor(x => x.TimeTarget).NotEmpty();
             RuleFor(x => x.TasksTarget).NotEmpty();
-            //RuleFor(x => x.Priority).NotEmpty();
             RuleFor(x => x.UserId).NotEmpty();
             RuleFor(x => x.ProfileTypeId).NotEmpty();
         }
