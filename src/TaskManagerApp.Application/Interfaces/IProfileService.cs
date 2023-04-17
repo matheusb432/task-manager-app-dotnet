@@ -7,7 +7,7 @@ namespace TaskManagerApp.Application.Interfaces
     {
         OperationResult Query();
 
-        Task<OperationResult> FindTypes();
+        OperationResult TypesQuery();
 
         Task<OperationResult> Insert(ProfilePostViewModel viewModel);
 

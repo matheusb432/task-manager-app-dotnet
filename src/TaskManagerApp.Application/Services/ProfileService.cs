@@ -23,7 +23,6 @@ namespace TaskManagerApp.Application.Services
             _profileTypeRepo = profileTypeRepo;
         }
 
-        public async Task<OperationResult> FindTypes()
-            => Success(Mapper.Map<List<ProfileTypeViewModel>>(await _profileTypeRepo.GetAllAsync()));
+        public OperationResult TypesQuery() => Success(Mapper.ProjectTo<ProfileTypeViewModel>(_profileTypeRepo.Query()));
     }
 }

@@ -47,13 +47,13 @@ namespace TaskManagerApp.Tests.Services
         }
 
         [Fact]
-        public async Task FindTypes_ShouldReturnSuccess()
+        public void TypesQuery_ShouldReturnSuccess()
         {
-            var result = await _service.FindTypes();
+            var result = _service.TypesQuery();
 
             Assert.True(result.IsValid);
-            Assert.IsType<List<ProfileTypeViewModel>>(result.Content);
-            Assert.Equal(_profileTypes.Count, ((List<ProfileTypeViewModel>)result.Content).Count);
+            Assert.IsAssignableFrom<IQueryable<ProfileTypeViewModel>>(result.Content);
+            Assert.Equal(_profileTypes.Count, (result.Content as IQueryable<ProfileTypeViewModel>)?.Count());
         }
 
         [Fact]
@@ -196,6 +196,9 @@ namespace TaskManagerApp.Tests.Services
                 .Setup(x => x.DeleteAsync(It.IsAny<Domain.Models.Profile>(), It.IsAny<bool>()))
                 .Callback((Domain.Models.Profile p, bool save) => _profiles.Remove(p));
 
+            _profileTypeRepo
+                .Setup(x => x.Query())
+                .Returns(_profileTypes.AsQueryable());
             _profileTypeRepo
                 .Setup(x => x.GetAllAsync())
                 .ReturnsAsync(_profileTypes);

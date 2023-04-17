@@ -10,7 +10,6 @@ namespace TaskManagerApp.Domain.Models.Validators
             RuleFor(x => x.Name).MaximumLength(200).NotEmpty();
             RuleFor(x => x.Type).Equal(ProfileTypes.Custom);
             RuleFor(x => x.DateRangeStart).NotEmpty();
-            // TODO test validation
             RuleFor(x => x.DateRangeEnd).NotEmpty().GreaterThan(x => x.DateRangeStart);
         }
     }

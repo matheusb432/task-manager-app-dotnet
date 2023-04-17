@@ -2,14 +2,18 @@
 using System.Reflection;
 using TaskManagerApp.Domain.Models;
 using TaskManagerApp.Infra.Extensions;
+using Microsoft.AspNetCore.Http;
+using TaskManagerApp.Infra.Utils;
 
 namespace TaskManagerApp.Infra
 {
     public sealed class TaskManagerContext : DbContext
     {
-        public TaskManagerContext(DbContextOptions options)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public TaskManagerContext(DbContextOptions options, IHttpContextAccessor httpContextAccessor)
             : base(options)
         {
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public DbSet<Goal> Goals { get; set; } = null!;
@@ -39,6 +43,16 @@ namespace TaskManagerApp.Infra
             {
                 relationship.DeleteBehavior = DeleteBehavior.Restrict;
             }
+        }
+
+        public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
+        {
+            var now = DateTime.Now;
+
+            this.SetPropOnAdded("CreatedAt", now);
+            this.UpdatePropOnChange("UpdatedAt", now);
+
+            return await base.SaveChangesAsync(true, cancellationToken).ConfigureAwait(false);
         }
     }
 }

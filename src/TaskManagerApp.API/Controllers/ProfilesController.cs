@@ -18,9 +18,10 @@ namespace TaskManagerApp.API.Controllers
         [ODataQuery]
         public ActionResult<IQueryable<ProfileViewModel>> Query() => CustomResponse(_service.Query());
 
-        [HttpGet("types")]
-        public async Task<ActionResult<List<ProfileTypeViewModel>>> GetTypes() 
-            => CustomResponse(await _service.FindTypes());
+        [HttpGet("types/odata")]
+        [ODataQuery]
+        public ActionResult<List<ProfileTypeViewModel>> TypesQuery() 
+            => CustomResponse(_service.TypesQuery());
 
         [HttpPost]
         public async Task<ActionResult<PostReturnViewModel>> Post(ProfilePostViewModel viewModel)
