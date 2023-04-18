@@ -20,16 +20,16 @@ namespace TaskManagerApp.Application.Services
 
         protected OperationResult Error(HttpStatusCode statusCode) => new(_validationResult, statusCode);
 
-        protected OperationResult Error(string errorMessage, HttpStatusCode statusCode = HttpStatusCode.BadRequest)
+        protected static OperationResult Error(string errorMessage, HttpStatusCode statusCode = HttpStatusCode.BadRequest)
         {
             var failures = new List<ValidationFailure> { new ValidationFailure(string.Empty, errorMessage) };
 
             return new(new ValidationResult(failures), statusCode);
         }
 
-        protected OperationResult Success(object? obj = null, HttpStatusCode code = HttpStatusCode.OK) => new(obj, code);
+        protected static OperationResult Success(object? obj = null, HttpStatusCode code = HttpStatusCode.OK) => new(obj, code);
 
-        protected OperationResult Success(long id, HttpStatusCode code = HttpStatusCode.Created) => new(new PostReturnViewModel(id), code);
+        protected static OperationResult Success(long id, HttpStatusCode code = HttpStatusCode.Created) => new(new PostReturnViewModel(id), code);
 
         protected void NotifyError(string errorMessage)
         {

@@ -29,7 +29,7 @@ namespace TaskManagerApp.API.Controllers
 
         private static ErrorViewModel MapErrorsToResponse(ValidationResult? validationResult)
             => validationResult is not null ?
-            new ErrorViewModel(validationResult.Errors.Select(e => e.ErrorMessage).ToList()) :
+            new ErrorViewModel(validationResult.Errors.ConvertAll(e => e.ErrorMessage)) :
             new ErrorViewModel();
     }
 }
