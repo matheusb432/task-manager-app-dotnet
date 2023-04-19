@@ -10,7 +10,7 @@ namespace TaskManagerApp.Application.ViewModels.Profile
         }
 
         public string Name { get; set; } = string.Empty;
-        public short? TimeTarget { get; set; }
+        public string TimeTarget { get; set; } = string.Empty;
         public short? TasksTarget { get; set; }
         public short Priority { get; set; }
         public int UserId { get; set; }

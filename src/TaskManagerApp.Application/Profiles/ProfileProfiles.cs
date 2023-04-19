@@ -1,4 +1,5 @@
-﻿using TaskManagerApp.Application.ViewModels.Profile;
+﻿using TaskManagerApp.Application.Utils;
+using TaskManagerApp.Application.ViewModels.Profile;
 using TaskManagerApp.Domain.Models;
 
 namespace TaskManagerApp.Application.Profiles
@@ -7,9 +8,12 @@ namespace TaskManagerApp.Application.Profiles
     {
         public ProfileProfiles()
         {
-            CreateMap<Profile, ProfileViewModel>().ReverseMap();
-            CreateMap<ProfilePostViewModel, Profile>();
-            CreateMap<ProfilePutViewModel, Profile>();
+            CreateMap<ProfileViewModel, Profile>().ReverseMap()
+                .ForMember(dest => dest.TimeTarget, opt => opt.MapFrom(src => TimeUtils.ConvertShortToTime(src.TimeTarget)));
+            CreateMap<ProfilePostViewModel, Profile>()
+                .ForMember(dest => dest.TimeTarget, opt => opt.MapFrom(src => TimeUtils.ConvertTimeToShort(src.TimeTarget)));
+            CreateMap<ProfilePutViewModel, Profile>()
+                .ForMember(dest => dest.TimeTarget, opt => opt.MapFrom(src => TimeUtils.ConvertTimeToShort(src.TimeTarget)));
             CreateMap<ProfilePresetTaskItem, ProfilePresetTaskItemViewModel>().ReverseMap();
             CreateMap<ProfilePresetTaskItemPostViewModel, ProfilePresetTaskItem>();
             CreateMap<ProfilePresetTaskItemPutViewModel, ProfilePresetTaskItem>();
