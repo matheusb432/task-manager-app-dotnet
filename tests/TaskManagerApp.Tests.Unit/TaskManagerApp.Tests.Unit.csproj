@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\TaskManagerApp.Application\TaskManagerApp.Application.csproj" />
+    <ProjectReference Include="..\..\src\TaskManagerApp.Application\TaskManagerApp.Application.csproj" />
   </ItemGroup>
 
 </Project>
