@@ -1,12 +1,11 @@
-﻿using OpenQA.Selenium.Interactions;
-using SeleniumExtras.WaitHelpers;
+﻿using SeleniumExtras.WaitHelpers;
 
 namespace TaskManagerApp.Tests.E2E.Utils
 {
     internal static class WebDriverUtils
     {
         public static readonly string InitialUrl = "data:,";
-        public static readonly string DefaultUrl = "http://localhost:4200/";
+        public static readonly string DefaultUrl = "http://localhost:4200";
         public static readonly string HomeUrl = $"{DefaultUrl}/home";
         public static readonly double WaitTime = 5;
         public static readonly int TimeoutMs = 100;

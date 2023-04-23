@@ -1,5 +1,4 @@
-﻿using SeleniumExtras.WaitHelpers;
-using System.Text;
+﻿using System.Text;
 
 namespace TaskManagerApp.Tests.E2E
 {
@@ -13,7 +12,7 @@ namespace TaskManagerApp.Tests.E2E
         public static readonly string ProfilesUrl = $"{_baseURL}/profiles";
 
         [ClassInitialize]
-        public static void InitializeClass()
+        public static void InitializeClass(TestContext context)
         {
             _driver = new ChromeDriver();
 
@@ -43,7 +42,9 @@ namespace TaskManagerApp.Tests.E2E
         public void NavigateToProfiles_ShouldRedirectToProfilesPage()
         {
             _driver.Navigate().GoToUrl(_baseURL);
-            _driver.FindElement(By.Id("cCardTimesheet")).Click();
+            _driver.FindElement(By.Id("cCardProfile")).Click();
+            // TODO add better wait
+            Thread.Sleep(100);
             Assert.AreEqual(ProfilesUrl, _driver.Url);
         }
     }
