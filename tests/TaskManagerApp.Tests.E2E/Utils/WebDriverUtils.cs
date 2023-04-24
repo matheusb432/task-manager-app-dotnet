@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium.Interactions;
-using SeleniumExtras.WaitHelpers;
+﻿using SeleniumExtras.WaitHelpers;
 
 namespace TaskManagerApp.Tests.E2E.Utils
 {
@@ -7,13 +6,19 @@ namespace TaskManagerApp.Tests.E2E.Utils
     {
         public static readonly string InitialUrl = "data:,";
         public static readonly double WaitTime = 5;
-        public static readonly int TimeoutMs = 100;
 
-        public static IWebElement FindElementWithWait(this IWebDriver driver, By by, int? timeoutInMs = null)
+        /// <summary>
+        /// Waits for an element to be clickable before trying to find it, this extension method serves to prevent
+        /// stale element reference exceptions and wait for API calls on elements that depend on external data
+        /// </summary>
+        /// <param name="driver">The webdriver</param>
+        /// <param name="by">The element locator</param>
+        /// <param name="timeoutInMs">A timeout before the driver tries to get the method</param>
+        public static IWebElement FindElementWithWait(this IWebDriver driver, By by, int timeoutInMs = 1)
         {
-            Thread.Sleep(timeoutInMs ?? TimeoutMs);
+            Thread.Sleep(timeoutInMs);
 
-            return new WebDriverWait(driver, TimeSpan.FromSeconds(WaitTime))
+            return GetWait(driver, WaitTime)
                       .Until(ExpectedConditions.ElementToBeClickable(by));
         }
 
@@ -22,17 +27,12 @@ namespace TaskManagerApp.Tests.E2E.Utils
 
         public static void MaximizeWindow(IWebDriver driver) => driver.Manage().Window.Maximize();
 
-        public static bool IsElementPresent(IWebDriver driver, By by)
+        public static bool ElementExists(this IWebDriver driver, By by)
         {
-            try
-            {
-                driver.FindElement(by);
-                return true;
-            }
-            catch (NoSuchElementException)
-            {
-                return false;
-            }
+            var wait = GetWait(driver);
+            bool elementNotExists = wait.Until(ExpectedConditions.InvisibilityOfElementLocated(by));
+
+            return !elementNotExists;
         }
 
         public static INavigation Navigate(this IWebDriver driver, int waitTime, string urlMatch = "")
@@ -45,14 +45,36 @@ namespace TaskManagerApp.Tests.E2E.Utils
         public static void AwaitDebounce(int sleepTime = 500) => Thread.Sleep(sleepTime);
 
         public static void UrlMatches(IWebDriver driver, int waitTime = 5, string urlMatch = "")
-            => new WebDriverWait(driver, TimeSpan.FromSeconds(waitTime))
+            => GetWait(driver, waitTime)
                 .Until(ExpectedConditions.UrlMatches(urlMatch));
 
         public static void WaitUntilRedirected(IWebDriver driver, string url)
             => UrlMatches(driver, 5, url);
 
+        public static WebDriverWait GetWait(IWebDriver driver, double? waitSeconds = null)
+            => new(driver, TimeSpan.FromSeconds(waitSeconds ?? WaitTime));
+
         public static void NavigateToHome(this IWebDriver driver)
             => driver.Navigate().GoToUrl(PageUrls.HomeUrl);
+
+        public static IWebDriver ResetDriver(IWebDriver driver)
+        {
+            driver.Close();
+            driver.Quit();
+
+            return new ChromeDriver();
+        }
+
+        public static IWebDriver InitializeTest(IWebDriver driver)
+        {
+            if (!driver.Url.Equals(InitialUrl))
+            {
+                driver = ResetDriver(driver);
+                MaximizeWindow(driver);
+            }
+            driver.NavigateToHome();
+            return driver;
+        }
 
         /// <summary>
         /// Utility method to scroll to the bottom of the page, needs an input to use the PageDown key since the JavascriptExecutor

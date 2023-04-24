@@ -1,12 +1,9 @@
-﻿using System.Text;
-
-namespace TaskManagerApp.Tests.E2E
+﻿namespace TaskManagerApp.Tests.E2E
 {
     [TestClass]
     public class HomeTests
     {
         private static IWebDriver _driver = null!;
-        private StringBuilder _verificationErrors = null!;
         public static readonly string Url = PageUrls.HomeUrl;
 
         [ClassInitialize]
@@ -21,20 +18,19 @@ namespace TaskManagerApp.Tests.E2E
         public static void CleanupClass()
         {
             _driver.Close();
+            _driver.Quit();
             _driver.Dispose();
         }
 
         [TestInitialize]
         public void InitializeTest()
         {
-            _verificationErrors = new StringBuilder();
-            _driver.NavigateToHome();
+            _driver = WebDriverUtils.InitializeTest(_driver);
         }
 
         [TestCleanup]
         public void CleanupTest()
         {
-            Assert.AreEqual("", _verificationErrors.ToString());
         }
 
         [TestMethod]
