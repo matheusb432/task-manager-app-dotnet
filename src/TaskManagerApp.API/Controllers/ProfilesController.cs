@@ -20,7 +20,7 @@ namespace TaskManagerApp.API.Controllers
 
         [HttpGet("types/odata")]
         [ODataQuery]
-        public ActionResult<List<ProfileTypeViewModel>> TypesQuery() 
+        public ActionResult<List<ProfileTypeViewModel>> TypesQuery()
             => CustomResponse(_service.TypesQuery());
 
         [HttpPost]

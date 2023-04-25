@@ -8,8 +8,7 @@ namespace TaskManagerApp.Application.Profiles
     {
         public ProfileProfiles()
         {
-            CreateMap<ProfileViewModel, Profile>().ReverseMap()
-                .ForMember(dest => dest.TimeTarget, opt => opt.MapFrom(src => TimeUtils.ConvertShortToTime(src.TimeTarget)));
+            CreateMap<ProfileViewModel, Profile>().ReverseMap();
             CreateMap<ProfilePostViewModel, Profile>()
                 .ForMember(dest => dest.TimeTarget, opt => opt.MapFrom(src => TimeUtils.ConvertTimeToShort(src.TimeTarget)));
             CreateMap<ProfilePutViewModel, Profile>()
