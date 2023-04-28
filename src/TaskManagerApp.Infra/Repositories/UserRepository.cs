@@ -11,24 +11,23 @@ namespace TaskManagerApp.Infra.Repositories
         }
 
         public async Task<User?> GetByEmailAsync(string email)
-            // TODO test if can be translated to SQL, else if would be x.Email.ToLower() == email.ToLower()
-            => await _dbSet.FirstOrDefaultAsync(x => string.Equals(x.Email, email, StringComparison.OrdinalIgnoreCase));
+            => await _dbSet.FirstOrDefaultAsync(x => x.Email.ToLower() == email.ToLower());
 
         public async Task<User?> GetByUserNameAsync(string userName)
-            => await _dbSet.FirstOrDefaultAsync(x => string.Equals(x.UserName, userName, StringComparison.OrdinalIgnoreCase));
+            => await _dbSet.FirstOrDefaultAsync(x => x.UserName.ToLower() == userName.ToLower());
 
         public async Task<bool> CanCreateUser(User user)
         {
-            var emailExists = await _dbSet.AnyAsync(x => string.Equals(x.Email, user.Email, StringComparison.OrdinalIgnoreCase));
-            var userNameExists = await _dbSet.AnyAsync(x => string.Equals(x.UserName, user.UserName, StringComparison.OrdinalIgnoreCase));
+            var emailExists = await _dbSet.AnyAsync(x => x.Email.ToLower() == user.Email.ToLower());
+            var userNameExists = await _dbSet.AnyAsync(x => x.UserName.ToLower() == user.UserName.ToLower());
 
             return !emailExists && !userNameExists;
         }
 
         public async Task<bool> EmailExists(string email)
-            => await _dbSet.AnyAsync(x => string.Equals(x.Email, email, StringComparison.OrdinalIgnoreCase));
+            => await _dbSet.AnyAsync(x => x.Email.ToLower() == email.ToLower());
 
         public async Task<bool> UserNameExists(string userName)
-            => await _dbSet.AnyAsync(x => string.Equals(x.UserName, userName, StringComparison.OrdinalIgnoreCase));
+            => await _dbSet.AnyAsync(x => x.UserName.ToLower() == userName.ToLower());
     }
 }

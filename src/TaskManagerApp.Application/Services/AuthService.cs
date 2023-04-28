@@ -1,10 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
 using System.Net;
-using System.Security.Claims;
-using System.Text;
+using TaskManagerApp.Application.Configurations;
 using TaskManagerApp.Application.Dtos;
 using TaskManagerApp.Application.Dtos.Validators;
 using TaskManagerApp.Application.Extensions;
@@ -29,7 +26,6 @@ namespace TaskManagerApp.Application.Services
             _passwordHasher = passwordHasher;
         }
 
-        // TODO - implement auth methods
         public async Task<OperationResult> Login(Login login)
         {
             var authenticatedUser = await Authenticate(login);
@@ -37,9 +33,9 @@ namespace TaskManagerApp.Application.Services
             if (authenticatedUser == null)
                 return Error(HttpStatusCode.Unauthorized);
 
-            var token = CreateJwtToken(authenticatedUser);
+            var token = AuthConfig.CreateToken(authenticatedUser);
 
-            return Success(new AuthResponse(Mapper.Map<UserViewModel>(authenticatedUser), token));
+            return Success(BuildResponse(authenticatedUser, token));
         }
 
         public async Task<OperationResult> Signup(Signup signup)
@@ -48,19 +44,17 @@ namespace TaskManagerApp.Application.Services
             if (newUser == null || !EntityIsValid(new UserValidator(), newUser))
                 return Error(HttpStatusCode.Unauthorized);
 
-            // TODO remove this error handling after testing, it's a security risk
-            // TODO research if returning conflict is best practice in this instance
             if (await _userRepo.EmailExists(newUser.Email))
-                return Error("Email already exists", HttpStatusCode.Conflict);
+                return Error($"Email {newUser.Email} is already in use", HttpStatusCode.Conflict);
 
             if (await _userRepo.UserNameExists(newUser.UserName))
-                return Error("UserName already exists", HttpStatusCode.Conflict);
+                return Error($"User name {newUser.UserName} is already in use", HttpStatusCode.Conflict);
 
             var createdUser = await _userRepo.InsertAsync(newUser);
 
-            var token = CreateJwtToken(createdUser);
+            var token = AuthConfig.CreateToken(createdUser);
 
-            return Success(new AuthResponse(Mapper.Map<UserViewModel>(createdUser), token));
+            return Success(BuildResponse(createdUser, token));
         }
 
         public async Task<User?> Authenticate(Login login)
@@ -86,27 +80,8 @@ namespace TaskManagerApp.Application.Services
             return user;
         }
 
-        // TODO add proper typing
-        private string CreateJwtToken(User user)
-        {
-            var tokenHandler = new JwtSecurityTokenHandler();
-            // TODO add dynamic key
-            //var key = Encoding.ASCII.GetBytes(_config.GetValue<string>("Jwt:Secret"));
-            var key = Encoding.ASCII.GetBytes("mock-key-mock-key-mock-key-mock-key-mock-key-mock-key-mock-key-mock-key");
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(new Claim[]
-                {
-                    new Claim(ClaimTypes.Name, user.UserName),
-                }),
-                // TODO test token expiration
-                Expires = DateTime.UtcNow.AddDays(7),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-
-            return tokenHandler.WriteToken(token);
-        }
+        private AuthResponse BuildResponse(User user, string token)
+            => new(Mapper.Map<UserAuthGet>(user), token);
 
         private bool IsCorrectPassword(User? user, string password)
         {

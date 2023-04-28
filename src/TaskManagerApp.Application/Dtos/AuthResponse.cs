@@ -4,13 +4,13 @@ namespace TaskManagerApp.Application.Dtos
 {
     public class AuthResponse
     {
-        public AuthResponse(UserViewModel user, string token)
+        public AuthResponse(UserAuthGet user, string token)
         {
             User = user;
             Token = token;
         }
 
-        public UserViewModel User { get; }
+        public UserAuthGet User { get; }
         public string Token { get; }
     }
 }

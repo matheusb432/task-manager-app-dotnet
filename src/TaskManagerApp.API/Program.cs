@@ -12,9 +12,9 @@ services.AddControllers().AddOData(
     opt => opt.Count().Filter().OrderBy().SetMaxTop(50));
 
 services.AddEndpointsApiExplorer();
-services.AddSwaggerGen();
+services.AddSwagger();
 
-services.AddApplicationConfig();
+services.AddApplicationConfig(configuration);
 services.AddInfraConfiguration(configuration);
 
 services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();

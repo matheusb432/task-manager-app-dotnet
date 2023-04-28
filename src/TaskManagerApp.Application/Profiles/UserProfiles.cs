@@ -12,6 +12,7 @@ namespace TaskManagerApp.Application.Profiles
             CreateMap<UserPostViewModel, User>();
             CreateMap<UserPutViewModel, User>();
             CreateMap<Signup, User>();
+            CreateMap<User, UserAuthGet>();
         }
     }
 }

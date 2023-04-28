@@ -5,7 +5,6 @@ using System.Net;
 using TaskManagerApp.Application.Dtos;
 using TaskManagerApp.Application.Profiles;
 using TaskManagerApp.Application.Services;
-using TaskManagerApp.Application.ViewModels.User;
 using TaskManagerApp.Domain.Models;
 using TaskManagerApp.Infra.Interfaces;
 
@@ -48,7 +47,7 @@ namespace TaskManagerApp.Tests.Unit.Services
             var login = new Login
             {
                 Email = _users[0].Email,
-                Password = _users[0].Password,
+                Password = _users[0].PasswordHash,
             };
 
             var result = await _service.Login(login);
@@ -63,7 +62,7 @@ namespace TaskManagerApp.Tests.Unit.Services
             var login = new Login
             {
                 UserName = _users[0].UserName,
-                Password = _users[0].Password,
+                Password = _users[0].PasswordHash,
             };
 
             var result = await _service.Login(login);
@@ -77,7 +76,7 @@ namespace TaskManagerApp.Tests.Unit.Services
         {
             var login = new Login
             {
-                Password = _users[0].Password,
+                Password = _users[0].PasswordHash,
             };
 
             var result = await _service.Login(login);
@@ -93,7 +92,7 @@ namespace TaskManagerApp.Tests.Unit.Services
         public async Task Login_WithInvalidCredentials_ShouldReturnUnathorized(int emailIndex, int passwordIndex)
         {
             var email = _users.ElementAtOrDefault(emailIndex)?.Email ?? "fake@email.com";
-            var password = _users.ElementAtOrDefault(passwordIndex)?.Password ?? "fakepassword";
+            var password = _users.ElementAtOrDefault(passwordIndex)?.PasswordHash ?? "fakepassword";
             var login = new Login
             {
                 Email = email,
@@ -130,7 +129,7 @@ namespace TaskManagerApp.Tests.Unit.Services
             var signup = new Signup
             {
                 Email = user.Email,
-                Password = user.Password,
+                Password = user.PasswordHash,
                 Name = user.Name,
                 UserName = user.UserName,
             };
@@ -183,7 +182,7 @@ namespace TaskManagerApp.Tests.Unit.Services
                 .Returns((User _, string pass) => pass + "-hash");
             _passwordHasher
                 .Setup(x => x.VerifyHashedPassword(It.IsAny<User>(), It.IsAny<string>(), It.IsAny<string>()))
-                .Returns((User user, string _, string pass) => user.Password == pass ? PasswordVerificationResult.Success : PasswordVerificationResult.Failed);
+                .Returns((User user, string _, string pass) => user.PasswordHash == pass ? PasswordVerificationResult.Success : PasswordVerificationResult.Failed);
         }
 
         public static List<User> GetUsers()
@@ -194,48 +193,42 @@ namespace TaskManagerApp.Tests.Unit.Services
                     Name = "Alice",
                     UserName = "alice123",
                     Email = "alice@example.com",
-                    Password = "password1",
-                    PasswordHash = "password1-hash",
+                    PasswordHash = "password1",
                 },
                 new User
                 {
                     Name = "Bob",
                     UserName = "bob456",
                     Email = "bob@example.com",
-                    Password = "password2",
-                    PasswordHash = "password2-hash",
+                    PasswordHash = "password2",
                 },
                 new User
                 {
                     Name = "Charlie",
                     UserName = "charlie789",
                     Email = "charlie@example.com",
-                    Password = "password3",
-                    PasswordHash = "password3-hash",
+                    PasswordHash = "password3",
                 },
                 new User
                 {
                     Name = "Dave",
                     UserName = "dave012",
                     Email = "dave@example.com",
-                    Password = "password4",
-                    PasswordHash = "password4-hash",
+                    PasswordHash = "password4",
                 },
                 new User
                 {
                     Name = "Eve",
                     UserName = "eve345",
                     Email = "eve@example.com",
-                    Password = "password5",
-                    PasswordHash = "password5-hash",
+                    PasswordHash = "password5",
                 },
                 new User
                 {
                     Name = "Frank",
                     UserName = "frank678",
                     Email = "frank@example.com",
-                    Password = "password6",
-                    PasswordHash = "password5-hash",
+                    PasswordHash = "password6",
                 },
             };
     }

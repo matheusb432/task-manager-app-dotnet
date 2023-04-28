@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TaskManagerApp.API.Configurations;
 using TaskManagerApp.Application.Extensions.ViewModels;
 using TaskManagerApp.Application.Interfaces;
@@ -6,6 +7,7 @@ using TaskManagerApp.Application.ViewModels.Timesheet;
 
 namespace TaskManagerApp.API.Controllers
 {
+    [Authorize]
     public sealed class TimesheetsController : Controller
     {
         private readonly ITimesheetService _service;

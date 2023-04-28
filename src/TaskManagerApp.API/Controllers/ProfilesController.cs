@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TaskManagerApp.API.Configurations;
 using TaskManagerApp.Application.Extensions.ViewModels;
 using TaskManagerApp.Application.Interfaces;
@@ -6,7 +7,7 @@ using TaskManagerApp.Application.ViewModels.Profile;
 
 namespace TaskManagerApp.API.Controllers
 {
-    [ApiController]
+    [Authorize]
     public sealed class ProfilesController : Controller
     {
         private readonly IProfileService _service;

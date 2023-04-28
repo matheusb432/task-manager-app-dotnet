@@ -20,4 +20,12 @@
   <ItemGroup>
     <ProjectReference Include="..\TaskManagerApp.Domain\TaskManagerApp.Domain.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\Mateus\Desktop\projects\tma-api\src\TaskManagerApp.Infra\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\Mateus\Desktop\projects\tma-api\src\TaskManagerApp.Infra\.editorconfig" />
+  </ItemGroup>
 </Project>
