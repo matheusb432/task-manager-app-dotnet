@@ -11,7 +11,7 @@ namespace TaskManagerApp.Application.Profiles
             CreateMap<User, UserViewModel>().ReverseMap();
             CreateMap<UserPostViewModel, User>();
             CreateMap<UserPutViewModel, User>();
-            CreateMap<Signup, UserPostViewModel>();
+            CreateMap<Signup, User>();
         }
     }
 }

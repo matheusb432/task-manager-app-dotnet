@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Moq;
 using System.Net;
 using TaskManagerApp.Application.Dtos;
@@ -17,12 +18,14 @@ namespace TaskManagerApp.Tests.Unit.Services
         private readonly IMapper _mapper;
 
         private readonly Mock<IUserRepository> _userRepo;
+        private readonly Mock<IPasswordHasher<User>> _passwordHasher;
 
         private readonly List<User> _users;
 
         public AuthServiceTests()
         {
             _userRepo = new();
+            _passwordHasher = new();
 
             var mappingConfig = new MapperConfiguration(mc => mc.AddProfile(new UserProfiles()));
 
@@ -34,7 +37,8 @@ namespace TaskManagerApp.Tests.Unit.Services
 
             _service = new AuthService(
                 _userRepo.Object,
-                _mapper
+                _mapper,
+                _passwordHasher.Object
             );
         }
 
@@ -50,7 +54,7 @@ namespace TaskManagerApp.Tests.Unit.Services
             var result = await _service.Login(login);
             Assert.NotNull(result);
             Assert.True(result.IsValid);
-            Assert.IsAssignableFrom<UserViewModel>(result.Content);
+            Assert.IsAssignableFrom<AuthResponse>(result.Content);
         }
 
         [Fact]
@@ -65,7 +69,7 @@ namespace TaskManagerApp.Tests.Unit.Services
             var result = await _service.Login(login);
             Assert.NotNull(result);
             Assert.True(result.IsValid);
-            Assert.IsAssignableFrom<UserViewModel>(result.Content);
+            Assert.IsAssignableFrom<AuthResponse>(result.Content);
         }
 
         [Fact]
@@ -116,25 +120,25 @@ namespace TaskManagerApp.Tests.Unit.Services
             var result = await _service.Signup(signup);
             Assert.NotNull(result);
             Assert.True(result.IsValid);
-            Assert.IsAssignableFrom<UserViewModel>(result.Content);
+            Assert.IsAssignableFrom<AuthResponse>(result.Content);
         }
 
         [Fact]
-        public async Task Signup_WithExistingUser_ShouldReturnUnauthorized()
+        public async Task Signup_WithExistingUser_ShouldReturnConflict()
         {
             var user = _users[0];
             var signup = new Signup
             {
                 Email = user.Email,
                 Password = user.Password,
-                Name= user.Name,
-                UserName= user.UserName,
+                Name = user.Name,
+                UserName = user.UserName,
             };
 
             var result = await _service.Signup(signup);
             Assert.NotNull(result);
             Assert.False(result.IsValid);
-            Assert.Equal(HttpStatusCode.Unauthorized, result.StatusCode);
+            Assert.Equal(HttpStatusCode.Conflict, result.StatusCode);
         }
 
         [Fact]
@@ -167,6 +171,19 @@ namespace TaskManagerApp.Tests.Unit.Services
             _userRepo
                 .Setup(x => x.GetByUserNameAsync(It.IsAny<string>()))
                 .ReturnsAsync((string userName) => _users.Find((x) => x.UserName == userName));
+            _userRepo
+                .Setup(x => x.EmailExists(It.IsAny<string>()))
+                .ReturnsAsync((string email) => _users.Any((x) => x.Email == email));
+            _userRepo
+                .Setup(x => x.UserNameExists(It.IsAny<string>()))
+                .ReturnsAsync((string userName) => _users.Any((x) => x.UserName == userName));
+
+            _passwordHasher
+                .Setup(x => x.HashPassword(It.IsAny<User>(), It.IsAny<string>()))
+                .Returns((User _, string pass) => pass + "-hash");
+            _passwordHasher
+                .Setup(x => x.VerifyHashedPassword(It.IsAny<User>(), It.IsAny<string>(), It.IsAny<string>()))
+                .Returns((User user, string _, string pass) => user.Password == pass ? PasswordVerificationResult.Success : PasswordVerificationResult.Failed);
         }
 
         public static List<User> GetUsers()
@@ -177,71 +194,49 @@ namespace TaskManagerApp.Tests.Unit.Services
                     Name = "Alice",
                     UserName = "alice123",
                     Email = "alice@example.com",
-                    Password = "password1"
+                    Password = "password1",
+                    PasswordHash = "password1-hash",
                 },
                 new User
                 {
                     Name = "Bob",
                     UserName = "bob456",
                     Email = "bob@example.com",
-                    Password = "password2"
+                    Password = "password2",
+                    PasswordHash = "password2-hash",
                 },
                 new User
                 {
                     Name = "Charlie",
                     UserName = "charlie789",
                     Email = "charlie@example.com",
-                    Password = "password3"
+                    Password = "password3",
+                    PasswordHash = "password3-hash",
                 },
                 new User
                 {
                     Name = "Dave",
                     UserName = "dave012",
                     Email = "dave@example.com",
-                    Password = "password4"
+                    Password = "password4",
+                    PasswordHash = "password4-hash",
                 },
                 new User
                 {
                     Name = "Eve",
                     UserName = "eve345",
                     Email = "eve@example.com",
-                    Password = "password5"
+                    Password = "password5",
+                    PasswordHash = "password5-hash",
                 },
                 new User
                 {
                     Name = "Frank",
                     UserName = "frank678",
                     Email = "frank@example.com",
-                    Password = "password6"
+                    Password = "password6",
+                    PasswordHash = "password5-hash",
                 },
-                new User
-                {
-                    Name = "Grace",
-                    UserName = "grace901",
-                    Email = "grace@example.com",
-                    Password = "password7"
-                },
-                new User
-                {
-                    Name = "Harry",
-                    UserName = "harry234",
-                    Email = "harry@example.com",
-                    Password = "password8"
-                },
-                new User
-                {
-                    Name = "Ivy",
-                    UserName = "ivy567",
-                    Email = "ivy@example.com",
-                    Password = "password9"
-                },
-                new User
-                {
-                    Name = "Jack",
-                    UserName = "jack890",
-                    Email = "jack@example.com",
-                    Password = "password10"
-                }
             };
     }
 }

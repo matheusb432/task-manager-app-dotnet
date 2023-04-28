@@ -6,7 +6,7 @@ namespace TaskManagerApp.Application.Dtos.Validators
     {
         public LoginValidator()
         {
-            RuleFor(x => x.Email).NotEmpty().MaximumLength(100);
+            RuleFor(x => x.Email).MaximumLength(100);
             RuleFor(x => x.UserName).MaximumLength(100);
             RuleFor(x => x.Password).MaximumLength(50);
             RuleFor(x => x.UserName).NotEmpty().When(x => string.IsNullOrEmpty(x.Email));
