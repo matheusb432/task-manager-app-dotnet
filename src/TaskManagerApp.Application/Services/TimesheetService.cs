@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using TaskManagerApp.Application.Interfaces;
+using TaskManagerApp.Application.Services.Base;
 using TaskManagerApp.Application.ViewModels.Timesheet;
 using TaskManagerApp.Domain.Models;
 using TaskManagerApp.Domain.Models.Validators;

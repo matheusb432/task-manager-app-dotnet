@@ -7,9 +7,10 @@ namespace TaskManagerApp.Application.Configurations
 {
     public static class ApplicationConfig
     {
-        public static void AddApplicationDependencyInjectionConfig(this IServiceCollection services)
+        public static void AddApplicationConfig(this IServiceCollection services)
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddJWTAuth();
 
             services.AddServices();
         }

@@ -1,4 +1,5 @@
-﻿using TaskManagerApp.Application.ViewModels.User;
+﻿using TaskManagerApp.Application.Dtos;
+using TaskManagerApp.Application.ViewModels.User;
 using TaskManagerApp.Domain.Models;
 
 namespace TaskManagerApp.Application.Profiles
@@ -10,6 +11,7 @@ namespace TaskManagerApp.Application.Profiles
             CreateMap<User, UserViewModel>().ReverseMap();
             CreateMap<UserPostViewModel, User>();
             CreateMap<UserPutViewModel, User>();
+            CreateMap<Signup, UserPostViewModel>();
         }
     }
 }

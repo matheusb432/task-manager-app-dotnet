@@ -14,7 +14,7 @@ services.AddControllers().AddOData(
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
 
-services.AddApplicationDependencyInjectionConfig();
+services.AddApplicationConfig();
 services.AddInfraConfiguration(configuration);
 
 services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -28,6 +28,7 @@ if (app.Environment.IsDevelopment())
     app.UseCors(x => x.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin());
 }
 
+app.UseAuthentication();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

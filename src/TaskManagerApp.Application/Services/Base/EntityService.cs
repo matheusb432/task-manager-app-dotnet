@@ -5,7 +5,7 @@ using TaskManagerApp.Application.Extensions;
 using TaskManagerApp.Domain.Models;
 using TaskManagerApp.Infra.Interfaces;
 
-namespace TaskManagerApp.Application.Services
+namespace TaskManagerApp.Application.Services.Base
 {
     public abstract class EntityService<T, TVM, TPostVM, TPutVM, TV> : Service
         where T : Entity

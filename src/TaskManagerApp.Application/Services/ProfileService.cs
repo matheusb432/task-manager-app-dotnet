@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using TaskManagerApp.Application.Extensions;
 using TaskManagerApp.Application.Interfaces;
+using TaskManagerApp.Application.Services.Base;
 using TaskManagerApp.Application.ViewModels.Profile;
 using TaskManagerApp.Domain.Models.Validators;
 using TaskManagerApp.Infra.Interfaces;

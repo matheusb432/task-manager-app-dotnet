@@ -6,7 +6,7 @@ using TaskManagerApp.Application.Extensions;
 using TaskManagerApp.Application.Extensions.ViewModels;
 using TaskManagerApp.Domain.Models;
 
-namespace TaskManagerApp.Application.Services
+namespace TaskManagerApp.Application.Services.Base
 {
     public abstract class Service
     {
@@ -37,16 +37,22 @@ namespace TaskManagerApp.Application.Services
             _validationResult = new ValidationResult(failures);
         }
 
-        protected bool EntityIsValid<TV, TE>(TV validator, TE entity)
-            where TV : AbstractValidator<TE>
-            where TE : Entity
+        protected bool IsValid<TV, TO>(TV validator, TO obj)
+            where TV : AbstractValidator<TO>
         {
-            var result = validator.Validate(entity);
+            var result = validator.Validate(obj);
             if (result.IsValid) return true;
 
             _validationResult = result;
 
             return false;
+        }
+
+        protected bool EntityIsValid<TV, TE>(TV validator, TE entity)
+            where TV : AbstractValidator<TE>
+            where TE : Entity
+        {
+            return IsValid(validator, entity);
         }
 
         protected bool EntityIsValid<TV, TE>(TV validator, IEnumerable<TE> entities)
@@ -55,11 +61,8 @@ namespace TaskManagerApp.Application.Services
         {
             foreach (var entity in entities)
             {
-                var result = validator.Validate(entity);
-                if (result.IsValid) continue;
-
-                _validationResult = result;
-                return false;
+                var isValid = EntityIsValid(validator, entity);
+                if (!isValid) return false;
             }
 
             return true;
