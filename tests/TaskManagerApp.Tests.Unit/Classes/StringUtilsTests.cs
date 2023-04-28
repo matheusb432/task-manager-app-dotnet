@@ -1,6 +1,6 @@
 ﻿using TaskManagerApp.Application.Utils;
 
-namespace TaskManagerApp.Tests.Classes
+namespace TaskManagerApp.Tests.Unit.Classes
 {
     public class StringUtilsTests
     {

@@ -8,7 +8,7 @@ using TaskManagerApp.Domain.Models;
 using TaskManagerApp.Domain.Utils;
 using TaskManagerApp.Infra.Interfaces;
 
-namespace TaskManagerApp.Tests.Services
+namespace TaskManagerApp.Tests.Unit.Services
 {
     public class ProfileServiceTests
     {
@@ -27,10 +27,7 @@ namespace TaskManagerApp.Tests.Services
             _repo = new();
             _profileTypeRepo = new();
 
-            var mappingConfig = new MapperConfiguration(mc =>
-            {
-                mc.AddProfile(new ProfileProfiles());
-            });
+            var mappingConfig = new MapperConfiguration(mc => mc.AddProfile(new ProfileProfiles()));
 
             _mapper = mappingConfig.CreateMapper();
 
@@ -73,7 +70,7 @@ namespace TaskManagerApp.Tests.Services
 
             Assert.NotNull(result.Content);
 
-            var created = _profiles.FirstOrDefault(p => p.Id == ((PostReturnViewModel)result.Content).Id);
+            var created = _profiles.Find(p => p.Id == ((PostReturnViewModel)result.Content).Id);
 
             Assert.True(result.IsValid);
             Assert.NotNull(created);
@@ -99,7 +96,7 @@ namespace TaskManagerApp.Tests.Services
         [Fact]
         public async Task Update_WithValidProfile_ShouldReturnSuccess()
         {
-            var id = 1;
+            const int id = 1;
             var profile = new ProfilePutViewModel
             {
                 Id = id,
@@ -112,7 +109,7 @@ namespace TaskManagerApp.Tests.Services
             };
 
             var result = await _service.Update(profile.Id, profile);
-            var updated = _profiles.FirstOrDefault(p => p.Id == id);
+            var updated = _profiles.Find(p => p.Id == id);
 
             Assert.True(result.IsValid);
             Assert.NotNull(updated);
@@ -121,7 +118,7 @@ namespace TaskManagerApp.Tests.Services
         [Fact]
         public async Task Update_WithInvalidProfile_ShouldReturnBadRequest()
         {
-            var id = 1;
+            const int id = 1;
             var profile = new ProfilePutViewModel
             {
                 Id = id,
@@ -140,7 +137,7 @@ namespace TaskManagerApp.Tests.Services
         [Fact]
         public async Task Delete_WithValidId_ShouldDeleteItem()
         {
-            var id = 1;
+            const int id = 1;
 
             var result = await _service.Delete(id);
 
@@ -151,7 +148,7 @@ namespace TaskManagerApp.Tests.Services
         [Fact]
         public async Task Delete_WithInvalidId_ShouldReturnNotFound()
         {
-            var id = 999;
+            const int id = 999;
 
             var result = await _service.Delete(id);
 
@@ -163,16 +160,16 @@ namespace TaskManagerApp.Tests.Services
         {
             _repo
                 .Setup(x => x.InsertAsync(It.IsAny<Domain.Models.Profile>(), true))
-                .Callback((Domain.Models.Profile p, bool save) =>
+                .Callback((Domain.Models.Profile p, bool _) =>
                 {
                     p.Id = _profiles.Max(x => x.Id) + 1;
                     _profiles.Add(p);
                 });
             _repo
                 .Setup(x => x.UpdateAsync(It.IsAny<Domain.Models.Profile>(), true))
-                .Callback((Domain.Models.Profile p, bool save) =>
+                .Callback((Domain.Models.Profile p, bool _) =>
                 {
-                    var toUpdate = _profiles.FirstOrDefault(x => x.Id == p.Id);
+                    var toUpdate = _profiles.Find(x => x.Id == p.Id);
 
                     if (toUpdate == null) return;
 
@@ -181,10 +178,10 @@ namespace TaskManagerApp.Tests.Services
                 });
             _repo
                 .Setup(x => x.GetByIdAsNoTrackingAsync(It.IsAny<long>()))
-                .ReturnsAsync((long id) => _profiles.FirstOrDefault((x) => x.Id == id));
+                .ReturnsAsync((long id) => _profiles.Find((x) => x.Id == id));
             _repo
                 .Setup(x => x.DeleteAsync(It.IsAny<Domain.Models.Profile>(), It.IsAny<bool>()))
-                .Callback((Domain.Models.Profile p, bool save) => _profiles.Remove(p));
+                .Callback((Domain.Models.Profile p, bool _) => _profiles.Remove(p));
 
             _profileTypeRepo
                 .Setup(x => x.Query())
