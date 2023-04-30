@@ -19,11 +19,13 @@ namespace TaskManagerApp.API.Controllers
 
         private ActionResult ErrorResponse(OperationResult result)
         {
+            if ((int)result.StatusCode < 400) return StatusCode(500, result.Result);
+
             return result.StatusCode switch
             {
                 HttpStatusCode.NotFound => NotFound(MapErrorsToResponse(result.Result)),
                 HttpStatusCode.Conflict => Conflict(MapErrorsToResponse(result.Result)),
-                _ => BadRequest(MapErrorsToResponse(result.Result)),
+                _ => StatusCode((int)result.StatusCode, MapErrorsToResponse(result.Result))
             };
         }
 
