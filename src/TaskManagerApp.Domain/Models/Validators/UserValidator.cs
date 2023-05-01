@@ -6,8 +6,9 @@ namespace TaskManagerApp.Domain.Models.Validators
     {
         public UserValidator()
         {
-            RuleFor(x => x.Name).NotEmpty().MaximumLength(250);
-            RuleFor(x => x.Email).NotEmpty().MaximumLength(250);
+            RuleFor(x => x.Name).NotEmpty().MaximumLength(100);
+            RuleFor(x => x.Email).EmailAddress().NotEmpty().MaximumLength(100);
+            RuleFor(x => x.UserName).NotEmpty().MaximumLength(100);
         }
     }
 }
