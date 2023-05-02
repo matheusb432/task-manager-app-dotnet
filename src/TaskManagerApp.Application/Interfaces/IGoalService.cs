@@ -1,5 +1,5 @@
-﻿using TaskManagerApp.Application.Extensions;
-using TaskManagerApp.Application.ViewModels.Goal;
+﻿using TaskManagerApp.Application.Dtos.Goal;
+using TaskManagerApp.Application.Extensions;
 
 namespace TaskManagerApp.Application.Interfaces
 {
@@ -7,9 +7,9 @@ namespace TaskManagerApp.Application.Interfaces
     {
         OperationResult Query();
 
-        Task<OperationResult> Insert(GoalPostViewModel viewModel);
+        Task<OperationResult> Insert(GoalPostDto viewModel);
 
-        Task<OperationResult> Update(int id, GoalPutViewModel viewModel);
+        Task<OperationResult> Update(int id, GoalPutDto viewModel);
 
         Task<OperationResult> Delete(int id);
     }

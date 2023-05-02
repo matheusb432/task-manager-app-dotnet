@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using Moq;
-using TaskManagerApp.Application.Extensions.ViewModels;
+using TaskManagerApp.Application.Dtos.Profile;
 using TaskManagerApp.Application.Profiles;
 using TaskManagerApp.Application.Services;
-using TaskManagerApp.Application.ViewModels.Profile;
+using TaskManagerApp.Application.ViewModels;
 using TaskManagerApp.Domain.Models;
 using TaskManagerApp.Domain.Utils;
 using TaskManagerApp.Infra.Interfaces;
@@ -49,14 +49,14 @@ namespace TaskManagerApp.Tests.Unit.Services
             var result = _service.TypesQuery();
 
             Assert.True(result.IsValid);
-            Assert.IsAssignableFrom<IQueryable<ProfileTypeViewModel>>(result.Content);
-            Assert.Equal(_profileTypes.Count, (result.Content as IQueryable<ProfileTypeViewModel>)?.Count());
+            Assert.IsAssignableFrom<IQueryable<ProfileTypeDto>>(result.Content);
+            Assert.Equal(_profileTypes.Count, (result.Content as IQueryable<ProfileTypeDto>)?.Count());
         }
 
         [Fact]
         public async Task Insert_WithValidProfile_ShouldReturnSuccess()
         {
-            var profile = new ProfilePostViewModel
+            var profile = new ProfilePostDto
             {
                 Name = "Personal Weekdays Profile",
                 TimeTarget = "10:00",
@@ -79,7 +79,7 @@ namespace TaskManagerApp.Tests.Unit.Services
         [Fact]
         public async Task Insert_WithInvalidProfile_ShouldReturnBadRequest()
         {
-            var profile = new ProfilePostViewModel
+            var profile = new ProfilePostDto
             {
                 TimeTarget = "10:00",
                 TasksTarget = 4,
@@ -97,7 +97,7 @@ namespace TaskManagerApp.Tests.Unit.Services
         public async Task Update_WithValidProfile_ShouldReturnSuccess()
         {
             const int id = 1;
-            var profile = new ProfilePutViewModel
+            var profile = new ProfilePutDto
             {
                 Id = id,
                 Name = "Personal Weekdays Profile -- edit",
@@ -119,7 +119,7 @@ namespace TaskManagerApp.Tests.Unit.Services
         public async Task Update_WithInvalidProfile_ShouldReturnBadRequest()
         {
             const int id = 1;
-            var profile = new ProfilePutViewModel
+            var profile = new ProfilePutDto
             {
                 Id = id,
                 TimeTarget = "10:00",

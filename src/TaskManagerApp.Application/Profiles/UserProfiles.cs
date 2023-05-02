@@ -1,5 +1,5 @@
-﻿using TaskManagerApp.Application.Dtos;
-using TaskManagerApp.Application.ViewModels.User;
+﻿using TaskManagerApp.Application.Dtos.Auth;
+using TaskManagerApp.Application.Dtos.User;
 using TaskManagerApp.Domain.Models;
 
 namespace TaskManagerApp.Application.Profiles
@@ -8,11 +8,11 @@ namespace TaskManagerApp.Application.Profiles
     {
         public UserProfiles()
         {
-            CreateMap<User, UserViewModel>().ReverseMap();
-            CreateMap<UserPostViewModel, User>();
-            CreateMap<UserPutViewModel, User>();
+            CreateMap<User, UserDto>().ReverseMap();
+            CreateMap<UserPostDto, User>();
+            CreateMap<UserPutDto, User>();
             CreateMap<Signup, User>();
-            CreateMap<User, UserAuthGet>();
+            CreateMap<User, UserAuthDto>();
         }
     }
 }

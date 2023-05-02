@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TaskManagerApp.API.Configurations;
-using TaskManagerApp.Application.Extensions.ViewModels;
+using TaskManagerApp.Application.Dtos.Timesheet;
 using TaskManagerApp.Application.Interfaces;
-using TaskManagerApp.Application.ViewModels.Timesheet;
+using TaskManagerApp.Application.ViewModels;
 
 namespace TaskManagerApp.API.Controllers
 {
@@ -17,14 +17,14 @@ namespace TaskManagerApp.API.Controllers
 
         [HttpGet("odata")]
         [ODataQuery]
-        public ActionResult<IQueryable<TimesheetViewModel>> Query() => CustomResponse(_service.Query());
+        public ActionResult<IQueryable<TimesheetDto>> Query() => CustomResponse(_service.Query());
 
         [HttpPost]
-        public async Task<ActionResult<PostReturnViewModel>> Post(TimesheetPostViewModel viewModel)
+        public async Task<ActionResult<PostReturnViewModel>> Post(TimesheetPostDto viewModel)
             => CustomResponse(await _service.Insert(viewModel));
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, TimesheetPutViewModel viewModel)
+        public async Task<ActionResult> Put(int id, TimesheetPutDto viewModel)
             => CustomResponse(await _service.Update(id, viewModel));
 
         [HttpDelete("{id}")]

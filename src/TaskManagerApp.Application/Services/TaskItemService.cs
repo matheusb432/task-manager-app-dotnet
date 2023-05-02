@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
+using TaskManagerApp.Application.Dtos.TaskItem;
 using TaskManagerApp.Application.Interfaces;
 using TaskManagerApp.Application.Services.Base;
-using TaskManagerApp.Application.ViewModels.TaskItem;
 using TaskManagerApp.Domain.Models;
 using TaskManagerApp.Domain.Models.Validators;
 using TaskManagerApp.Infra.Interfaces;
@@ -10,9 +10,9 @@ namespace TaskManagerApp.Application.Services
 {
     internal sealed class TaskItemService : EntityService<
         TaskItem,
-        TaskItemViewModel,
-        TaskItemPostViewModel,
-        TaskItemPutViewModel,
+        TaskItemDto,
+        TaskItemPostDto,
+        TaskItemPutDto,
         TaskItemValidator>, ITaskItemService
     {
         public TaskItemService(ITaskItemRepository repo, IMapper mapper)

@@ -1,4 +1,4 @@
-﻿using TaskManagerApp.Application.Dtos;
+﻿using TaskManagerApp.Application.Dtos.Auth;
 using TaskManagerApp.Application.Extensions;
 
 namespace TaskManagerApp.Application.Interfaces

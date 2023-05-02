@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
+using TaskManagerApp.Application.Dtos.Profile;
 using TaskManagerApp.Application.Extensions;
 using TaskManagerApp.Application.Interfaces;
 using TaskManagerApp.Application.Services.Base;
-using TaskManagerApp.Application.ViewModels.Profile;
 using TaskManagerApp.Domain.Models.Validators;
 using TaskManagerApp.Infra.Interfaces;
 using Profile = TaskManagerApp.Domain.Models.Profile;
@@ -11,9 +11,9 @@ namespace TaskManagerApp.Application.Services
 {
     public sealed class ProfileService : EntityService<
         Profile,
-        ProfileViewModel,
-        ProfilePostViewModel,
-        ProfilePutViewModel,
+        ProfileDto,
+        ProfilePostDto,
+        ProfilePutDto,
         ProfileValidator>, IProfileService
     {
         private readonly IProfileTypeRepository _profileTypeRepo;
@@ -24,6 +24,6 @@ namespace TaskManagerApp.Application.Services
             _profileTypeRepo = profileTypeRepo;
         }
 
-        public OperationResult TypesQuery() => Success(Mapper.ProjectTo<ProfileTypeViewModel>(_profileTypeRepo.Query()));
+        public OperationResult TypesQuery() => Success(Mapper.ProjectTo<ProfileTypeDto>(_profileTypeRepo.Query()));
     }
 }

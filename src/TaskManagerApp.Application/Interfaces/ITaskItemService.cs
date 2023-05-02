@@ -1,5 +1,5 @@
-﻿using TaskManagerApp.Application.Extensions;
-using TaskManagerApp.Application.ViewModels.TaskItem;
+﻿using TaskManagerApp.Application.Dtos.TaskItem;
+using TaskManagerApp.Application.Extensions;
 
 namespace TaskManagerApp.Application.Interfaces
 {
@@ -7,9 +7,9 @@ namespace TaskManagerApp.Application.Interfaces
     {
         OperationResult Query();
 
-        Task<OperationResult> Insert(TaskItemPostViewModel viewModel);
+        Task<OperationResult> Insert(TaskItemPostDto viewModel);
 
-        Task<OperationResult> Update(int id, TaskItemPutViewModel viewModel);
+        Task<OperationResult> Update(int id, TaskItemPutDto viewModel);
 
         Task<OperationResult> Delete(int id);
     }

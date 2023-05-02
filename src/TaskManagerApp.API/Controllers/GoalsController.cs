@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TaskManagerApp.API.Configurations;
-using TaskManagerApp.Application.Extensions.ViewModels;
+using TaskManagerApp.Application.Dtos.Goal;
 using TaskManagerApp.Application.Interfaces;
-using TaskManagerApp.Application.ViewModels.Goal;
+using TaskManagerApp.Application.ViewModels;
 
 namespace TaskManagerApp.API.Controllers
 {
@@ -17,14 +17,14 @@ namespace TaskManagerApp.API.Controllers
 
         [HttpGet("odata")]
         [ODataQuery]
-        public ActionResult<IQueryable<GoalViewModel>> Query() => CustomResponse(_service.Query());
+        public ActionResult<IQueryable<GoalDto>> Query() => CustomResponse(_service.Query());
 
         [HttpPost]
-        public async Task<ActionResult<PostReturnViewModel>> Post(GoalPostViewModel viewModel)
+        public async Task<ActionResult<PostReturnViewModel>> Post(GoalPostDto viewModel)
             => CustomResponse(await _service.Insert(viewModel));
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, GoalPutViewModel viewModel)
+        public async Task<ActionResult> Put(int id, GoalPutDto viewModel)
             => CustomResponse(await _service.Update(id, viewModel));
 
         [HttpDelete("{id}")]

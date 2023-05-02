@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using TaskManagerApp.Application.Dtos.Auth;
 
 namespace TaskManagerApp.Application.Dtos.Validators
 {

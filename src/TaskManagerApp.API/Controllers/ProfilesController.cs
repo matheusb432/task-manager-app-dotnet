@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TaskManagerApp.API.Configurations;
-using TaskManagerApp.Application.Extensions.ViewModels;
+using TaskManagerApp.Application.Dtos.Profile;
 using TaskManagerApp.Application.Interfaces;
-using TaskManagerApp.Application.ViewModels.Profile;
+using TaskManagerApp.Application.ViewModels;
 
 namespace TaskManagerApp.API.Controllers
 {
@@ -17,19 +17,19 @@ namespace TaskManagerApp.API.Controllers
 
         [HttpGet("odata")]
         [ODataQuery]
-        public ActionResult<IQueryable<ProfileViewModel>> Query() => CustomResponse(_service.Query());
+        public ActionResult<IQueryable<ProfileDto>> Query() => CustomResponse(_service.Query());
 
         [HttpGet("types/odata")]
         [ODataQuery]
-        public ActionResult<List<ProfileTypeViewModel>> TypesQuery()
+        public ActionResult<List<ProfileTypeDto>> TypesQuery()
             => CustomResponse(_service.TypesQuery());
 
         [HttpPost]
-        public async Task<ActionResult<PostReturnViewModel>> Post(ProfilePostViewModel viewModel)
+        public async Task<ActionResult<PostReturnViewModel>> Post(ProfilePostDto viewModel)
             => CustomResponse(await _service.Insert(viewModel));
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, ProfilePutViewModel viewModel)
+        public async Task<ActionResult> Put(int id, ProfilePutDto viewModel)
             => CustomResponse(await _service.Update(id, viewModel));
 
         [HttpDelete("{id}")]

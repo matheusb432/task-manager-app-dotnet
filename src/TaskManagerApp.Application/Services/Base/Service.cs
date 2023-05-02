@@ -3,7 +3,7 @@ using FluentValidation;
 using FluentValidation.Results;
 using System.Net;
 using TaskManagerApp.Application.Extensions;
-using TaskManagerApp.Application.Extensions.ViewModels;
+using TaskManagerApp.Application.ViewModels;
 using TaskManagerApp.Domain.Models;
 
 namespace TaskManagerApp.Application.Services.Base

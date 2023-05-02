@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.OData.Extensions;
 using Microsoft.AspNetCore.OData.Query;
-using TaskManagerApp.Application.Extensions.ViewModels;
+using TaskManagerApp.Application.ViewModels;
 
 namespace TaskManagerApp.API.Configurations
 {

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Moq;
 using System.Net;
 using TaskManagerApp.Application.Dtos;
+using TaskManagerApp.Application.Dtos.Auth;
 using TaskManagerApp.Application.Profiles;
 using TaskManagerApp.Application.Services;
 using TaskManagerApp.Domain.Models;

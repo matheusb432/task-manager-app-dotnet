@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using TaskManagerApp.Application.Extensions;
-using TaskManagerApp.Application.Extensions.ViewModels;
+using TaskManagerApp.Application.ViewModels;
 
 namespace TaskManagerApp.API.Controllers
 {

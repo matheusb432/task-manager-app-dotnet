@@ -1,5 +1,5 @@
-﻿using TaskManagerApp.Application.Utils;
-using TaskManagerApp.Application.ViewModels.Profile;
+﻿using TaskManagerApp.Application.Dtos.Profile;
+using TaskManagerApp.Application.Utils;
 using TaskManagerApp.Domain.Models;
 
 namespace TaskManagerApp.Application.Profiles
@@ -8,17 +8,17 @@ namespace TaskManagerApp.Application.Profiles
     {
         public ProfileProfiles()
         {
-            CreateMap<ProfileViewModel, Profile>().ReverseMap();
-            CreateMap<ProfilePostViewModel, Profile>()
+            CreateMap<ProfileDto, Profile>().ReverseMap();
+            CreateMap<ProfilePostDto, Profile>()
                 .ForMember(dest => dest.TimeTarget, opt => opt.MapFrom(src => TimeUtils.ConvertTimeToShort(src.TimeTarget)));
-            CreateMap<ProfilePutViewModel, Profile>()
+            CreateMap<ProfilePutDto, Profile>()
                 .ForMember(dest => dest.TimeTarget, opt => opt.MapFrom(src => TimeUtils.ConvertTimeToShort(src.TimeTarget)));
-            CreateMap<ProfilePresetTaskItem, ProfilePresetTaskItemViewModel>().ReverseMap();
-            CreateMap<ProfilePresetTaskItemPostViewModel, ProfilePresetTaskItem>();
-            CreateMap<ProfilePresetTaskItemPutViewModel, ProfilePresetTaskItem>();
-            CreateMap<ProfileType, ProfileTypeViewModel>().ReverseMap();
-            CreateMap<ProfileTypePostViewModel, ProfileType>();
-            CreateMap<ProfileTypePutViewModel, ProfileType>();
+            CreateMap<ProfilePresetTaskItem, ProfilePresetTaskItemDto>().ReverseMap();
+            CreateMap<ProfilePresetTaskItemPostDto, ProfilePresetTaskItem>();
+            CreateMap<ProfilePresetTaskItemPutDto, ProfilePresetTaskItem>();
+            CreateMap<ProfileType, ProfileTypeDto>().ReverseMap();
+            CreateMap<ProfileTypePostDto, ProfileType>();
+            CreateMap<ProfileTypePutDto, ProfileType>();
         }
     }
 }

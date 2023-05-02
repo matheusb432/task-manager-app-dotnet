@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-using TaskManagerApp.Application.ViewModels.Timesheet;
+using TaskManagerApp.Application.Dtos.Timesheet;
 using TaskManagerApp.Domain.Models;
 
 namespace TaskManagerApp.Application.Profiles
@@ -14,12 +13,12 @@ namespace TaskManagerApp.Application.Profiles
     {
         public TimesheetProfiles()
         {
-            CreateMap<Timesheet, TimesheetViewModel>().ReverseMap();
-            CreateMap<TimesheetPostViewModel, Timesheet>();
-            CreateMap<TimesheetPutViewModel, Timesheet>();
-            CreateMap<TimesheetNote, TimesheetNoteViewModel>().ReverseMap();
-            CreateMap<TimesheetNotePostViewModel, TimesheetNote>();
-            CreateMap<TimesheetNotePutViewModel, TimesheetNote>();
+            CreateMap<Timesheet, TimesheetDto>().ReverseMap();
+            CreateMap<TimesheetPostDto, Timesheet>();
+            CreateMap<TimesheetPutDto, Timesheet>();
+            CreateMap<TimesheetNote, TimesheetNoteDto>().ReverseMap();
+            CreateMap<TimesheetNotePostDto, TimesheetNote>();
+            CreateMap<TimesheetNotePutDto, TimesheetNote>();
         }
     }
 }

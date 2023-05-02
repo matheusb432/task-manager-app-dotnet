@@ -2,12 +2,12 @@
 using Microsoft.AspNetCore.Identity;
 using System.Net;
 using TaskManagerApp.Application.Configurations;
-using TaskManagerApp.Application.Dtos;
+using TaskManagerApp.Application.Dtos.Auth;
+using TaskManagerApp.Application.Dtos.User;
 using TaskManagerApp.Application.Dtos.Validators;
 using TaskManagerApp.Application.Extensions;
 using TaskManagerApp.Application.Interfaces;
 using TaskManagerApp.Application.Services.Base;
-using TaskManagerApp.Application.ViewModels.User;
 using TaskManagerApp.Domain.Models;
 using TaskManagerApp.Domain.Models.Validators;
 using TaskManagerApp.Infra.Interfaces;
@@ -81,7 +81,7 @@ namespace TaskManagerApp.Application.Services
         }
 
         private AuthResponse BuildResponse(User user, string token)
-            => new(Mapper.Map<UserAuthGet>(user), token);
+            => new(Mapper.Map<UserAuthDto>(user), token);
 
         private bool IsCorrectPassword(User? user, string password)
         {

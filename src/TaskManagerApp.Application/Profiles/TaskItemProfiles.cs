@@ -1,4 +1,4 @@
-﻿using TaskManagerApp.Application.ViewModels.TaskItem;
+﻿using TaskManagerApp.Application.Dtos.TaskItem;
 using TaskManagerApp.Domain.Models;
 
 namespace TaskManagerApp.Application.Profiles
@@ -7,18 +7,18 @@ namespace TaskManagerApp.Application.Profiles
     {
         public TaskItemProfiles()
         {
-            CreateMap<TaskItem, TaskItemViewModel>().ReverseMap()
+            CreateMap<TaskItem, TaskItemDto>().ReverseMap()
                 .ForMember(dest => dest.Importance, opt => opt.MapFrom(src => Math.Max(1, (int) src.Importance)));
-            CreateMap<TaskItemPostViewModel, TaskItem>()
+            CreateMap<TaskItemPostDto, TaskItem>()
                 .ForMember(dest => dest.Importance, opt => opt.MapFrom(src => Math.Max(1, (int)src.Importance)));
-            CreateMap<TaskItemPutViewModel, TaskItem>()
+            CreateMap<TaskItemPutDto, TaskItem>()
                 .ForMember(dest => dest.Importance, opt => opt.MapFrom(src => Math.Max(1, (int)src.Importance)));
-            CreateMap<PresetTaskItem, PresetTaskItemViewModel>().ReverseMap();
-            CreateMap<PresetTaskItemPostViewModel, PresetTaskItem>();
-            CreateMap<PresetTaskItemPutViewModel, PresetTaskItem>();
-            CreateMap<TaskItemNote, TaskItemNoteViewModel>().ReverseMap();
-            CreateMap<TaskItemNotePostViewModel, TaskItemNote>();
-            CreateMap<TaskItemNotePutViewModel, TaskItemNote>();
+            CreateMap<PresetTaskItem, PresetTaskItemDto>().ReverseMap();
+            CreateMap<PresetTaskItemPostDto, PresetTaskItem>();
+            CreateMap<PresetTaskItemPutDto, PresetTaskItem>();
+            CreateMap<TaskItemNote, TaskItemNoteDto>().ReverseMap();
+            CreateMap<TaskItemNotePostDto, TaskItemNote>();
+            CreateMap<TaskItemNotePutDto, TaskItemNote>();
         }
     }
 }
