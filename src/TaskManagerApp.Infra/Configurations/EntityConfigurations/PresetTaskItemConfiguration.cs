@@ -8,7 +8,7 @@ namespace TaskManagerApp.Infra.Configurations.EntityConfigurations
         public override void ConfigureOtherProperties(EntityTypeBuilder<PresetTaskItem> builder)
         {
             builder.Property(x => x.Title).IsUnicode(false).HasMaxLength(250);
-            builder.HasOne(x => x.User).WithMany(x => x.PresetTaskItems).HasForeignKey(x => x.UserId);
+            builder.Property(x => x.UserCreatedId).IsRequired(true);
             builder.HasMany(x => x.ProfilePresetTaskItems).WithOne(x => x.PresetTaskItem).HasForeignKey(x => x.PresetTaskItemId);
         }
     }

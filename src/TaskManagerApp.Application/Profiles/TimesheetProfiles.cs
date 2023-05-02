@@ -13,7 +13,8 @@ namespace TaskManagerApp.Application.Profiles
     {
         public TimesheetProfiles()
         {
-            CreateMap<Timesheet, TimesheetDto>().ReverseMap();
+            CreateMap<TimesheetDto, Timesheet>().ReverseMap()
+                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserCreatedId));
             CreateMap<TimesheetPostDto, Timesheet>();
             CreateMap<TimesheetPutDto, Timesheet>();
             CreateMap<TimesheetNote, TimesheetNoteDto>().ReverseMap();

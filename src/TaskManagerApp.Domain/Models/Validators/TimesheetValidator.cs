@@ -7,7 +7,6 @@ namespace TaskManagerApp.Domain.Models.Validators
         public TimesheetValidator()
         {
             RuleFor(x => x.Date).NotEmpty();
-            RuleFor(x => x.UserId).NotEmpty();
         }
     }
 }

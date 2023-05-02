@@ -13,7 +13,8 @@ namespace TaskManagerApp.Application.Profiles
                 .ForMember(dest => dest.Importance, opt => opt.MapFrom(src => Math.Max(1, (int)src.Importance)));
             CreateMap<TaskItemPutDto, TaskItem>()
                 .ForMember(dest => dest.Importance, opt => opt.MapFrom(src => Math.Max(1, (int)src.Importance)));
-            CreateMap<PresetTaskItem, PresetTaskItemDto>().ReverseMap();
+            CreateMap<PresetTaskItemDto, PresetTaskItem>().ReverseMap()
+                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserCreatedId));
             CreateMap<PresetTaskItemPostDto, PresetTaskItem>();
             CreateMap<PresetTaskItemPutDto, PresetTaskItem>();
             CreateMap<TaskItemNote, TaskItemNoteDto>().ReverseMap();

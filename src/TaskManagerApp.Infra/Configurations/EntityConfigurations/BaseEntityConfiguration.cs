@@ -13,6 +13,10 @@ namespace TaskManagerApp.Infra.Configurations.EntityConfigurations
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.CreatedAt).HasDefaultValueSql("getdate()").HasColumnType("datetime");
             builder.Property(x => x.UpdatedAt).HasDefaultValueSql("getdate()").HasColumnType("datetime");
+            builder.Property(x => x.UserCreatedId).IsRequired(false);
+            builder.Property(x => x.UserUpdatedId).IsRequired(false);
+            builder.HasOne(x => x.UserCreated).WithMany().HasForeignKey(x => x.UserCreatedId).OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne(x => x.UserUpdated).WithMany().HasForeignKey(x => x.UserUpdatedId).OnDelete(DeleteBehavior.NoAction);
 
             ConfigureOtherProperties(builder);
         }

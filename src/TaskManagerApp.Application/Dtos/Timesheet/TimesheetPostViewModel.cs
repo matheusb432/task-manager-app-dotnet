@@ -11,7 +11,6 @@ namespace TaskManagerApp.Application.Dtos.Timesheet
         }
 
         public DateTime Date { get; set; }
-        public int UserId { get; set; }
         public bool? Finished { get; set; }
         public List<TimesheetNotePostDto> TimesheetNotes { get; set; }
         public List<TaskItemPostDto> TaskItems { get; set; }

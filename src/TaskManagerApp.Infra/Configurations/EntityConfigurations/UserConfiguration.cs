@@ -13,9 +13,10 @@ namespace TaskManagerApp.Infra.Configurations.EntityConfigurations
             builder.Property(x => x.Email).HasMaxLength(100);
             builder.HasIndex(x => x.Email).IsUnique();
             builder.Property(x => x.PasswordHash).IsUnicode(false).HasMaxLength(100);
-            builder.HasMany(x => x.PresetTaskItems).WithOne(x => x.User).HasForeignKey(x => x.UserId);
-            builder.HasMany(x => x.Timesheets).WithOne(x => x.User).HasForeignKey(x => x.UserId);
-            builder.HasMany(x => x.Profiles).WithOne(x => x.User).HasForeignKey(x => x.UserId);
+            // TODO clean
+            //builder.HasMany(x => x.PresetTaskItems).WithOne(x => x.UserCreated).HasForeignKey(x => x.UserCreatedId);
+            //builder.HasMany(x => x.Timesheets).WithOne(x => x.UserCreated).HasForeignKey(x => x.UserCreatedId);
+            //builder.HasMany(x => x.Profiles).WithOne(x => x.UserCreated).HasForeignKey(x => x.UserCreatedId);
         }
     }
 }

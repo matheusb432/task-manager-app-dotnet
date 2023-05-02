@@ -224,7 +224,7 @@ namespace TaskManagerApp.Tests.Unit.Services
                         TimeTarget= 1030,
                         TasksTarget= 4,
                         Priority = 0,
-                        UserId= 123,
+                        UserCreatedId= 123,
                         ProfileTypeId= 1,
                 },
                 new Domain.Models.Profile
@@ -234,7 +234,7 @@ namespace TaskManagerApp.Tests.Unit.Services
                         TimeTarget= 400,
                         TasksTarget= 3,
                         Priority = 0,
-                        UserId= 123,
+                        UserCreatedId= 123,
                         ProfileTypeId= 2,
                 },
                 new Domain.Models.Profile
@@ -243,7 +243,7 @@ namespace TaskManagerApp.Tests.Unit.Services
                         Name= "Personal Holidays Profile",
                         TimeTarget= 330,
                         Priority = 1,
-                        UserId= 323,
+                        UserCreatedId= 323,
                         ProfileTypeId= 3,
                 },
                 new Domain.Models.Profile
@@ -252,7 +252,7 @@ namespace TaskManagerApp.Tests.Unit.Services
                         Name= "Personal Custom Profile",
                         TimeTarget= 430,
                         Priority = 2,
-                        UserId= 423,
+                        UserCreatedId= 423,
                         ProfileTypeId= 4,
                 },
                 new Domain.Models.Profile
@@ -261,7 +261,7 @@ namespace TaskManagerApp.Tests.Unit.Services
                         Name= "Personal Custom Profile",
                         TimeTarget= 5,
                         Priority = 2,
-                        UserId= 523,
+                        UserCreatedId= 523,
                         ProfileTypeId= 5,
                 },
             };

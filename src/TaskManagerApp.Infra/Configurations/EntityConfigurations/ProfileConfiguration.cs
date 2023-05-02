@@ -12,7 +12,7 @@ namespace TaskManagerApp.Infra.Configurations.EntityConfigurations
             builder.Property(x => x.TimeTarget).IsRequired(false);
             builder.Property(x => x.TasksTarget).IsRequired(false);
             builder.Property(x => x.Priority).HasDefaultValue(1);
-            builder.HasOne(x => x.User).WithMany(x => x.Profiles).HasForeignKey(x => x.UserId);
+            builder.Property(x => x.UserCreatedId).IsRequired(true);
             builder.HasOne(x => x.ProfileType).WithMany(x => x.Profiles).HasForeignKey(x => x.ProfileTypeId);
             builder.HasMany(x => x.ProfilePresetTaskItems).WithOne(x => x.Profile).HasForeignKey(x => x.ProfileId);
         }

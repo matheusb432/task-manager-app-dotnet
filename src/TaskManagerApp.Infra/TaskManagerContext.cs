@@ -47,10 +47,16 @@ namespace TaskManagerApp.Infra
 
         public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
         {
+            var userId = int.Parse(_httpContextAccessor.HttpContext.User.FindFirst("Id")?.Value ?? "-1");
             var now = DateTime.Now;
 
             this.SetPropOnAdded("CreatedAt", now);
             this.UpdatePropOnChange("UpdatedAt", now);
+            if (userId > 0)
+            {
+                this.SetPropOnAdded("UserCreatedId", userId);
+                this.UpdatePropOnChange("UserUpdatedId", userId);
+            }
 
             return await base.SaveChangesAsync(true, cancellationToken).ConfigureAwait(false);
         }
