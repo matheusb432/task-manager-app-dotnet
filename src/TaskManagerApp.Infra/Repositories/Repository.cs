@@ -16,7 +16,7 @@ namespace TaskManagerApp.Infra.Repositories
             _dbSet = _context.Set<T>();
         }
 
-        public IQueryable<T> Query() => _dbSet.AsQueryable();
+        public IQueryable<T> Query() => _dbSet.AsQueryable().AsSplitQuery();
 
         public virtual async Task<IEnumerable<T>> GetAllAsync() => await _dbSet.ToListAsync();
 
