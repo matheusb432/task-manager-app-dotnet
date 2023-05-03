@@ -1,7 +1,7 @@
 ﻿namespace TaskManagerApp.Tests.E2E
 {
     [TestClass]
-    public class HomeTests
+    public sealed class HomeTests
     {
         private static IWebDriver _driver = null!;
         public static readonly string Url = PageUrls.HomeUrl;

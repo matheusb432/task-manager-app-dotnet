@@ -42,7 +42,7 @@ namespace TaskManagerApp.Application.Configurations
                 {
                     new Claim(ClaimTypes.Name, user.UserName),
                     new Claim(ClaimTypes.Email, user.Email),
-                    new Claim("Id", user.Id.ToString()),
+                    new Claim("UserId", user.Id.ToString()),
                     // TODO add user roles logic
                 }),
                 Expires = DateTime.UtcNow.AddDays(30),

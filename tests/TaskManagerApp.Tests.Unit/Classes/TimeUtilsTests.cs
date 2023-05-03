@@ -2,7 +2,7 @@
 
 namespace TaskManagerApp.Tests.Unit.Classes
 {
-    public class TimeUtilsTests
+    public sealed class TimeUtilsTests
     {
         [Theory]
         [InlineData("09:30", 930)]

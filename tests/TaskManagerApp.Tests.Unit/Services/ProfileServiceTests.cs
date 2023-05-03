@@ -10,7 +10,7 @@ using TaskManagerApp.Infra.Interfaces;
 
 namespace TaskManagerApp.Tests.Unit.Services
 {
-    public class ProfileServiceTests
+    public sealed class ProfileServiceTests
     {
         private readonly ProfileService _service;
 

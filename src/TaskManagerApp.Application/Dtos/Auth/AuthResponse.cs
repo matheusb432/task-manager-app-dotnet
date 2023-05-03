@@ -2,7 +2,7 @@
 
 namespace TaskManagerApp.Application.Dtos.Auth
 {
-    public class AuthResponse
+    public sealed class AuthResponse
     {
         public AuthResponse(UserAuthDto user, string token)
         {

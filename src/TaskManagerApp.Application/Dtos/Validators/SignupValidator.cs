@@ -3,7 +3,7 @@ using TaskManagerApp.Application.Dtos.Auth;
 
 namespace TaskManagerApp.Application.Dtos.Validators
 {
-    public class SignupValidator : AbstractValidator<Signup>
+    public sealed class SignupValidator : AbstractValidator<Signup>
     {
         public SignupValidator()
         {

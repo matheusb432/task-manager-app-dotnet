@@ -47,7 +47,7 @@ namespace TaskManagerApp.Infra
 
         public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
         {
-            var userId = int.Parse(_httpContextAccessor.HttpContext.User.FindFirst("Id")?.Value ?? "-1");
+            var userId = int.Parse(_httpContextAccessor.HttpContext.User.FindFirst("UserId")?.Value ?? "-1");
             var now = DateTime.Now;
 
             this.SetPropOnAdded("CreatedAt", now);

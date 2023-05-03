@@ -11,7 +11,7 @@ using TaskManagerApp.Infra.Interfaces;
 
 namespace TaskManagerApp.Tests.Unit.Services
 {
-    public class AuthServiceTests
+    public sealed class AuthServiceTests
     {
         private readonly AuthService _service;
 

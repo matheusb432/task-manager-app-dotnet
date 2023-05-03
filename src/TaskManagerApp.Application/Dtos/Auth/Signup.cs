@@ -1,6 +1,6 @@
 ﻿namespace TaskManagerApp.Application.Dtos.Auth
 {
-    public class Signup
+    public sealed class Signup
     {
         public string Name { get; set; } = string.Empty;
         public string UserName { get; set; } = string.Empty;

@@ -1,7 +1,7 @@
 ﻿namespace TaskManagerApp.Tests.E2E
 {
     [TestClass]
-    public class ProfileTests
+    public sealed class ProfileTests
     {
         private static IWebDriver _driver = null!;
         public static readonly string Url = PageUrls.ProfilesUrl;

@@ -2,7 +2,7 @@
 
 namespace TaskManagerApp.Tests.Unit.Classes
 {
-    public class StringUtilsTests
+    public sealed class StringUtilsTests
     {
         [Theory]
         [InlineData("Ab", 3, "AbAbAb")]

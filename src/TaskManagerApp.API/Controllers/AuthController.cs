@@ -4,7 +4,7 @@ using TaskManagerApp.Application.Interfaces;
 
 namespace TaskManagerApp.API.Controllers
 {
-    public class AuthController : Controller
+    public sealed class AuthController : Controller
     {
         private readonly IAuthService _service;
 

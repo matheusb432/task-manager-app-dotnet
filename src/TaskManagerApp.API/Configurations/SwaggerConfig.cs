@@ -21,7 +21,7 @@ namespace TaskManagerApp.API.Configurations
             });
         }
 
-        internal class BearerTokenOperationFilter : IOperationFilter
+        internal sealed class BearerTokenOperationFilter : IOperationFilter
         {
             public void Apply(OpenApiOperation operation, OperationFilterContext context)
             {
