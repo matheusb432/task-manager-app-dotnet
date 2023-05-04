@@ -121,9 +121,8 @@
         {
             SearchProfileList(_driver, name);
 
-            var icon = _driver.FindElementWithWait(By.Id("cTableEditIcon0"));
             WebDriverUtils.ScrollToTop(_driver.FindElementWithWait(By.Id("cProfilesButtonCreate")));
-            icon.Click();
+            _driver.FindElementWithWait(By.Id("cTableEditIcon0")).Click();
         }
 
         public static string FillProfileForm(IWebDriver _driver, By nameBy)

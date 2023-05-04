@@ -62,7 +62,6 @@ namespace TaskManagerApp.Tests.Unit.Services
                 TimeTarget = "10:00",
                 TasksTarget = 4,
                 Priority = 0,
-                UserId = 123,
                 ProfileTypeId = 1
             };
 
@@ -83,7 +82,6 @@ namespace TaskManagerApp.Tests.Unit.Services
             {
                 TimeTarget = "10:00",
                 TasksTarget = 4,
-                UserId = 123,
                 ProfileTypeId = 1
             };
 
@@ -104,7 +102,6 @@ namespace TaskManagerApp.Tests.Unit.Services
                 TimeTarget = "07:00",
                 TasksTarget = 4,
                 Priority = 0,
-                UserId = 123,
                 ProfileTypeId = 1
             };
 
@@ -124,7 +121,6 @@ namespace TaskManagerApp.Tests.Unit.Services
                 Id = id,
                 TimeTarget = "10:00",
                 TasksTarget = 4,
-                UserId = 123,
                 ProfileTypeId = 1
             };
 

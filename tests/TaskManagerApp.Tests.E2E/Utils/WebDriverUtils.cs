@@ -5,6 +5,7 @@ namespace TaskManagerApp.Tests.E2E.Utils
     internal static class WebDriverUtils
     {
         public static readonly string InitialUrl = "data:,";
+
         public static readonly double WaitTime = 5;
 
         /// <summary>
@@ -65,15 +66,24 @@ namespace TaskManagerApp.Tests.E2E.Utils
             return new ChromeDriver();
         }
 
-        public static IWebDriver InitializeTest(IWebDriver driver)
+        public static IWebDriver InitializeTest(IWebDriver driver, bool withAuth = true)
         {
             if (!driver.Url.Equals(InitialUrl))
             {
                 driver = ResetDriver(driver);
                 MaximizeWindow(driver);
             }
-            driver.NavigateToHome();
+            if (withAuth) Authenticate(driver);
+            else driver.NavigateToHome();
+
             return driver;
+        }
+
+        public static void Authenticate(IWebDriver driver)
+        {
+            driver.Navigate().GoToUrl(PageUrls.LoginUrl);
+            AuthTests.LoginFlow(driver);
+            WaitUntilRedirected(driver, PageUrls.HomeUrl);
         }
 
         /// <summary>

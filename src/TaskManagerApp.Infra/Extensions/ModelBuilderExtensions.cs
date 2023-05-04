@@ -6,8 +6,25 @@ namespace TaskManagerApp.Infra.Extensions
 {
     public static class ModelBuilderExtensions
     {
+        /// <summary>
+        /// Seeds the database for development and testing purposes
+        /// </summary>
+        /// <param name="modelBuilder"></param>
         public static void SeedDatabase(this ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<User>()
+                .HasData(
+                    new User
+                    {
+                        Id = 1,
+                        Name = "Test User",
+                        Email = "test@example.com",
+                        UserName = "test_user",
+                        // Hashed AaBb_123456
+                        PasswordHash = "AQAAAAEAACcQAAAAEP9cuKzijGwu9rDTOEX6twF0kns/esm9KijT4K+wu4xxO4+IVafQGcyxnmMFc2gyXg==",
+                    }
+           );
+
             modelBuilder.Entity<ProfileType>()
                 .HasData(
                   new ProfileType
