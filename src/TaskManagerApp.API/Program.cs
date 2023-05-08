@@ -13,6 +13,7 @@ services.AddControllers().AddOData(
 
 services.AddEndpointsApiExplorer();
 services.AddSwagger();
+services.AddCacheConfiguration();
 
 services.AddApplicationConfig(configuration);
 services.AddInfraConfiguration(configuration);
@@ -29,6 +30,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseAuthentication();
+app.UseResponseCaching();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

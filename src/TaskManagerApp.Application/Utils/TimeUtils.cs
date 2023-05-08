@@ -2,6 +2,8 @@
 {
     public static class TimeUtils
     {
+        public static readonly int DAY_SECONDS = 86400;
+
         /// <summary>
         /// Converts a "hh:mm" string to a short value
         /// </summary>

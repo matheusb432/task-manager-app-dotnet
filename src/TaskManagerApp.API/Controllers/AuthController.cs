@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TaskManagerApp.Application.Dtos.Auth;
 using TaskManagerApp.Application.Interfaces;
 
 namespace TaskManagerApp.API.Controllers
 {
+    [AllowAnonymous]
     public sealed class AuthController : Controller
     {
         private readonly IAuthService _service;

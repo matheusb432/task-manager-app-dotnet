@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using TaskManagerApp.API.Configurations;
 using TaskManagerApp.Application.Dtos.Profile;
 using TaskManagerApp.Application.Interfaces;
+using TaskManagerApp.Application.Utils;
 using TaskManagerApp.Application.ViewModels;
 
 namespace TaskManagerApp.API.Controllers
 {
-    [Authorize]
     public sealed class ProfilesController : Controller
     {
         private readonly IProfileService _service;
@@ -20,7 +20,9 @@ namespace TaskManagerApp.API.Controllers
         public ActionResult<IQueryable<ProfileDto>> Query() => CustomResponse(_service.Query());
 
         [HttpGet("types/odata")]
+        [ResponseCache(Duration = 86400)]
         [ODataQuery]
+        [AllowAnonymous]
         public ActionResult<List<ProfileTypeDto>> TypesQuery()
             => CustomResponse(_service.TypesQuery());
 

@@ -8,7 +8,6 @@ using TaskManagerApp.Application.ViewModels;
 namespace TaskManagerApp.API.Controllers
 {
     // TODO add admin role auth
-    [Authorize]
     public sealed class UsersController : Controller
     {
         private readonly IUserService _service;

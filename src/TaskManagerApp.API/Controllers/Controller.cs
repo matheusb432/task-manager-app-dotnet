@@ -1,4 +1,5 @@
 ﻿using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using TaskManagerApp.Application.Extensions;
@@ -8,6 +9,7 @@ namespace TaskManagerApp.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public abstract class Controller : ControllerBase
     {
         protected ActionResult CustomResponse(OperationResult result)

@@ -7,7 +7,6 @@ using TaskManagerApp.Application.ViewModels;
 
 namespace TaskManagerApp.API.Controllers
 {
-    [Authorize]
     public sealed class TaskItemsController : Controller
     {
         private readonly ITaskItemService _service;
