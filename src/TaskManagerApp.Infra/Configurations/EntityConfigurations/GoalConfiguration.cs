@@ -8,7 +8,7 @@ namespace TaskManagerApp.Infra.Configurations.EntityConfigurations
     {
         public override void ConfigureOtherProperties(EntityTypeBuilder<Goal> builder)
         {
-            builder.Property(e => e.Title).HasMaxLength(250).IsUnicode(false);
+            builder.Property(e => e.Title).HasMaxLength(100).IsUnicode(false);
             builder.Property(e => e.Image).HasMaxLength(200).IsUnicode(false).IsRequired(false);
             builder.Property(e => e.Description).IsUnicode(false).IsRequired(false);
             builder.Property(e => e.Active).HasDefaultValue(true);

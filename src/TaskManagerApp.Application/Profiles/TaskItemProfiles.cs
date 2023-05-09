@@ -17,9 +17,6 @@ namespace TaskManagerApp.Application.Profiles
                 .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserCreatedId));
             CreateMap<PresetTaskItemPostDto, PresetTaskItem>();
             CreateMap<PresetTaskItemPutDto, PresetTaskItem>();
-            CreateMap<TaskItemNote, TaskItemNoteDto>().ReverseMap();
-            CreateMap<TaskItemNotePostDto, TaskItemNote>();
-            CreateMap<TaskItemNotePutDto, TaskItemNote>();
         }
     }
 }

@@ -6,7 +6,7 @@ namespace TaskManagerApp.Domain.Models.Validators
     {
         public GoalValidator()
         {
-            RuleFor(x => x.Title).NotEmpty().MaximumLength(250);
+            RuleFor(x => x.Title).NotEmpty().MaximumLength(100);
             RuleFor(x => x.Image).MaximumLength(200);
         }
     }

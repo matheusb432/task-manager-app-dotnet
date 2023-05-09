@@ -8,7 +8,7 @@ namespace TaskManagerApp.Infra.Configurations.EntityConfigurations
     {
         public override void ConfigureOtherProperties(EntityTypeBuilder<GoalStep> builder)
         {
-            builder.Property(x => x.Title).HasMaxLength(250);
+            builder.Property(x => x.Title).IsUnicode(false).HasMaxLength(100);
             builder.Property(x => x.Description).IsRequired(false);
             builder.Property(x => x.Finished).HasDefaultValue(false);
             builder.HasOne(x => x.Goal).WithMany(x => x.GoalSteps).HasForeignKey(x => x.GoalId);

@@ -8,7 +8,7 @@ namespace TaskManagerApp.Infra.Configurations.EntityConfigurations
     {
         public override void ConfigureOtherProperties(EntityTypeBuilder<Profile> builder)
         {
-            builder.Property(x => x.Name).IsUnicode(false).HasMaxLength(250);
+            builder.Property(x => x.Name).IsUnicode(false).HasMaxLength(100);
             builder.Property(x => x.TimeTarget).IsRequired(false);
             builder.Property(x => x.TasksTarget).IsRequired(false);
             builder.Property(x => x.Priority).HasDefaultValue(1);

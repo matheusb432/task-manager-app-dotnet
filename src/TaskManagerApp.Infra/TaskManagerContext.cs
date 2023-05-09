@@ -23,7 +23,6 @@ namespace TaskManagerApp.Infra
         public DbSet<Profile> Profiles { get; set; } = null!;
         public DbSet<ProfileType> ProfileTypes { get; set; } = null!;
         public DbSet<TaskItem> TaskItems { get; set; } = null!;
-        public DbSet<TaskItemNote> TaskItemNotes { get; set; } = null!;
         public DbSet<Timesheet> Timesheets { get; set; } = null!;
         public DbSet<TimesheetNote> TimesheetNotes { get; set; } = null!;
         public DbSet<User> Users { get; set; } = null!;

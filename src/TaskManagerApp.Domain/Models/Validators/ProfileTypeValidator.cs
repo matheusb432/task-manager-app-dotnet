@@ -7,7 +7,7 @@ namespace TaskManagerApp.Domain.Models.Validators
     {
         public ProfileTypeValidator()
         {
-            RuleFor(x => x.Name).MaximumLength(200).NotEmpty();
+            RuleFor(x => x.Name).MaximumLength(100).NotEmpty();
             RuleFor(x => x.Type).Equal(ProfileTypes.Custom);
             RuleFor(x => x.DateRangeStart).NotEmpty();
             RuleFor(x => x.DateRangeEnd).NotEmpty().GreaterThan(x => x.DateRangeStart);

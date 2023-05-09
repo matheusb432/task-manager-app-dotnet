@@ -6,7 +6,7 @@ namespace TaskManagerApp.Domain.Models.Validators
     {
         public PresetTaskItemValidator()
         {
-            RuleFor(x => x.Title).NotEmpty().MaximumLength(250);
+            RuleFor(x => x.Title).NotEmpty().MaximumLength(100);
         }
     }
 }
