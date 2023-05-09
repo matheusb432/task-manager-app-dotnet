@@ -1,14 +1,20 @@
-﻿namespace TaskManagerApp.Infra.Interfaces
+﻿using System.Linq.Expressions;
+
+namespace TaskManagerApp.Infra.Interfaces
 {
     public interface IRepository<T>
     {
         IQueryable<T> Query();
 
+        IQueryable<T> QueryOnlyId();
+
         Task<IEnumerable<T>> GetAllAsync();
 
         Task<T?> GetByIdAsync(long id);
 
-        Task<T?> GetByIdAsNoTrackingAsync(long id);
+        Task<T?> GetByIdMinimalAsync(long id);
+
+        Task<bool> ExistsAsync(long id);
 
         Task<List<T>> GetManyByIdsAsync(List<int> ids);
 

@@ -13,7 +13,8 @@ namespace TaskManagerApp.Application.Services
         GoalDto,
         GoalPostDto,
         GoalPutDto,
-        GoalValidator>, IGoalService
+        GoalValidator,
+        IGoalRepository>, IGoalService
     {
         public GoalService(IGoalRepository repo, IMapper mapper)
             : base(mapper, repo)

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using System.Net;
 using TaskManagerApp.Application.Dtos.Timesheet;
 using TaskManagerApp.Application.Extensions;
 using TaskManagerApp.Application.Interfaces;
@@ -15,7 +16,8 @@ namespace TaskManagerApp.Application.Services
         TimesheetDto,
         TimesheetPostDto,
         TimesheetPutDto,
-        TimesheetValidator>, ITimesheetService
+        TimesheetValidator,
+        ITimesheetRepository>, ITimesheetService
     {
         public TimesheetService(ITimesheetRepository repo, IMapper mapper)
             : base(mapper, repo)
@@ -23,5 +25,23 @@ namespace TaskManagerApp.Application.Services
         }
 
         public OperationResult MetricsQuery() => Success(Mapper.ProjectTo<TimesheetMetricsViewModel>(_repo.Query()));
+
+        public override async Task<OperationResult> Update(int id, TimesheetPutDto dto)
+        {
+            var entity = Mapper.Map<Timesheet>(dto);
+
+            if (!EntityIsValid(new TimesheetValidator(), entity))
+                return Error(HttpStatusCode.BadRequest);
+
+            entity.Id = id;
+
+            if (!await _repo.ExistsAsync(id))
+                return Error(HttpStatusCode.NotFound);
+
+            await _repo.DeleteMissingRelationsFromRequestAsync(entity, false);
+            await _repo.UpdateAsync(entity);
+
+            return Success();
+        }
     }
 }

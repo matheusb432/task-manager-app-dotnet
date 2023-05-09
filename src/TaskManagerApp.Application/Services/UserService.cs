@@ -13,7 +13,8 @@ namespace TaskManagerApp.Application.Services
         UserDto,
         UserPostDto,
         UserPutDto,
-        UserValidator>, IUserService
+        UserValidator,
+        IUserRepository>, IUserService
     {
         public UserService(IUserRepository repo, IMapper mapper)
             : base(mapper, repo)

@@ -173,7 +173,7 @@ namespace TaskManagerApp.Tests.Unit.Services
                     _profiles.Add(p);
                 });
             _repo
-                .Setup(x => x.GetByIdAsNoTrackingAsync(It.IsAny<long>()))
+                .Setup(x => x.GetByIdMinimalAsync(It.IsAny<long>()))
                 .ReturnsAsync((long id) => _profiles.Find((x) => x.Id == id));
             _repo
                 .Setup(x => x.DeleteAsync(It.IsAny<Domain.Models.Profile>(), It.IsAny<bool>()))

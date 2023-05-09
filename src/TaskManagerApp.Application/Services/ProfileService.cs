@@ -14,7 +14,8 @@ namespace TaskManagerApp.Application.Services
         ProfileDto,
         ProfilePostDto,
         ProfilePutDto,
-        ProfileValidator>, IProfileService
+        ProfileValidator,
+        IProfileRepository>, IProfileService
     {
         private readonly IProfileTypeRepository _profileTypeRepo;
 

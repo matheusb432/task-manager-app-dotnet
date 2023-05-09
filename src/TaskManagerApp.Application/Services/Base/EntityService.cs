@@ -7,16 +7,17 @@ using TaskManagerApp.Infra.Interfaces;
 
 namespace TaskManagerApp.Application.Services.Base
 {
-    public abstract class EntityService<T, TVM, TPostVM, TPutVM, TV> : Service
+    public abstract class EntityService<T, TVM, TPostVM, TPutVM, TValidator, TRepository> : Service
         where T : Entity
         where TVM : class
         where TPostVM : class
         where TPutVM : class
-        where TV : AbstractValidator<T>, new()
+        where TValidator : AbstractValidator<T>, new()
+        where TRepository : IRepository<T>
     {
-        protected readonly IRepository<T> _repo;
+        protected readonly TRepository _repo;
 
-        protected EntityService(IMapper mapper, IRepository<T> repo)
+        protected EntityService(IMapper mapper, TRepository repo)
             : base(mapper)
         {
             _repo = repo;
@@ -24,28 +25,26 @@ namespace TaskManagerApp.Application.Services.Base
 
         public virtual OperationResult Query() => Success(Mapper.ProjectTo<TVM>(_repo.Query()));
 
-        public virtual async Task<OperationResult> Insert(TPostVM viewModel)
+        public virtual async Task<OperationResult> Insert(TPostVM dto)
         {
-            var entity = Mapper.Map<T>(viewModel);
-            if (!EntityIsValid(new TV(), entity))
+            var entity = Mapper.Map<T>(dto);
+            if (!EntityIsValid(new TValidator(), entity))
                 return Error(HttpStatusCode.BadRequest);
 
             await _repo.InsertAsync(entity);
             return Success(entity.Id);
         }
 
-        public virtual async Task<OperationResult> Update(int id, TPutVM viewModel)
+        public virtual async Task<OperationResult> Update(int id, TPutVM dto)
         {
-            var entity = Mapper.Map<T>(viewModel);
+            var entity = Mapper.Map<T>(dto);
 
-            if (!EntityIsValid(new TV(), entity))
+            if (!EntityIsValid(new TValidator(), entity))
                 return Error(HttpStatusCode.BadRequest);
 
             entity.Id = id;
 
-            var entityFromDb = await _repo.GetByIdAsNoTrackingAsync(entity.Id);
-
-            if (entityFromDb is null)
+            if (!await _repo.ExistsAsync(entity.Id))
                 return Error(HttpStatusCode.NotFound);
 
             await _repo.UpdateAsync(entity);
@@ -54,7 +53,7 @@ namespace TaskManagerApp.Application.Services.Base
 
         public virtual async Task<OperationResult> Delete(int id)
         {
-            var entity = await _repo.GetByIdAsNoTrackingAsync(id);
+            var entity = await _repo.GetByIdMinimalAsync(id);
 
             if (entity is null)
                 return Error(HttpStatusCode.NotFound);

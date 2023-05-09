@@ -13,7 +13,8 @@ namespace TaskManagerApp.Application.Services
         TaskItemDto,
         TaskItemPostDto,
         TaskItemPutDto,
-        TaskItemValidator>, ITaskItemService
+        TaskItemValidator,
+        ITaskItemRepository>, ITaskItemService
     {
         public TaskItemService(ITaskItemRepository repo, IMapper mapper)
             : base(mapper, repo)
