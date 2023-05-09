@@ -1,10 +1,5 @@
-﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TaskManagerApp.Application.Dtos.Timesheet;
+﻿using TaskManagerApp.Application.Dtos.Timesheet;
+using TaskManagerApp.Application.ViewModels;
 using TaskManagerApp.Domain.Models;
 
 namespace TaskManagerApp.Application.Profiles
@@ -20,6 +15,11 @@ namespace TaskManagerApp.Application.Profiles
             CreateMap<TimesheetNote, TimesheetNoteDto>().ReverseMap();
             CreateMap<TimesheetNotePostDto, TimesheetNote>();
             CreateMap<TimesheetNotePutDto, TimesheetNote>();
+
+            CreateMap<Timesheet, TimesheetMetricsViewModel>()
+                .ForMember(dest => dest.TotalTasks, opt => opt.MapFrom(src => src.TaskItems.Count))
+                .ForMember(dest => dest.WorkedHours, opt => opt.MapFrom(src => src.TaskItems.Sum(x => x.Time)))
+                .ForMember(dest => dest.AverageRating, opt => opt.MapFrom(src => src.TaskItems.Count > 0 ? src.TaskItems.Sum(x => x.Rating) / src.TaskItems.Count : 0));
         }
     }
 }

@@ -18,6 +18,10 @@ namespace TaskManagerApp.API.Controllers
         [ODataQuery]
         public ActionResult<IQueryable<TimesheetDto>> Query() => CustomResponse(_service.Query());
 
+        [HttpGet("metrics/odata")]
+        [ODataQuery]
+        public ActionResult<IQueryable<TimesheetMetricsViewModel>> MetricsQuery() => CustomResponse(_service.MetricsQuery());
+
         [HttpPost]
         public async Task<ActionResult<PostReturnViewModel>> Post(TimesheetPostDto viewModel)
             => CustomResponse(await _service.Insert(viewModel));

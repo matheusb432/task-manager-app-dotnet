@@ -6,7 +6,7 @@ namespace TaskManagerApp.Domain.Models.Validators
     {
         public TaskItemValidator()
         {
-            RuleFor(x => x.Title).NotEmpty().MaximumLength(250);
+            RuleFor(x => x.Title).NotEmpty().MaximumLength(100);
             RuleFor(x => x.Time).NotNull().When(x => !x.Rating.HasValue);
             RuleFor(x => x.Rating).NotNull().When(x => !x.Time.HasValue);
 #pragma warning disable CS8629

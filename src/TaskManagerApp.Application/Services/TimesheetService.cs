@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using TaskManagerApp.Application.Dtos.Timesheet;
+using TaskManagerApp.Application.Extensions;
 using TaskManagerApp.Application.Interfaces;
 using TaskManagerApp.Application.Services.Base;
+using TaskManagerApp.Application.ViewModels;
 using TaskManagerApp.Domain.Models;
 using TaskManagerApp.Domain.Models.Validators;
 using TaskManagerApp.Infra.Interfaces;
@@ -19,5 +21,7 @@ namespace TaskManagerApp.Application.Services
             : base(mapper, repo)
         {
         }
+
+        public OperationResult MetricsQuery() => Success(Mapper.ProjectTo<TimesheetMetricsViewModel>(_repo.Query()));
     }
 }

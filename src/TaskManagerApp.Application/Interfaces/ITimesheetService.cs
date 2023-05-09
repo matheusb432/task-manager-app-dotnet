@@ -7,6 +7,8 @@ namespace TaskManagerApp.Application.Interfaces
     {
         OperationResult Query();
 
+        OperationResult MetricsQuery();
+
         Task<OperationResult> Insert(TimesheetPostDto viewModel);
 
         Task<OperationResult> Update(int id, TimesheetPutDto viewModel);
