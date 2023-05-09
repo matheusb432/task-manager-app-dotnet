@@ -9,8 +9,10 @@
         /// </summary>
         /// <param name="time"></param>
         /// <returns>The short value as a number, "09:30" converts to 930</returns>
-        public static short ConvertTimeToShort(string time)
+        public static short ConvertTimeToShort(string? time)
         {
+            if (string.IsNullOrEmpty(time)) return 0;
+
             var timeParts = time.Split(':');
 
             if (timeParts.Length != 2) return 0;
