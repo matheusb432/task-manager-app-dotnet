@@ -18,9 +18,9 @@ namespace TaskManagerApp.Application.Profiles
             CreateMap<TimesheetNotePutDto, TimesheetNote>();
 
             CreateMap<Timesheet, TimesheetMetricsViewModel>()
-                .ForMember(dest => dest.TotalTasks, opt => opt.MapFrom(src => src.TaskItems.Count))
-                .ForMember(dest => dest.WorkedHours, opt => opt.MapFrom(src => src.TaskItems.Sum(x => x.Time)))
-                .ForMember(dest => dest.AverageRating, opt => opt.MapFrom(src => src.TaskItems.Count > 0 ? src.TaskItems.Sum(x => x.Rating) / src.TaskItems.Count : 0));
+                .ForMember(dest => dest.TotalTasks, opt => opt.MapFrom(src => src.Tasks.Count))
+                .ForMember(dest => dest.WorkedHours, opt => opt.MapFrom(src => src.Tasks.Sum(x => x.Time)))
+                .ForMember(dest => dest.AverageRating, opt => opt.MapFrom(src => src.Tasks.Count > 0 ? src.Tasks.Sum(x => x.Rating) / src.Tasks.Count : 0));
         }
     }
 }

@@ -14,20 +14,20 @@ namespace TaskManagerApp.Infra.Repositories
         {
             var entityFromDb = await _dbSet
                 .AsSplitQuery()
-                .Include(x => x.TimesheetNotes)
-                .Include(x => x.TaskItems)
+                .Include(x => x.Notes)
+                .Include(x => x.Tasks)
                 .Select(x => new Timesheet
                 {
                     Id = x.Id,
-                    TimesheetNotes = x.TimesheetNotes.Select(y => new TimesheetNote() { Id = y.Id }).ToList(),
-                    TaskItems = x.TaskItems.Select(y => new TaskItem() { Id = y.Id }).ToList(),
+                    Notes = x.Notes.Select(y => new TimesheetNote() { Id = y.Id }).ToList(),
+                    Tasks = x.Tasks.Select(y => new TaskItem() { Id = y.Id }).ToList(),
                 })
                 .FirstOrDefaultAsync(x => x.Id == entityFromRequest.Id);
 
             if (entityFromDb is null) return false;
 
-            MarkRelationsForDelete(entityFromDb, entityFromRequest, e => e.TimesheetNotes);
-            MarkRelationsForDelete(entityFromDb, entityFromRequest, e => e.TaskItems);
+            MarkRelationsForDelete(entityFromDb, entityFromRequest, e => e.Notes);
+            MarkRelationsForDelete(entityFromDb, entityFromRequest, e => e.Tasks);
 
             if (save) await SaveChangesAsync();
 

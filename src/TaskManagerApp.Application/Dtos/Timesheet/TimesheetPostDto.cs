@@ -6,13 +6,13 @@ namespace TaskManagerApp.Application.Dtos.Timesheet
     {
         public TimesheetPostDto()
         {
-            TimesheetNotes = new();
-            TaskItems = new();
+            Notes = new();
+            Tasks = new();
         }
 
         public DateTime Date { get; set; }
         public bool? Finished { get; set; }
-        public List<TimesheetNotePostDto> TimesheetNotes { get; set; }
-        public List<TaskItemPostDto> TaskItems { get; set; }
+        public List<TimesheetNotePostDto> Notes { get; set; }
+        public List<TaskItemPostDto> Tasks { get; set; }
     }
 }

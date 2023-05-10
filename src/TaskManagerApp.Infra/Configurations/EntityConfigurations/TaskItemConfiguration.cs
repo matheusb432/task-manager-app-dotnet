@@ -11,7 +11,7 @@ namespace TaskManagerApp.Infra.Configurations.EntityConfigurations
             builder.Property(x => x.Title).IsUnicode(false).HasMaxLength(100);
             builder.Property(x => x.Importance).HasDefaultValue(1);
             builder.Property(x => x.Comment).IsUnicode(false);
-            builder.HasOne(x => x.Timesheet).WithMany(x => x.TaskItems).HasForeignKey(x => x.TimesheetId);
+            builder.HasOne(x => x.Timesheet).WithMany(x => x.Tasks).HasForeignKey(x => x.TimesheetId);
             builder.HasMany(x => x.GoalTaskItems).WithOne(x => x.TaskItem).HasForeignKey(x => x.TaskItemId);
         }
     }

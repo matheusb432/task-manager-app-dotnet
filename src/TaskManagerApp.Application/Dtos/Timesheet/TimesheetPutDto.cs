@@ -6,14 +6,14 @@ namespace TaskManagerApp.Application.Dtos.Timesheet
     {
         public TimesheetPutDto()
         {
-            TimesheetNotes = new();
-            TaskItems = new();
+            Notes = new();
+            Tasks = new();
         }
 
         public int Id { get; set; }
         public DateTime Date { get; set; }
         public bool? Finished { get; set; }
-        public List<TimesheetNotePutDto> TimesheetNotes { get; set; }
-        public List<TaskItemPutDto> TaskItems { get; set; }
+        public List<TimesheetNotePutDto> Notes { get; set; }
+        public List<TaskItemPutDto> Tasks { get; set; }
     }
 }

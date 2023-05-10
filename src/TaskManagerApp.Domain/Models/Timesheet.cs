@@ -4,13 +4,13 @@
     {
         public Timesheet()
         {
-            TimesheetNotes = new();
-            TaskItems = new();
+            Notes = new();
+            Tasks = new();
         }
 
         public DateTime Date { get; set; }
         public bool? Finished { get; set; }
-        public List<TimesheetNote> TimesheetNotes { get; set; }
-        public List<TaskItem> TaskItems { get; set; }
+        public List<TimesheetNote> Notes { get; set; }
+        public List<TaskItem> Tasks { get; set; }
     }
 }
