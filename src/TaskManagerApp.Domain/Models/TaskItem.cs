@@ -11,7 +11,7 @@
         public short? Time { get; set; }
         public short? Rating { get; set; }
         public short Importance { get; set; }
-        public string Comment { get; set; } = string.Empty;
+        public string? Comment { get; set; }
         public int TimesheetId { get; set; }
         public Timesheet? Timesheet { get; set; }
         public List<GoalTaskItem> GoalTaskItems { get; set; }

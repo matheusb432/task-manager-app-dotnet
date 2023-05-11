@@ -20,7 +20,7 @@ namespace TaskManagerApp.Application.Profiles
             CreateMap<Timesheet, TimesheetMetricsViewModel>()
                 .ForMember(dest => dest.TotalTasks, opt => opt.MapFrom(src => src.Tasks.Count))
                 .ForMember(dest => dest.WorkedHours, opt => opt.MapFrom(src => src.Tasks.Sum(x => x.Time)))
-                .ForMember(dest => dest.AverageRating, opt => opt.MapFrom(src => src.Tasks.Count > 0 ? src.Tasks.Sum(x => x.Rating) / src.Tasks.Count : 0));
+                .ForMember(dest => dest.AverageRating, opt => opt.MapFrom(src => src.Tasks.Count > 0 ? (src.Tasks.Where(x => x.Rating != null).Sum(x => (double)x.Rating) / src.Tasks.Count) : 0));
         }
     }
 }
