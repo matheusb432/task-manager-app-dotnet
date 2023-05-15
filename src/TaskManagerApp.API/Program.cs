@@ -9,7 +9,7 @@ var configuration = builder.Configuration;
 var services = builder.Services;
 
 services.AddControllers().AddOData(
-    opt => opt.Count().Filter().OrderBy().SetMaxTop(50));
+    opt => opt.Count().Filter().OrderBy().Select().SetMaxTop(50));
 
 services.AddEndpointsApiExplorer();
 services.AddSwagger();
