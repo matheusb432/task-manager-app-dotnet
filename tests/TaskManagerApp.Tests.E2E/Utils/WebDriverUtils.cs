@@ -79,6 +79,33 @@ namespace TaskManagerApp.Tests.E2E.Utils
             return driver;
         }
 
+        public static string GetUrlWithoutParams(IWebDriver driver)
+        {
+            var url = driver.Url;
+            var uri = new Uri(url);
+
+            if (uri == null) return string.Empty;
+
+            return uri.GetLeftPart(UriPartial.Path);
+        }
+
+        public static void WaitForUrlChange(this IWebDriver driver)
+        {
+            var currentUrl = driver.Url;
+
+            GetWait(driver).Until(d => !d.Url.Equals(currentUrl));
+        }
+
+        public static string GetQueryParam(IWebDriver driver, string paramKey)
+        {
+            var url = driver.Url;
+            var uri = new Uri(url);
+
+            if (uri == null) return string.Empty;
+
+            return System.Web.HttpUtility.ParseQueryString(uri.Query).Get(paramKey) ?? string.Empty;
+        }
+
         public static void Authenticate(IWebDriver driver)
         {
             driver.Navigate().GoToUrl(PageUrls.LoginUrl);

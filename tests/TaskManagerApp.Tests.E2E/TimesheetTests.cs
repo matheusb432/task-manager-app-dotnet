@@ -11,7 +11,7 @@
         {
             _driver = new ChromeDriver();
 
-            WebDriverUtils.SetDriverScreenSize(_driver);
+            WebDriverUtils.MaximizeWindow(_driver);
         }
 
         [ClassCleanup]
@@ -27,7 +27,8 @@
         {
             _driver = WebDriverUtils.InitializeTest(_driver);
 
-            _driver.Navigate(5, PageUrls.HomeUrl).GoToUrl(PageUrls.ProfilesUrl);
+            _driver.Navigate(5, PageUrls.HomeUrl).GoToUrl(PageUrls.TimesheetsUrl);
+            // TODO create new user on initialization
         }
 
         [TestCleanup]
@@ -38,23 +39,22 @@
         [TestMethod]
         public void CreateTimesheet_WithValidData_ShouldCreateTimesheet()
         {
+            CreateTimesheetFlow(_driver);
+
+            if (!_driver.Url.Contains(PageUrls.TimesheetDetailsUrl))
+            {
+                WebDriverUtils.WaitForUrlChange(_driver);
+            }
+
+            var url = WebDriverUtils.GetUrlWithoutParams(_driver);
             
-            var date = CreateTimesheetFlow(_driver);
-
-            // TODO remove
-            Assert.IsTrue(true);
-            //var nameInput = _driver.FindElementWithWait(nameBy);
-
-            //Assert.IsNotNull(nameInput);
-            //Assert.AreEqual(nameInput.GetAttribute("value"), name);
+            Assert.AreEqual(url, PageUrls.TimesheetDetailsUrl);
         }
 
         public static string CreateTimesheetFlow(IWebDriver _driver)
         {
             GoToCreateTimesheet(_driver);
-            var url = _driver.Url;
-            var dateQueryParam = url.Split('?')[1];
-            var date = dateQueryParam.Split('=')[1];
+            var date = WebDriverUtils.GetQueryParam(_driver, "date");
 
             Console.WriteLine(date);
 
@@ -62,7 +62,7 @@
 
             SubmitTimesheet(_driver);
 
-            GoToEditTimesheet(_driver, date);
+            GoToEditTimesheetViaCreateRedirection(_driver, date);
 
             return date;
         }
@@ -73,12 +73,17 @@
             WebDriverUtils.ScrollToBottom(submitBtn);
             submitBtn.Click();
             _driver.FindElementWithWait(By.Id("cModalConfirmConfirm")).Click();
+
+            WebDriverUtils.WaitForUrlChange(_driver);
         }
 
         public static void FillTimesheetForm(IWebDriver driver)
         {
             driver.FindElementWithWait(By.Id("cTimesheetFormNote0")).Clear();
             driver.FindElementWithWait(By.Id("cTimesheetFormNote0")).SendKeys("Test note");
+
+            WebDriverUtils.ScrollToBottom(driver.FindElementWithWait(By.Id("cTimesheetFormNote0")));
+
             driver.FindElementWithWait(By.Id("cFormArrayAddNote")).Click();
             driver.FindElementWithWait(By.Id("cTimesheetFormNote1")).Clear();
             driver.FindElementWithWait(By.Id("cTimesheetFormNote1")).SendKeys("Note 2");
@@ -92,6 +97,9 @@
             driver.FindElementWithWait(By.Id("cTimesheetFormTaskRating0")).SendKeys("5");
             driver.FindElementWithWait(By.Id("cTimesheetFormTaskImportance0")).Clear();
             driver.FindElementWithWait(By.Id("cTimesheetFormTaskImportance0")).SendKeys("3");
+
+            WebDriverUtils.ScrollToBottom(driver.FindElementWithWait(By.Id("cTimesheetFormTaskImportance0")));
+
             driver.FindElementWithWait(By.Id("cFormArrayAddTask")).Click();
             driver.FindElementWithWait(By.Id("cTimesheetFormTaskTitle1")).Clear();
             driver.FindElementWithWait(By.Id("cTimesheetFormTaskTitle1")).SendKeys("Task 2");
@@ -105,18 +113,17 @@
             driver.FindElementWithWait(By.Id("cTimesheetFormTaskTime1")).SendKeys("03:30");
             driver.FindElementWithWait(By.Id("cTimesheetFormTaskRating1")).Clear();
             driver.FindElementWithWait(By.Id("cTimesheetFormTaskRating1")).SendKeys("3");
-            driver.FindElementWithWait(By.Id("cTimesheetFormFinished-input")).Click();
         }
 
         public static void GoToCreateTimesheet(IWebDriver driver, string date = "")
         {
-            var urlSuffix = string.IsNullOrEmpty(date) ? "" : $"?date={date}"; 
+            var urlSuffix = string.IsNullOrEmpty(date) ? "" : $"?date={date}";
             driver.Navigate().GoToUrl($"{PageUrls.TimesheetsUrl}/create{urlSuffix}");
         }
 
-        public static void GoToEditTimesheet(IWebDriver driver, string date)
+        public static void GoToEditTimesheetViaCreateRedirection(IWebDriver driver, string date)
         {
-            driver.Navigate().GoToUrl($"{PageUrls.TimesheetsUrl}/details?date={date}");
+            GoToCreateTimesheet(driver, date);
         }
     }
 }
