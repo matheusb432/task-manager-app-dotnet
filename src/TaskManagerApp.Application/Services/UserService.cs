@@ -8,17 +8,10 @@ using TaskManagerApp.Infra.Interfaces;
 
 namespace TaskManagerApp.Application.Services
 {
-    internal sealed class UserService : EntityService<
-        User,
-        UserDto,
-        UserPostDto,
-        UserPutDto,
-        UserValidator,
-        IUserRepository>, IUserService
+    internal sealed class UserService
+        : EntityService<User, UserDto, UserPostDto, UserPutDto, UserValidator, IUserRepository>,
+            IUserService
     {
-        public UserService(IUserRepository repo, IMapper mapper)
-            : base(mapper, repo)
-        {
-        }
+        public UserService(IUserRepository repo, IMapper mapper) : base(mapper, repo) { }
     }
 }

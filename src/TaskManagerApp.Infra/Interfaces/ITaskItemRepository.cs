@@ -2,7 +2,5 @@
 
 namespace TaskManagerApp.Infra.Interfaces
 {
-    public interface ITaskItemRepository : IRepository<TaskItem>
-    {
-    }
+    public interface ITaskItemRepository : IRepository<TaskItem> { }
 }

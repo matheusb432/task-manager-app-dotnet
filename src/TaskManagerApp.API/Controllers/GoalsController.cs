@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using TaskManagerApp.API.Configurations;
 using TaskManagerApp.Application.Dtos.Goal;
 using TaskManagerApp.Application.Interfaces;
@@ -11,23 +10,21 @@ namespace TaskManagerApp.API.Controllers
     {
         private readonly IGoalService _service;
 
-        public GoalsController(IGoalService service)
-            => _service = service;
+        public GoalsController(IGoalService service) => _service = service;
 
         [HttpGet("odata")]
         [ODataQuery]
         public ActionResult<IQueryable<GoalDto>> Query() => CustomResponse(_service.Query());
 
         [HttpPost]
-        public async Task<ActionResult<PostReturnViewModel>> Post(GoalPostDto viewModel)
-            => CustomResponse(await _service.Insert(viewModel));
+        public async Task<ActionResult<PostReturnViewModel>> Post(GoalPostDto viewModel) =>
+            CustomResponse(await _service.Insert(viewModel));
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, GoalPutDto viewModel)
-            => CustomResponse(await _service.Update(id, viewModel));
+        public async Task<ActionResult> Put(int id, GoalPutDto viewModel) =>
+            CustomResponse(await _service.Update(id, viewModel));
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
-            => CustomResponse(await _service.Delete(id));
+        public async Task<ActionResult> Delete(int id) => CustomResponse(await _service.Delete(id));
     }
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TaskManagerApp.Application.Dtos.Goal;
-using TaskManagerApp.Application.Dtos.Timesheet;
+﻿using TaskManagerApp.Application.Dtos.Goal;
 using TaskManagerApp.Domain.Models;
 
 namespace TaskManagerApp.Application.Profiles

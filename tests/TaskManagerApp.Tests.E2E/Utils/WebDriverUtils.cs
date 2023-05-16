@@ -15,16 +15,22 @@ namespace TaskManagerApp.Tests.E2E.Utils
         /// <param name="driver">The webdriver</param>
         /// <param name="by">The element locator</param>
         /// <param name="timeoutInMs">A timeout before the driver tries to get the method</param>
-        public static IWebElement FindElementWithWait(this IWebDriver driver, By by, int timeoutInMs = 1)
+        public static IWebElement FindElementWithWait(
+            this IWebDriver driver,
+            By by,
+            int timeoutInMs = 1
+        )
         {
             Thread.Sleep(timeoutInMs);
 
-            return GetWait(driver, WaitTime)
-                      .Until(ExpectedConditions.ElementToBeClickable(by));
+            return GetWait(driver, WaitTime).Until(ExpectedConditions.ElementToBeClickable(by));
         }
 
-        public static void SetDriverScreenSize(IWebDriver driver, int width = 1366, int height = 768)
-            => driver.Manage().Window.Size = new System.Drawing.Size(width, height);
+        public static void SetDriverScreenSize(
+            IWebDriver driver,
+            int width = 1366,
+            int height = 768
+        ) => driver.Manage().Window.Size = new System.Drawing.Size(width, height);
 
         public static void MaximizeWindow(IWebDriver driver) => driver.Manage().Window.Maximize();
 
@@ -36,27 +42,31 @@ namespace TaskManagerApp.Tests.E2E.Utils
             return !elementNotExists;
         }
 
-        public static INavigation Navigate(this IWebDriver driver, int waitTime, string urlMatch = "")
+        public static INavigation Navigate(
+            this IWebDriver driver,
+            int waitTime,
+            string urlMatch = ""
+        )
         {
-            if (!string.IsNullOrEmpty(urlMatch)) UrlMatches(driver, waitTime, urlMatch);
+            if (!string.IsNullOrEmpty(urlMatch))
+                UrlMatches(driver, waitTime, urlMatch);
 
             return driver.Navigate();
         }
 
         public static void AwaitDebounce(int sleepTime = 500) => Thread.Sleep(sleepTime);
 
-        public static void UrlMatches(IWebDriver driver, int waitTime = 5, string urlMatch = "")
-            => GetWait(driver, waitTime)
-                .Until(ExpectedConditions.UrlMatches(urlMatch));
+        public static void UrlMatches(IWebDriver driver, int waitTime = 5, string urlMatch = "") =>
+            GetWait(driver, waitTime).Until(ExpectedConditions.UrlMatches(urlMatch));
 
-        public static void WaitUntilRedirected(IWebDriver driver, string url)
-            => UrlMatches(driver, 5, url);
+        public static void WaitUntilRedirected(IWebDriver driver, string url) =>
+            UrlMatches(driver, 5, url);
 
-        public static WebDriverWait GetWait(IWebDriver driver, double? waitSeconds = null)
-            => new(driver, TimeSpan.FromSeconds(waitSeconds ?? WaitTime));
+        public static WebDriverWait GetWait(IWebDriver driver, double? waitSeconds = null) =>
+            new(driver, TimeSpan.FromSeconds(waitSeconds ?? WaitTime));
 
-        public static void NavigateToHome(this IWebDriver driver)
-            => driver.Navigate().GoToUrl(PageUrls.HomeUrl);
+        public static void NavigateToHome(this IWebDriver driver) =>
+            driver.Navigate().GoToUrl(PageUrls.HomeUrl);
 
         public static IWebDriver ResetDriver(IWebDriver driver)
         {
@@ -73,8 +83,10 @@ namespace TaskManagerApp.Tests.E2E.Utils
                 driver = ResetDriver(driver);
                 MaximizeWindow(driver);
             }
-            if (withAuth) Authenticate(driver);
-            else driver.NavigateToHome();
+            if (withAuth)
+                Authenticate(driver);
+            else
+                driver.NavigateToHome();
 
             return driver;
         }
@@ -84,7 +96,8 @@ namespace TaskManagerApp.Tests.E2E.Utils
             var url = driver.Url;
             var uri = new Uri(url);
 
-            if (uri == null) return string.Empty;
+            if (uri == null)
+                return string.Empty;
 
             return uri.GetLeftPart(UriPartial.Path);
         }
@@ -101,7 +114,8 @@ namespace TaskManagerApp.Tests.E2E.Utils
             var url = driver.Url;
             var uri = new Uri(url);
 
-            if (uri == null) return string.Empty;
+            if (uri == null)
+                return string.Empty;
 
             return System.Web.HttpUtility.ParseQueryString(uri.Query).Get(paramKey) ?? string.Empty;
         }
@@ -130,16 +144,23 @@ namespace TaskManagerApp.Tests.E2E.Utils
             Thread.Sleep(500);
         }
 
-        public static string RandomString(int length = 10, bool includeLetters = true, bool includeNumbers = true)
+        public static string RandomString(
+            int length = 10,
+            bool includeLetters = true,
+            bool includeNumbers = true
+        )
         {
             var rand = new Random();
             var chars = "";
 
-            if (includeLetters) chars += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            if (includeNumbers) chars += "0123456789";
+            if (includeLetters)
+                chars += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            if (includeNumbers)
+                chars += "0123456789";
 
-            return new string(Enumerable.Repeat(chars, length)
-              .Select(s => s[rand.Next(s.Length)]).ToArray());
+            return new string(
+                Enumerable.Repeat(chars, length).Select(s => s[rand.Next(s.Length)]).ToArray()
+            );
         }
 
         public static int RandInt(int min, int max)

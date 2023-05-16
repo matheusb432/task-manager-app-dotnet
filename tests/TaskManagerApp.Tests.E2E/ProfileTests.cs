@@ -31,9 +31,7 @@
         }
 
         [TestCleanup]
-        public void CleanupTest()
-        {
-        }
+        public void CleanupTest() { }
 
         [TestMethod]
         public void CreateProfile_WithValidData_ShouldCreateProfile()

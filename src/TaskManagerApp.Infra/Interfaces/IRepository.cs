@@ -1,6 +1,4 @@
-﻿using System.Linq.Expressions;
-
-namespace TaskManagerApp.Infra.Interfaces
+﻿namespace TaskManagerApp.Infra.Interfaces
 {
     public interface IRepository<T>
     {

@@ -10,15 +10,14 @@ namespace TaskManagerApp.API.Controllers
     {
         private readonly IAuthService _service;
 
-        public AuthController(IAuthService service)
-            => _service = service;
+        public AuthController(IAuthService service) => _service = service;
 
         [HttpPost("login")]
-        public async Task<ActionResult<AuthResponse>> Post(Login data)
-            => CustomResponse(await _service.Login(data));
+        public async Task<ActionResult<AuthResponse>> Post(Login data) =>
+            CustomResponse(await _service.Login(data));
 
         [HttpPost("signup")]
-        public async Task<ActionResult<AuthResponse>> Post(Signup data)
-            => CustomResponse(await _service.Signup(data));
+        public async Task<ActionResult<AuthResponse>> Post(Signup data) =>
+            CustomResponse(await _service.Signup(data));
     }
 }

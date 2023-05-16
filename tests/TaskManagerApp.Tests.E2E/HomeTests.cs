@@ -29,9 +29,7 @@
         }
 
         [TestCleanup]
-        public void CleanupTest()
-        {
-        }
+        public void CleanupTest() { }
 
         [TestMethod]
         public void Navigate_WithCards_ShouldRedirectToPages()

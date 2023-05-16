@@ -2,7 +2,5 @@
 
 namespace TaskManagerApp.Infra.Interfaces
 {
-    public interface IGoalRepository : IRepository<Goal>
-    {
-    }
+    public interface IGoalRepository : IRepository<Goal> { }
 }

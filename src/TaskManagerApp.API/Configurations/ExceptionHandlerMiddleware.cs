@@ -38,7 +38,10 @@ namespace TaskManagerApp.API.Configurations
                 Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
             };
 
-            var result = JsonSerializer.Serialize(new { Exception = exceptionMessage, Details = innerExceptionMessage }, json);
+            var result = JsonSerializer.Serialize(
+                new { Exception = exceptionMessage, Details = innerExceptionMessage },
+                json
+            );
 
             return context.Response.WriteAsync(result);
         }
@@ -46,7 +49,8 @@ namespace TaskManagerApp.API.Configurations
 
     public static class ExceptionHandlerMiddlewareExtensions
     {
-        public static IApplicationBuilder UseExceptionHandlerMiddleware(this IApplicationBuilder builder)
-            => builder.UseMiddleware<ExceptionHandlerMiddleware>();
+        public static IApplicationBuilder UseExceptionHandlerMiddleware(
+            this IApplicationBuilder builder
+        ) => builder.UseMiddleware<ExceptionHandlerMiddleware>();
     }
 }

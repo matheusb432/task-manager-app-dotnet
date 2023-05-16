@@ -35,9 +35,7 @@ namespace TaskManagerApp.Tests.E2E
         }
 
         [TestCleanup]
-        public void CleanupTest()
-        {
-        }
+        public void CleanupTest() { }
 
         [TestMethod]
         public void Login_WithValidData_ShouldLoginAndRedirectHome()
@@ -95,7 +93,9 @@ namespace TaskManagerApp.Tests.E2E
             _driver.FindElementWithWait(By.Id("cSignupFormEmail")).Clear();
             _driver.FindElementWithWait(By.Id("cSignupFormEmail")).SendKeys(signup.Email);
             _driver.FindElementWithWait(By.Id("cSignupFormConfirmPassword")).Clear();
-            _driver.FindElementWithWait(By.Id("cSignupFormConfirmPassword")).SendKeys(signup.ConfirmPassword);
+            _driver
+                .FindElementWithWait(By.Id("cSignupFormConfirmPassword"))
+                .SendKeys(signup.ConfirmPassword);
             _driver.FindElementWithWait(By.Id("cSignupSubmit")).Click();
 
             WebDriverUtils.WaitUntilRedirected(_driver, PageUrls.HomeUrl);
@@ -110,12 +110,15 @@ namespace TaskManagerApp.Tests.E2E
 
             _driver.Navigate().GoToUrl(PageUrls.LoginUrl);
             _driver.FindElementWithWait(By.Id("cLoginFormUserNameOrEmail")).Clear();
-            _driver.FindElementWithWait(By.Id("cLoginFormUserNameOrEmail")).SendKeys(login.UserNameOrEmail);
+            _driver
+                .FindElementWithWait(By.Id("cLoginFormUserNameOrEmail"))
+                .SendKeys(login.UserNameOrEmail);
             _driver.FindElementWithWait(By.Id("cLoginFormPassword")).Clear();
             _driver.FindElementWithWait(By.Id("cLoginFormPassword")).SendKeys(login.Password);
             _driver.FindElementWithWait(By.Id("cLoginSubmit")).Click();
 
-            if (password != _failPassword) WebDriverUtils.WaitUntilRedirected(_driver, PageUrls.HomeUrl);
+            if (password != _failPassword)
+                WebDriverUtils.WaitUntilRedirected(_driver, PageUrls.HomeUrl);
         }
 
         public static void FailedLoginFlow(IWebDriver _driver)

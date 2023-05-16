@@ -13,7 +13,10 @@ namespace TaskManagerApp.Infra.Configurations.EntityConfigurations
             builder.Property(e => e.Description).IsUnicode(false).IsRequired(false);
             builder.Property(e => e.Active).HasDefaultValue(true);
             builder.HasMany(e => e.GoalSteps).WithOne(gs => gs.Goal).HasForeignKey(gs => gs.GoalId);
-            builder.HasMany(e => e.GoalTaskItems).WithOne(gti => gti.Goal).HasForeignKey(gti => gti.GoalId);
+            builder
+                .HasMany(e => e.GoalTaskItems)
+                .WithOne(gti => gti.Goal)
+                .HasForeignKey(gti => gti.GoalId);
         }
     }
 }

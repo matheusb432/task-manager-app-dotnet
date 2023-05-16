@@ -6,7 +6,7 @@
 
         public IEnumerable<object> Items { get; }
 
-        public PaginatedViewModel(long? total, IEnumerable<object> items)
-            => (Total, Items) = (total, items);
+        public PaginatedViewModel(long? total, IEnumerable<object> items) =>
+            (Total, Items) = (total, items);
     }
 }

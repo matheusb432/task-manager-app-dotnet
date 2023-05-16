@@ -18,7 +18,8 @@ namespace TaskManagerApp.Infra.Migrations
                 nullable: false,
                 oldClrType: typeof(string),
                 oldType: "nvarchar(250)",
-                oldMaxLength: 250);
+                oldMaxLength: 250
+            );
 
             migrationBuilder.AddColumn<string>(
                 name: "PasswordHash",
@@ -27,7 +28,8 @@ namespace TaskManagerApp.Infra.Migrations
                 unicode: false,
                 maxLength: 100,
                 nullable: false,
-                defaultValue: "");
+                defaultValue: ""
+            );
 
             migrationBuilder.AddColumn<string>(
                 name: "PasswordSalt",
@@ -36,7 +38,8 @@ namespace TaskManagerApp.Infra.Migrations
                 unicode: false,
                 maxLength: 50,
                 nullable: false,
-                defaultValue: "");
+                defaultValue: ""
+            );
 
             migrationBuilder.AddColumn<string>(
                 name: "UserName",
@@ -45,33 +48,27 @@ namespace TaskManagerApp.Infra.Migrations
                 unicode: false,
                 maxLength: 100,
                 nullable: false,
-                defaultValue: "");
+                defaultValue: ""
+            );
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_UserName",
                 table: "Users",
                 column: "UserName",
-                unique: true);
+                unique: true
+            );
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropIndex(
-                name: "IX_Users_UserName",
-                table: "Users");
+            migrationBuilder.DropIndex(name: "IX_Users_UserName", table: "Users");
 
-            migrationBuilder.DropColumn(
-                name: "PasswordHash",
-                table: "Users");
+            migrationBuilder.DropColumn(name: "PasswordHash", table: "Users");
 
-            migrationBuilder.DropColumn(
-                name: "PasswordSalt",
-                table: "Users");
+            migrationBuilder.DropColumn(name: "PasswordSalt", table: "Users");
 
-            migrationBuilder.DropColumn(
-                name: "UserName",
-                table: "Users");
+            migrationBuilder.DropColumn(name: "UserName", table: "Users");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Name",
@@ -81,7 +78,8 @@ namespace TaskManagerApp.Infra.Migrations
                 nullable: false,
                 oldClrType: typeof(string),
                 oldType: "nvarchar(100)",
-                oldMaxLength: 100);
+                oldMaxLength: 100
+            );
         }
     }
 }

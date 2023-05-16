@@ -10,9 +10,7 @@ namespace TaskManagerApp.Infra.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "PasswordSalt",
-                table: "Users");
+            migrationBuilder.DropColumn(name: "PasswordSalt", table: "Users");
         }
 
         /// <inheritdoc />
@@ -25,7 +23,8 @@ namespace TaskManagerApp.Infra.Migrations
                 unicode: false,
                 maxLength: 50,
                 nullable: false,
-                defaultValue: "");
+                defaultValue: ""
+            );
         }
     }
 }

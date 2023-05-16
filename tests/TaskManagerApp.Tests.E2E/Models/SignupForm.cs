@@ -2,11 +2,14 @@
 {
     public sealed class SignupForm
     {
-        private SignupForm()
-        {
-        }
+        private SignupForm() { }
 
-        public static SignupForm AsValid(string name, string userName, string password, string email)
+        public static SignupForm AsValid(
+            string name,
+            string userName,
+            string password,
+            string email
+        )
         {
             return new SignupForm
             {

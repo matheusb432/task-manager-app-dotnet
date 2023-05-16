@@ -1,6 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TaskManagerApp.Infra.Extensions;
@@ -18,8 +16,10 @@ namespace TaskManagerApp.Infra.Configurations
             bool isEnv = false
         )
         {
-            if (isEnv) services.AddEnvDatabase();
-            else services.AddDatabase(configuration);
+            if (isEnv)
+                services.AddEnvDatabase();
+            else
+                services.AddDatabase(configuration);
 
             services.AddRepositories();
         }

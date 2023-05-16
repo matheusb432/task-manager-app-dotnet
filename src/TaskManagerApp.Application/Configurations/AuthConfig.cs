@@ -13,23 +13,28 @@ namespace TaskManagerApp.Application.Configurations
 {
     internal static class AuthConfig
     {
-        private static SymmetricSecurityKey SecurityKey { get; set; } = new(RandomNumberGenerator.GetBytes(128));
+        private static SymmetricSecurityKey SecurityKey { get; set; } =
+            new(RandomNumberGenerator.GetBytes(128));
 
-        public static void AddJWTAuth(this IServiceCollection services, IConfiguration configuration)
+        public static void AddJWTAuth(
+            this IServiceCollection services,
+            IConfiguration configuration
+        )
         {
             SetCredentials(configuration);
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-               .AddJwtBearer(options =>
-               {
-                   options.TokenValidationParameters = new TokenValidationParameters
-                   {
-                       ValidateIssuerSigningKey = true,
-                       ValidateAudience = false,
-                       ValidateIssuer = false,
-                       IssuerSigningKey = SecurityKey
-                   };
-               });
+            services
+                .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        ValidateAudience = false,
+                        ValidateIssuer = false,
+                        IssuerSigningKey = SecurityKey
+                    };
+                });
             services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
         }
 
@@ -38,15 +43,20 @@ namespace TaskManagerApp.Application.Configurations
             var tokenHandler = new JwtSecurityTokenHandler();
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new Claim[]
-                {
-                    new Claim(ClaimTypes.Name, user.UserName),
-                    new Claim(ClaimTypes.Email, user.Email),
-                    new Claim("UserId", user.Id.ToString()),
-                    // TODO add user roles logic
-                }),
+                Subject = new ClaimsIdentity(
+                    new Claim[]
+                    {
+                        new Claim(ClaimTypes.Name, user.UserName),
+                        new Claim(ClaimTypes.Email, user.Email),
+                        new Claim("UserId", user.Id.ToString()),
+                        // TODO add user roles logic
+                    }
+                ),
                 Expires = DateTime.UtcNow.AddDays(30),
-                SigningCredentials = new SigningCredentials(SecurityKey, SecurityAlgorithms.HmacSha256Signature)
+                SigningCredentials = new SigningCredentials(
+                    SecurityKey,
+                    SecurityAlgorithms.HmacSha256Signature
+                )
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
 

@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using TaskManagerApp.Domain.Models;
 using TaskManagerApp.Infra.Extensions;
-using Microsoft.AspNetCore.Http;
 using TaskManagerApp.Infra.Utils;
 
 namespace TaskManagerApp.Infra
@@ -10,8 +10,11 @@ namespace TaskManagerApp.Infra
     public sealed class TaskManagerContext : DbContext
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
-        public TaskManagerContext(DbContextOptions options, IHttpContextAccessor httpContextAccessor)
-            : base(options)
+
+        public TaskManagerContext(
+            DbContextOptions options,
+            IHttpContextAccessor httpContextAccessor
+        ) : base(options)
         {
             _httpContextAccessor = httpContextAccessor;
         }
@@ -33,20 +36,31 @@ namespace TaskManagerApp.Infra
 
             modelBuilder.SeedDatabase();
 
-            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetAssembly(typeof(TaskManagerContext))!);
+            modelBuilder.ApplyConfigurationsFromAssembly(
+                Assembly.GetAssembly(typeof(TaskManagerContext))!
+            );
         }
 
         private void ConfigureDeleteBehavior(ModelBuilder modelBuilder)
         {
-            foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            foreach (
+                var relationship in modelBuilder.Model
+                    .GetEntityTypes()
+                    .SelectMany(e => e.GetForeignKeys())
+            )
             {
                 relationship.DeleteBehavior = DeleteBehavior.Restrict;
             }
         }
 
-        public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
+        public override async Task<int> SaveChangesAsync(
+            bool acceptAllChangesOnSuccess,
+            CancellationToken cancellationToken = default
+        )
         {
-            var userId = int.Parse(_httpContextAccessor.HttpContext.User.FindFirst("UserId")?.Value ?? "-1");
+            var userId = int.Parse(
+                _httpContextAccessor.HttpContext.User.FindFirst("UserId")?.Value ?? "-1"
+            );
             var now = DateTime.Now;
 
             this.SetPropOnAdded("CreatedAt", now);

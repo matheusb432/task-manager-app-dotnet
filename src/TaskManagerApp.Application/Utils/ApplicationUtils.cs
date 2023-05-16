@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-
-namespace TaskManagerApp.Application.Utils
+﻿namespace TaskManagerApp.Application.Utils
 {
-    public static class ApplicationUtils
-    {
-    }
+    public static class ApplicationUtils { }
 }

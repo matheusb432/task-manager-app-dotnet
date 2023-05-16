@@ -6,28 +6,28 @@ namespace TaskManagerApp.Infra.Repositories
 {
     internal sealed class UserRepository : Repository<User>, IUserRepository
     {
-        public UserRepository(TaskManagerContext context) : base(context)
-        {
-        }
+        public UserRepository(TaskManagerContext context) : base(context) { }
 
-        public async Task<User?> GetByEmailAsync(string email)
-            => await _dbSet.FirstOrDefaultAsync(x => x.Email.ToLower() == email.ToLower());
+        public async Task<User?> GetByEmailAsync(string email) =>
+            await _dbSet.FirstOrDefaultAsync(x => x.Email.ToLower() == email.ToLower());
 
-        public async Task<User?> GetByUserNameAsync(string userName)
-            => await _dbSet.FirstOrDefaultAsync(x => x.UserName.ToLower() == userName.ToLower());
+        public async Task<User?> GetByUserNameAsync(string userName) =>
+            await _dbSet.FirstOrDefaultAsync(x => x.UserName.ToLower() == userName.ToLower());
 
         public async Task<bool> CanCreateUser(User user)
         {
             var emailExists = await _dbSet.AnyAsync(x => x.Email.ToLower() == user.Email.ToLower());
-            var userNameExists = await _dbSet.AnyAsync(x => x.UserName.ToLower() == user.UserName.ToLower());
+            var userNameExists = await _dbSet.AnyAsync(
+                x => x.UserName.ToLower() == user.UserName.ToLower()
+            );
 
             return !emailExists && !userNameExists;
         }
 
-        public async Task<bool> EmailExists(string email)
-            => await _dbSet.AnyAsync(x => x.Email.ToLower() == email.ToLower());
+        public async Task<bool> EmailExists(string email) =>
+            await _dbSet.AnyAsync(x => x.Email.ToLower() == email.ToLower());
 
-        public async Task<bool> UserNameExists(string userName)
-            => await _dbSet.AnyAsync(x => x.UserName.ToLower() == userName.ToLower());
+        public async Task<bool> UserNameExists(string userName) =>
+            await _dbSet.AnyAsync(x => x.UserName.ToLower() == userName.ToLower());
     }
 }

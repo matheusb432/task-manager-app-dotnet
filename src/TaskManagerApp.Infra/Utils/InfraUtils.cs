@@ -6,11 +6,12 @@ namespace TaskManagerApp.Infra.Utils
     public static class InfraUtils
     {
         public static readonly string DefaultConnectionName = "TaskManagerAppConnection";
-        public static readonly string DefaultConnection = "Server=.\\SQLEXPRESS;Database=TaskManagerAppDB;Trusted_Connection=True;";
 
-        public static string GetEnv(string key)
-            => Environment.GetEnvironmentVariable(key) ?? string.Empty;
+        public static readonly string DefaultConnection =
+            "Server=.\\SQLEXPRESS;Database=TaskManagerAppDB;Trusted_Connection=True;";
 
+        public static string GetEnv(string key) =>
+            Environment.GetEnvironmentVariable(key) ?? string.Empty;
 
         public static void SetPropOnAdded(this DbContext ctx, string property, dynamic value)
         {
@@ -45,7 +46,9 @@ namespace TaskManagerApp.Infra.Utils
 
         private static IEnumerable<EntityEntry> GetPropertyEntries(DbContext ctx, string property)
         {
-            return ctx.ChangeTracker.Entries().Where(entry => entry.Entity.GetType().GetProperty(property) != null);
+            return ctx.ChangeTracker
+                .Entries()
+                .Where(entry => entry.Entity.GetType().GetProperty(property) != null);
         }
     }
 }

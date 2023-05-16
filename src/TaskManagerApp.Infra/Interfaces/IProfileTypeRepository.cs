@@ -2,7 +2,5 @@
 
 namespace TaskManagerApp.Infra.Interfaces
 {
-    public interface IProfileTypeRepository : IRepository<ProfileType>
-    {
-    }
+    public interface IProfileTypeRepository : IRepository<ProfileType> { }
 }

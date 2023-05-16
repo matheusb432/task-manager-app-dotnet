@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Identity;
 using Moq;
 using System.Net;
-using TaskManagerApp.Application.Dtos;
 using TaskManagerApp.Application.Dtos.Auth;
 using TaskManagerApp.Application.Profiles;
 using TaskManagerApp.Application.Services;
@@ -35,21 +34,13 @@ namespace TaskManagerApp.Tests.Unit.Services
 
             SetupMocks();
 
-            _service = new AuthService(
-                _userRepo.Object,
-                _mapper,
-                _passwordHasher.Object
-            );
+            _service = new AuthService(_userRepo.Object, _mapper, _passwordHasher.Object);
         }
 
         [Fact]
         public async Task Login_WithValidEmail_ShouldReturnSuccess()
         {
-            var login = new Login
-            {
-                Email = _users[0].Email,
-                Password = _users[0].PasswordHash,
-            };
+            var login = new Login { Email = _users[0].Email, Password = _users[0].PasswordHash, };
 
             var result = await _service.Login(login);
             Assert.NotNull(result);
@@ -75,10 +66,7 @@ namespace TaskManagerApp.Tests.Unit.Services
         [Fact]
         public async Task Login_WithInvalidLogin_ShouldReturnUnathorized()
         {
-            var login = new Login
-            {
-                Password = _users[0].PasswordHash,
-            };
+            var login = new Login { Password = _users[0].PasswordHash, };
 
             var result = await _service.Login(login);
             Assert.NotNull(result);
@@ -90,15 +78,14 @@ namespace TaskManagerApp.Tests.Unit.Services
         [InlineData(1, 2)]
         [InlineData(3, -1)]
         [InlineData(-1, 3)]
-        public async Task Login_WithInvalidCredentials_ShouldReturnUnathorized(int emailIndex, int passwordIndex)
+        public async Task Login_WithInvalidCredentials_ShouldReturnUnathorized(
+            int emailIndex,
+            int passwordIndex
+        )
         {
             var email = _users.ElementAtOrDefault(emailIndex)?.Email ?? "fake@email.com";
             var password = _users.ElementAtOrDefault(passwordIndex)?.PasswordHash ?? "fakepassword";
-            var login = new Login
-            {
-                Email = email,
-                Password = password,
-            };
+            var login = new Login { Email = email, Password = password, };
 
             var result = await _service.Login(login);
             Assert.NotNull(result);
@@ -144,11 +131,7 @@ namespace TaskManagerApp.Tests.Unit.Services
         [Fact]
         public async Task Signup_WithInvalidSignup_ShouldReturnUnauthorized()
         {
-            var signup = new Signup
-            {
-                Password = "pass123",
-                Name = "user name",
-            };
+            var signup = new Signup { Password = "pass123", Name = "user name", };
 
             var result = await _service.Signup(signup);
             Assert.NotNull(result);
@@ -160,11 +143,13 @@ namespace TaskManagerApp.Tests.Unit.Services
         {
             _userRepo
                 .Setup(x => x.InsertAsync(It.IsAny<User>(), It.IsAny<bool>()))
-                .ReturnsAsync((User user, bool _) =>
-                {
-                    _users.Add(user);
-                    return user;
-                });
+                .ReturnsAsync(
+                    (User user, bool _) =>
+                    {
+                        _users.Add(user);
+                        return user;
+                    }
+                );
             _userRepo
                 .Setup(x => x.GetByEmailAsync(It.IsAny<string>()))
                 .ReturnsAsync((string email) => _users.Find((x) => x.Email == email));
@@ -182,12 +167,24 @@ namespace TaskManagerApp.Tests.Unit.Services
                 .Setup(x => x.HashPassword(It.IsAny<User>(), It.IsAny<string>()))
                 .Returns((User _, string pass) => pass + "-hash");
             _passwordHasher
-                .Setup(x => x.VerifyHashedPassword(It.IsAny<User>(), It.IsAny<string>(), It.IsAny<string>()))
-                .Returns((User user, string _, string pass) => user.PasswordHash == pass ? PasswordVerificationResult.Success : PasswordVerificationResult.Failed);
+                .Setup(
+                    x =>
+                        x.VerifyHashedPassword(
+                            It.IsAny<User>(),
+                            It.IsAny<string>(),
+                            It.IsAny<string>()
+                        )
+                )
+                .Returns(
+                    (User user, string _, string pass) =>
+                        user.PasswordHash == pass
+                            ? PasswordVerificationResult.Success
+                            : PasswordVerificationResult.Failed
+                );
         }
 
-        public static List<User> GetUsers()
-            => new()
+        public static List<User> GetUsers() =>
+            new()
             {
                 new User
                 {

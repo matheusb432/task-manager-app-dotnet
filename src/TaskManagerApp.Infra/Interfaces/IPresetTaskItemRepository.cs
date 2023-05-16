@@ -2,7 +2,5 @@
 
 namespace TaskManagerApp.Infra.Interfaces
 {
-    public interface IPresetTaskItemRepository : IRepository<PresetTaskItem>
-    {
-    }
+    public interface IPresetTaskItemRepository : IRepository<PresetTaskItem> { }
 }

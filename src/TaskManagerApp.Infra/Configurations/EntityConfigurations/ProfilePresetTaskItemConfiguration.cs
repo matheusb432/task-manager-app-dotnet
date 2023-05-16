@@ -4,15 +4,20 @@ using TaskManagerApp.Domain.Models;
 
 namespace TaskManagerApp.Infra.Configurations.EntityConfigurations
 {
-    internal sealed class ProfilePresetTaskItemConfiguration : BaseEntityConfiguration<ProfilePresetTaskItem>
+    internal sealed class ProfilePresetTaskItemConfiguration
+        : BaseEntityConfiguration<ProfilePresetTaskItem>
     {
-        public override void ConfigureOtherProperties(EntityTypeBuilder<ProfilePresetTaskItem> builder)
+        public override void ConfigureOtherProperties(
+            EntityTypeBuilder<ProfilePresetTaskItem> builder
+        )
         {
-            builder.HasOne(x => x.Profile)
+            builder
+                .HasOne(x => x.Profile)
                 .WithMany(x => x.ProfilePresetTaskItems)
                 .HasForeignKey(x => x.ProfileId)
                 .OnDelete(DeleteBehavior.Cascade);
-            builder.HasOne(x => x.PresetTaskItem)
+            builder
+                .HasOne(x => x.PresetTaskItem)
                 .WithMany(x => x.ProfilePresetTaskItems)
                 .HasForeignKey(x => x.PresetTaskItemId)
                 .OnDelete(DeleteBehavior.Cascade);

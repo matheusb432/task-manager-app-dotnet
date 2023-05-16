@@ -32,9 +32,7 @@
         }
 
         [TestCleanup]
-        public void CleanupTest()
-        {
-        }
+        public void CleanupTest() { }
 
         [TestMethod]
         public void CreateTimesheet_WithValidData_ShouldCreateTimesheet()
@@ -47,7 +45,7 @@
             }
 
             var url = WebDriverUtils.GetUrlWithoutParams(_driver);
-            
+
             Assert.AreEqual(url, PageUrls.TimesheetDetailsUrl);
         }
 
@@ -98,7 +96,9 @@
             driver.FindElementWithWait(By.Id("cTimesheetFormTaskImportance0")).Clear();
             driver.FindElementWithWait(By.Id("cTimesheetFormTaskImportance0")).SendKeys("3");
 
-            WebDriverUtils.ScrollToBottom(driver.FindElementWithWait(By.Id("cTimesheetFormTaskImportance0")));
+            WebDriverUtils.ScrollToBottom(
+                driver.FindElementWithWait(By.Id("cTimesheetFormTaskImportance0"))
+            );
 
             driver.FindElementWithWait(By.Id("cFormArrayAddTask")).Click();
             driver.FindElementWithWait(By.Id("cTimesheetFormTaskTitle1")).Clear();

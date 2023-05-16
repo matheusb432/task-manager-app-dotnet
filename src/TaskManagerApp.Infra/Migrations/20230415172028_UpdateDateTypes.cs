@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -19,7 +18,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "CreatedAt",
@@ -29,7 +29,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "UpdatedAt",
@@ -39,7 +40,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "Date",
@@ -47,7 +49,8 @@ namespace TaskManagerApp.Infra.Migrations
                 type: "datetime",
                 nullable: false,
                 oldClrType: typeof(DateTime),
-                oldType: "datetime2");
+                oldType: "datetime2"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "CreatedAt",
@@ -57,7 +60,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "UpdatedAt",
@@ -67,7 +71,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "CreatedAt",
@@ -77,7 +82,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "UpdatedAt",
@@ -87,7 +93,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "CreatedAt",
@@ -97,7 +104,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "UpdatedAt",
@@ -107,7 +115,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "CreatedAt",
@@ -117,7 +126,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "UpdatedAt",
@@ -127,7 +137,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "DateRangeStart",
@@ -136,7 +147,8 @@ namespace TaskManagerApp.Infra.Migrations
                 nullable: true,
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldNullable: true);
+                oldNullable: true
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "DateRangeEnd",
@@ -145,7 +157,8 @@ namespace TaskManagerApp.Infra.Migrations
                 nullable: true,
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldNullable: true);
+                oldNullable: true
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "CreatedAt",
@@ -155,7 +168,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "UpdatedAt",
@@ -165,7 +179,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "CreatedAt",
@@ -175,7 +190,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "UpdatedAt",
@@ -185,7 +201,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "CreatedAt",
@@ -195,7 +212,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "UpdatedAt",
@@ -205,7 +223,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "CreatedAt",
@@ -215,7 +234,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "UpdatedAt",
@@ -225,7 +245,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "CreatedAt",
@@ -235,7 +256,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "UpdatedAt",
@@ -245,7 +267,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "CreatedAt",
@@ -255,7 +278,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "UpdatedAt",
@@ -265,7 +289,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "CreatedAt",
@@ -275,7 +300,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
         }
 
         /// <inheritdoc />
@@ -289,7 +315,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "CreatedAt",
@@ -299,7 +326,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "UpdatedAt",
@@ -309,7 +337,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "Date",
@@ -317,7 +346,8 @@ namespace TaskManagerApp.Infra.Migrations
                 type: "datetime2",
                 nullable: false,
                 oldClrType: typeof(DateTime),
-                oldType: "datetime");
+                oldType: "datetime"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "CreatedAt",
@@ -327,7 +357,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "UpdatedAt",
@@ -337,7 +368,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "CreatedAt",
@@ -347,7 +379,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "UpdatedAt",
@@ -357,7 +390,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "CreatedAt",
@@ -367,7 +401,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "UpdatedAt",
@@ -377,7 +412,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "CreatedAt",
@@ -387,7 +423,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "UpdatedAt",
@@ -397,7 +434,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "DateRangeStart",
@@ -406,7 +444,8 @@ namespace TaskManagerApp.Infra.Migrations
                 nullable: true,
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldNullable: true);
+                oldNullable: true
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "DateRangeEnd",
@@ -415,7 +454,8 @@ namespace TaskManagerApp.Infra.Migrations
                 nullable: true,
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldNullable: true);
+                oldNullable: true
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "CreatedAt",
@@ -425,7 +465,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "UpdatedAt",
@@ -435,7 +476,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "CreatedAt",
@@ -445,7 +487,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "UpdatedAt",
@@ -455,7 +498,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "CreatedAt",
@@ -465,7 +509,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "UpdatedAt",
@@ -475,7 +520,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "CreatedAt",
@@ -485,7 +531,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "UpdatedAt",
@@ -495,7 +542,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "CreatedAt",
@@ -505,7 +553,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "UpdatedAt",
@@ -515,7 +564,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "CreatedAt",
@@ -525,7 +575,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "UpdatedAt",
@@ -535,7 +586,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "CreatedAt",
@@ -545,7 +597,8 @@ namespace TaskManagerApp.Infra.Migrations
                 defaultValueSql: "getdate()",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValueSql: "getdate()");
+                oldDefaultValueSql: "getdate()"
+            );
         }
     }
 }

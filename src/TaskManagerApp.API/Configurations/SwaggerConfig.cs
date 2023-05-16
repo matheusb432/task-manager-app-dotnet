@@ -12,12 +12,15 @@ namespace TaskManagerApp.API.Configurations
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Task Manager API", Version = "v1" });
                 c.OperationFilter<BearerTokenOperationFilter>();
-                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-                {
-                    Type = SecuritySchemeType.Http,
-                    Scheme = "bearer",
-                    BearerFormat = "JWT"
-                });
+                c.AddSecurityDefinition(
+                    "Bearer",
+                    new OpenApiSecurityScheme
+                    {
+                        Type = SecuritySchemeType.Http,
+                        Scheme = "bearer",
+                        BearerFormat = "JWT"
+                    }
+                );
             });
         }
 
@@ -25,13 +28,18 @@ namespace TaskManagerApp.API.Configurations
         {
             public void Apply(OpenApiOperation operation, OperationFilterContext context)
             {
-                var authorizeAttributes = context.MethodInfo.DeclaringType!.GetCustomAttributes(true)
+                var authorizeAttributes = context.MethodInfo.DeclaringType!
+                    .GetCustomAttributes(true)
                     .Union(context.MethodInfo.GetCustomAttributes(true))
                     .OfType<AuthorizeAttribute>();
 
-                if (!authorizeAttributes.Any()) return;
+                if (!authorizeAttributes.Any())
+                    return;
 
-                operation.Responses.Add("401", new OpenApiResponse { Description = "Unauthorized" });
+                operation.Responses.Add(
+                    "401",
+                    new OpenApiResponse { Description = "Unauthorized" }
+                );
                 operation.Responses.Add("403", new OpenApiResponse { Description = "Forbidden" });
 
                 var securityRequirement = new OpenApiSecurityRequirement

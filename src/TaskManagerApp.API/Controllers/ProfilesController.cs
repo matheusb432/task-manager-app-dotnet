@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using TaskManagerApp.API.Configurations;
 using TaskManagerApp.Application.Dtos.Profile;
 using TaskManagerApp.Application.Interfaces;
-using TaskManagerApp.Application.Utils;
 using TaskManagerApp.Application.ViewModels;
 
 namespace TaskManagerApp.API.Controllers
@@ -12,8 +11,7 @@ namespace TaskManagerApp.API.Controllers
     {
         private readonly IProfileService _service;
 
-        public ProfilesController(IProfileService service)
-            => _service = service;
+        public ProfilesController(IProfileService service) => _service = service;
 
         [HttpGet("odata")]
         [ODataQuery]
@@ -23,19 +21,18 @@ namespace TaskManagerApp.API.Controllers
         [ResponseCache(Duration = 86400)]
         [ODataQuery]
         [AllowAnonymous]
-        public ActionResult<List<ProfileTypeDto>> TypesQuery()
-            => CustomResponse(_service.TypesQuery());
+        public ActionResult<List<ProfileTypeDto>> TypesQuery() =>
+            CustomResponse(_service.TypesQuery());
 
         [HttpPost]
-        public async Task<ActionResult<PostReturnViewModel>> Post(ProfilePostDto viewModel)
-            => CustomResponse(await _service.Insert(viewModel));
+        public async Task<ActionResult<PostReturnViewModel>> Post(ProfilePostDto viewModel) =>
+            CustomResponse(await _service.Insert(viewModel));
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, ProfilePutDto viewModel)
-            => CustomResponse(await _service.Update(id, viewModel));
+        public async Task<ActionResult> Put(int id, ProfilePutDto viewModel) =>
+            CustomResponse(await _service.Update(id, viewModel));
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
-            => CustomResponse(await _service.Delete(id));
+        public async Task<ActionResult> Delete(int id) => CustomResponse(await _service.Delete(id));
     }
 }

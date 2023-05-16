@@ -8,12 +8,19 @@ namespace TaskManagerApp.Application.Profiles
     {
         public ProfileProfiles()
         {
-            CreateMap<ProfileDto, Profile>().ReverseMap()
+            CreateMap<ProfileDto, Profile>()
+                .ReverseMap()
                 .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserCreatedId));
             CreateMap<ProfilePostDto, Profile>()
-                .ForMember(dest => dest.TimeTarget, opt => opt.MapFrom(src => TimeUtils.ConvertTimeToShort(src.TimeTarget)));
+                .ForMember(
+                    dest => dest.TimeTarget,
+                    opt => opt.MapFrom(src => TimeUtils.ConvertTimeToShort(src.TimeTarget))
+                );
             CreateMap<ProfilePutDto, Profile>()
-                .ForMember(dest => dest.TimeTarget, opt => opt.MapFrom(src => TimeUtils.ConvertTimeToShort(src.TimeTarget)));
+                .ForMember(
+                    dest => dest.TimeTarget,
+                    opt => opt.MapFrom(src => TimeUtils.ConvertTimeToShort(src.TimeTarget))
+                );
             CreateMap<ProfilePresetTaskItem, ProfilePresetTaskItemDto>().ReverseMap();
             CreateMap<ProfilePresetTaskItemPostDto, ProfilePresetTaskItem>();
             CreateMap<ProfilePresetTaskItemPutDto, ProfilePresetTaskItem>();

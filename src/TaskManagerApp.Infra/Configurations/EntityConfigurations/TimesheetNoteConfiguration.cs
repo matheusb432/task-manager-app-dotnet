@@ -8,7 +8,10 @@ namespace TaskManagerApp.Infra.Configurations.EntityConfigurations
         public override void ConfigureOtherProperties(EntityTypeBuilder<TimesheetNote> builder)
         {
             builder.Property(x => x.Comment).IsUnicode(false);
-            builder.HasOne(x => x.Timesheet).WithMany(x => x.Notes).HasForeignKey(x => x.TimesheetId);
+            builder
+                .HasOne(x => x.Timesheet)
+                .WithMany(x => x.Notes)
+                .HasForeignKey(x => x.TimesheetId);
         }
     }
 }

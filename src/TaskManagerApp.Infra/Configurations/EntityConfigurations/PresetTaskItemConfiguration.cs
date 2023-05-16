@@ -9,7 +9,10 @@ namespace TaskManagerApp.Infra.Configurations.EntityConfigurations
         {
             builder.Property(x => x.Title).IsUnicode(false).HasMaxLength(100);
             builder.Property(x => x.UserCreatedId).IsRequired(true);
-            builder.HasMany(x => x.ProfilePresetTaskItems).WithOne(x => x.PresetTaskItem).HasForeignKey(x => x.PresetTaskItemId);
+            builder
+                .HasMany(x => x.ProfilePresetTaskItems)
+                .WithOne(x => x.PresetTaskItem)
+                .HasForeignKey(x => x.PresetTaskItemId);
         }
     }
 }

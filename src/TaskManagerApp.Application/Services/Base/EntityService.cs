@@ -17,8 +17,7 @@ namespace TaskManagerApp.Application.Services.Base
     {
         protected readonly TRepository _repo;
 
-        protected EntityService(IMapper mapper, TRepository repo)
-            : base(mapper)
+        protected EntityService(IMapper mapper, TRepository repo) : base(mapper)
         {
             _repo = repo;
         }

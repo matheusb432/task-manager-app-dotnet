@@ -5,8 +5,6 @@ namespace TaskManagerApp.Infra.Repositories
 {
     internal sealed class ProfileRepository : Repository<Profile>, IProfileRepository
     {
-        public ProfileRepository(TaskManagerContext context) : base(context)
-        {
-        }
+        public ProfileRepository(TaskManagerContext context) : base(context) { }
     }
 }

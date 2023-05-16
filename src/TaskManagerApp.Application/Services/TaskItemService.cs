@@ -8,17 +8,17 @@ using TaskManagerApp.Infra.Interfaces;
 
 namespace TaskManagerApp.Application.Services
 {
-    internal sealed class TaskItemService : EntityService<
-        TaskItem,
-        TaskItemDto,
-        TaskItemPostDto,
-        TaskItemPutDto,
-        TaskItemValidator,
-        ITaskItemRepository>, ITaskItemService
+    internal sealed class TaskItemService
+        : EntityService<
+            TaskItem,
+            TaskItemDto,
+            TaskItemPostDto,
+            TaskItemPutDto,
+            TaskItemValidator,
+            ITaskItemRepository
+        >,
+            ITaskItemService
     {
-        public TaskItemService(ITaskItemRepository repo, IMapper mapper)
-            : base(mapper, repo)
-        {
-        }
+        public TaskItemService(ITaskItemRepository repo, IMapper mapper) : base(mapper, repo) { }
     }
 }

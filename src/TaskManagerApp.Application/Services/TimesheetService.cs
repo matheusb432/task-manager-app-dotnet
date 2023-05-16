@@ -11,20 +11,21 @@ using TaskManagerApp.Infra.Interfaces;
 
 namespace TaskManagerApp.Application.Services
 {
-    internal sealed class TimesheetService : EntityService<
-        Timesheet,
-        TimesheetDto,
-        TimesheetPostDto,
-        TimesheetPutDto,
-        TimesheetValidator,
-        ITimesheetRepository>, ITimesheetService
+    internal sealed class TimesheetService
+        : EntityService<
+            Timesheet,
+            TimesheetDto,
+            TimesheetPostDto,
+            TimesheetPutDto,
+            TimesheetValidator,
+            ITimesheetRepository
+        >,
+            ITimesheetService
     {
-        public TimesheetService(ITimesheetRepository repo, IMapper mapper)
-            : base(mapper, repo)
-        {
-        }
+        public TimesheetService(ITimesheetRepository repo, IMapper mapper) : base(mapper, repo) { }
 
-        public OperationResult MetricsQuery() => Success(Mapper.ProjectTo<TimesheetMetricsViewModel>(_repo.Query()));
+        public OperationResult MetricsQuery() =>
+            Success(Mapper.ProjectTo<TimesheetMetricsViewModel>(_repo.Query()));
 
         public override async Task<OperationResult> Update(int id, TimesheetPutDto dto)
         {

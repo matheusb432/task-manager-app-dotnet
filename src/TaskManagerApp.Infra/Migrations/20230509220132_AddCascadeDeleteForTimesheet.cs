@@ -12,11 +12,13 @@ namespace TaskManagerApp.Infra.Migrations
         {
             migrationBuilder.DropForeignKey(
                 name: "FK_TaskItems_Timesheets_TimesheetId",
-                table: "TaskItems");
+                table: "TaskItems"
+            );
 
             migrationBuilder.DropForeignKey(
                 name: "FK_TimesheetNotes_Timesheets_TimesheetId",
-                table: "TimesheetNotes");
+                table: "TimesheetNotes"
+            );
 
             migrationBuilder.AddForeignKey(
                 name: "FK_TaskItems_Timesheets_TimesheetId",
@@ -24,7 +26,8 @@ namespace TaskManagerApp.Infra.Migrations
                 column: "TimesheetId",
                 principalTable: "Timesheets",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.Cascade
+            );
 
             migrationBuilder.AddForeignKey(
                 name: "FK_TimesheetNotes_Timesheets_TimesheetId",
@@ -32,7 +35,8 @@ namespace TaskManagerApp.Infra.Migrations
                 column: "TimesheetId",
                 principalTable: "Timesheets",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.Cascade
+            );
         }
 
         /// <inheritdoc />
@@ -40,11 +44,13 @@ namespace TaskManagerApp.Infra.Migrations
         {
             migrationBuilder.DropForeignKey(
                 name: "FK_TaskItems_Timesheets_TimesheetId",
-                table: "TaskItems");
+                table: "TaskItems"
+            );
 
             migrationBuilder.DropForeignKey(
                 name: "FK_TimesheetNotes_Timesheets_TimesheetId",
-                table: "TimesheetNotes");
+                table: "TimesheetNotes"
+            );
 
             migrationBuilder.AddForeignKey(
                 name: "FK_TaskItems_Timesheets_TimesheetId",
@@ -52,7 +58,8 @@ namespace TaskManagerApp.Infra.Migrations
                 column: "TimesheetId",
                 principalTable: "Timesheets",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                onDelete: ReferentialAction.Restrict
+            );
 
             migrationBuilder.AddForeignKey(
                 name: "FK_TimesheetNotes_Timesheets_TimesheetId",
@@ -60,7 +67,8 @@ namespace TaskManagerApp.Infra.Migrations
                 column: "TimesheetId",
                 principalTable: "Timesheets",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                onDelete: ReferentialAction.Restrict
+            );
         }
     }
 }

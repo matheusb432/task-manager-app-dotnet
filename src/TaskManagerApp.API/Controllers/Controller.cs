@@ -14,14 +14,16 @@ namespace TaskManagerApp.API.Controllers
     {
         protected ActionResult CustomResponse(OperationResult result)
         {
-            if (!result.IsValid) return ErrorResponse(result);
+            if (!result.IsValid)
+                return ErrorResponse(result);
 
             return Ok(result.Content ?? string.Empty);
         }
 
         private ActionResult ErrorResponse(OperationResult result)
         {
-            if ((int)result.StatusCode < 400) return StatusCode(500, result.Result);
+            if ((int)result.StatusCode < 400)
+                return StatusCode(500, result.Result);
 
             return result.StatusCode switch
             {
@@ -31,9 +33,9 @@ namespace TaskManagerApp.API.Controllers
             };
         }
 
-        private static ErrorViewModel MapErrorsToResponse(ValidationResult? validationResult)
-            => validationResult is not null ?
-            new ErrorViewModel(validationResult.Errors.ConvertAll(e => e.ErrorMessage)) :
-            new ErrorViewModel();
+        private static ErrorViewModel MapErrorsToResponse(ValidationResult? validationResult) =>
+            validationResult is not null
+                ? new ErrorViewModel(validationResult.Errors.ConvertAll(e => e.ErrorMessage))
+                : new ErrorViewModel();
     }
 }

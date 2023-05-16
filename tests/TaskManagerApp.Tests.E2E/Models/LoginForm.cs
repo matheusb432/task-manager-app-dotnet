@@ -2,17 +2,11 @@
 {
     public sealed class LoginForm
     {
-        private LoginForm()
-        {
-        }
+        private LoginForm() { }
 
         public static LoginForm AsValid(string userNameOrEmail, string password)
         {
-            return new LoginForm
-            {
-                UserNameOrEmail = userNameOrEmail,
-                Password = password,
-            };
+            return new LoginForm { UserNameOrEmail = userNameOrEmail, Password = password, };
         }
 
         public static LoginForm FromSignup(SignupForm signupForm)

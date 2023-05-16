@@ -19,8 +19,11 @@ namespace TaskManagerApp.Application.Services
         private readonly IUserRepository _userRepo;
         private readonly IPasswordHasher<User> _passwordHasher;
 
-        public AuthService(IUserRepository userRepo, IMapper mapper, IPasswordHasher<User> passwordHasher)
-            : base(mapper)
+        public AuthService(
+            IUserRepository userRepo,
+            IMapper mapper,
+            IPasswordHasher<User> passwordHasher
+        ) : base(mapper)
         {
             _userRepo = userRepo;
             _passwordHasher = passwordHasher;
@@ -48,7 +51,10 @@ namespace TaskManagerApp.Application.Services
                 return Error($"Email {newUser.Email} is already in use", HttpStatusCode.Conflict);
 
             if (await _userRepo.UserNameExists(newUser.UserName))
-                return Error($"User name {newUser.UserName} is already in use", HttpStatusCode.Conflict);
+                return Error(
+                    $"User name {newUser.UserName} is already in use",
+                    HttpStatusCode.Conflict
+                );
 
             var createdUser = await _userRepo.InsertAsync(newUser);
 
@@ -65,7 +71,9 @@ namespace TaskManagerApp.Application.Services
             var userName = login.UserName ?? "";
             var email = login.Email ?? "";
 
-            var user = string.IsNullOrEmpty(userName) ? await _userRepo.GetByEmailAsync(email) : await _userRepo.GetByUserNameAsync(userName);
+            var user = string.IsNullOrEmpty(userName)
+                ? await _userRepo.GetByEmailAsync(email)
+                : await _userRepo.GetByUserNameAsync(userName);
 
             return IsCorrectPassword(user, login.Password) ? user : null;
         }
@@ -80,14 +88,16 @@ namespace TaskManagerApp.Application.Services
             return user;
         }
 
-        private AuthResponse BuildResponse(User user, string token)
-            => new(Mapper.Map<UserAuthDto>(user), token);
+        private AuthResponse BuildResponse(User user, string token) =>
+            new(Mapper.Map<UserAuthDto>(user), token);
 
         private bool IsCorrectPassword(User? user, string password)
         {
-            if (string.IsNullOrEmpty(user?.PasswordHash)) return false;
+            if (string.IsNullOrEmpty(user?.PasswordHash))
+                return false;
 
-            return _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, password) == PasswordVerificationResult.Success;
+            return _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, password)
+                == PasswordVerificationResult.Success;
         }
     }
 }

@@ -36,11 +36,7 @@ namespace TaskManagerApp.Tests.Unit.Services
 
             SetupMocks();
 
-            _service = new ProfileService(
-                _repo.Object,
-                _mapper,
-                _profileTypeRepo.Object
-            );
+            _service = new ProfileService(_repo.Object, _mapper, _profileTypeRepo.Object);
         }
 
         [Fact]
@@ -50,7 +46,10 @@ namespace TaskManagerApp.Tests.Unit.Services
 
             Assert.True(result.IsValid);
             Assert.IsAssignableFrom<IQueryable<ProfileTypeDto>>(result.Content);
-            Assert.Equal(_profileTypes.Count, (result.Content as IQueryable<ProfileTypeDto>)?.Count());
+            Assert.Equal(
+                _profileTypes.Count,
+                (result.Content as IQueryable<ProfileTypeDto>)?.Count()
+            );
         }
 
         [Fact]
@@ -156,22 +155,27 @@ namespace TaskManagerApp.Tests.Unit.Services
         {
             _repo
                 .Setup(x => x.InsertAsync(It.IsAny<Domain.Models.Profile>(), true))
-                .Callback((Domain.Models.Profile p, bool _) =>
-                {
-                    p.Id = _profiles.Max(x => x.Id) + 1;
-                    _profiles.Add(p);
-                });
+                .Callback(
+                    (Domain.Models.Profile p, bool _) =>
+                    {
+                        p.Id = _profiles.Max(x => x.Id) + 1;
+                        _profiles.Add(p);
+                    }
+                );
             _repo
                 .Setup(x => x.UpdateAsync(It.IsAny<Domain.Models.Profile>(), true))
-                .Callback((Domain.Models.Profile p, bool _) =>
-                {
-                    var toUpdate = _profiles.Find(x => x.Id == p.Id);
+                .Callback(
+                    (Domain.Models.Profile p, bool _) =>
+                    {
+                        var toUpdate = _profiles.Find(x => x.Id == p.Id);
 
-                    if (toUpdate == null) return;
+                        if (toUpdate == null)
+                            return;
 
-                    _profiles.Remove(toUpdate);
-                    _profiles.Add(p);
-                });
+                        _profiles.Remove(toUpdate);
+                        _profiles.Add(p);
+                    }
+                );
             _repo
                 .Setup(x => x.GetByIdMinimalAsync(It.IsAny<long>()))
                 .ReturnsAsync((long id) => _profiles.Find((x) => x.Id == id));
@@ -179,86 +183,98 @@ namespace TaskManagerApp.Tests.Unit.Services
                 .Setup(x => x.DeleteAsync(It.IsAny<Domain.Models.Profile>(), It.IsAny<bool>()))
                 .Callback((Domain.Models.Profile p, bool _) => _profiles.Remove(p));
 
-            _profileTypeRepo
-                .Setup(x => x.Query())
-                .Returns(_profileTypes.AsQueryable());
-            _profileTypeRepo
-                .Setup(x => x.GetAllAsync())
-                .ReturnsAsync(_profileTypes);
+            _profileTypeRepo.Setup(x => x.Query()).Returns(_profileTypes.AsQueryable());
+            _profileTypeRepo.Setup(x => x.GetAllAsync()).ReturnsAsync(_profileTypes);
         }
 
-        public static List<ProfileType> GetProfileTypes()
-            => new() {
-                  new ProfileType { Id = 1, Name = "Weekdays", Type = ProfileTypes.Weekday },
-                  new ProfileType { Id = 2, Name = "Weekends", Type = ProfileTypes.Weekend },
-                  new ProfileType { Id = 3, Name = "Holidays", Type = ProfileTypes.Holiday },
-                  new ProfileType
-                  {
-                      Id = 4,
-                      Name = "January 2023",
-                      Type = ProfileTypes.Custom,
-                      DateRangeStart = new DateTime(2023, 1, 1),
-                      DateRangeEnd = new DateTime(2023, 2, 1)
-                  },
-                  new ProfileType
-                  {
-                      Id = 5,
-                      Name = "2022",
-                      Type = ProfileTypes.Custom,
-                      DateRangeStart = new DateTime(2022, 1, 1),
-                      DateRangeEnd = new DateTime(2022, 12, 31)
-                  }
+        public static List<ProfileType> GetProfileTypes() =>
+            new()
+            {
+                new ProfileType
+                {
+                    Id = 1,
+                    Name = "Weekdays",
+                    Type = ProfileTypes.Weekday
+                },
+                new ProfileType
+                {
+                    Id = 2,
+                    Name = "Weekends",
+                    Type = ProfileTypes.Weekend
+                },
+                new ProfileType
+                {
+                    Id = 3,
+                    Name = "Holidays",
+                    Type = ProfileTypes.Holiday
+                },
+                new ProfileType
+                {
+                    Id = 4,
+                    Name = "January 2023",
+                    Type = ProfileTypes.Custom,
+                    DateRangeStart = new DateTime(2023, 1, 1),
+                    DateRangeEnd = new DateTime(2023, 2, 1)
+                },
+                new ProfileType
+                {
+                    Id = 5,
+                    Name = "2022",
+                    Type = ProfileTypes.Custom,
+                    DateRangeStart = new DateTime(2022, 1, 1),
+                    DateRangeEnd = new DateTime(2022, 12, 31)
+                }
             };
 
-        public static List<Domain.Models.Profile> GetProfiles()
-            => new()
+        public static List<Domain.Models.Profile> GetProfiles() =>
+            new()
             {
                 new Domain.Models.Profile
                 {
-                        Id= 1,
-                        Name= "Personal Weekdays Profile",
-                        TimeTarget= 1030,
-                        TasksTarget= 4,
-                        Priority = 0,
-                        UserCreatedId= 123,
-                        ProfileTypeId= 1,
+                    Id = 1,
+                    Name = "Personal Weekdays Profile",
+                    TimeTarget = 1030,
+                    TasksTarget = 4,
+                    Priority = 0,
+                    UserCreatedId = 123,
+                    ProfileTypeId = 1,
                 },
                 new Domain.Models.Profile
                 {
-                        Id= 2,
-                        Name= "Personal Weekends Profile",
-                        TimeTarget= 400,
-                        TasksTarget= 3,
-                        Priority = 0,
-                        UserCreatedId= 123,
-                        ProfileTypeId= 2,
+                    Id = 2,
+                    Name = "Personal Weekends Profile",
+                    TimeTarget = 400,
+                    TasksTarget = 3,
+                    Priority = 0,
+                    UserCreatedId = 123,
+                    ProfileTypeId = 2,
                 },
                 new Domain.Models.Profile
                 {
-                        Id= 3,
-                        Name= "Personal Holidays Profile",
-                        TimeTarget= 330,
-                        Priority = 1,
-                        UserCreatedId= 323,
-                        ProfileTypeId= 3,
+                    Id = 3,
+                    Name = "Personal Holidays Profile",
+                    TimeTarget = 330,
+                    Priority = 1,
+                    UserCreatedId = 323,
+                    ProfileTypeId = 3,
                 },
                 new Domain.Models.Profile
                 {
-                        Id= 4,
-                        Name= "Personal Custom Profile",
-                        TimeTarget= 430,
-                        Priority = 2,
-                        UserCreatedId= 423,
-                        ProfileTypeId= 4,
+                    Id = 4,
+                    Name = "Personal Custom Profile",
+                    TimeTarget = 430,
+                    Priority = 2,
+                    UserCreatedId = 423,
+                    ProfileTypeId = 4,
                 },
                 new Domain.Models.Profile
                 {
-                        Id= 5,
-                        Name= "Personal Custom Profile",
-                        TimeTarget= 5,
-                        Priority = 2,
-                        UserCreatedId= 523,
-                        ProfileTypeId= 5,
+                    Id = 5,
+                    Name = "Personal Custom Profile",
+                    TimeTarget = 5,
+                    Priority = 2,
+                    UserCreatedId = 523,
+                    ProfileTypeId = 5,
                 },
             };
     }

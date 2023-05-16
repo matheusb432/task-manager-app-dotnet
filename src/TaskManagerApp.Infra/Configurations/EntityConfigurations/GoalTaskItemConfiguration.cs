@@ -10,7 +10,10 @@ namespace TaskManagerApp.Infra.Configurations.EntityConfigurations
             builder.Property(x => x.GoalId).IsRequired();
             builder.Property(x => x.TaskItemId).IsRequired();
             builder.HasOne(x => x.Goal).WithMany(x => x.GoalTaskItems).HasForeignKey(x => x.GoalId);
-            builder.HasOne(x => x.TaskItem).WithMany(x => x.GoalTaskItems).HasForeignKey(x => x.TaskItemId);
+            builder
+                .HasOne(x => x.TaskItem)
+                .WithMany(x => x.GoalTaskItems)
+                .HasForeignKey(x => x.TaskItemId);
         }
     }
 }

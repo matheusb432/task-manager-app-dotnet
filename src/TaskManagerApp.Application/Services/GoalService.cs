@@ -8,17 +8,10 @@ using TaskManagerApp.Infra.Interfaces;
 
 namespace TaskManagerApp.Application.Services
 {
-    public sealed class GoalService : EntityService<
-        Goal,
-        GoalDto,
-        GoalPostDto,
-        GoalPutDto,
-        GoalValidator,
-        IGoalRepository>, IGoalService
+    public sealed class GoalService
+        : EntityService<Goal, GoalDto, GoalPostDto, GoalPutDto, GoalValidator, IGoalRepository>,
+            IGoalService
     {
-        public GoalService(IGoalRepository repo, IMapper mapper)
-            : base(mapper, repo)
-        {
-        }
+        public GoalService(IGoalRepository repo, IMapper mapper) : base(mapper, repo) { }
     }
 }

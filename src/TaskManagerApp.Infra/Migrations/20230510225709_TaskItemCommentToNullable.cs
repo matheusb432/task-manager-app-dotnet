@@ -18,7 +18,8 @@ namespace TaskManagerApp.Infra.Migrations
                 nullable: true,
                 oldClrType: typeof(string),
                 oldType: "varchar(max)",
-                oldUnicode: false);
+                oldUnicode: false
+            );
         }
 
         /// <inheritdoc />
@@ -34,7 +35,8 @@ namespace TaskManagerApp.Infra.Migrations
                 oldClrType: typeof(string),
                 oldType: "varchar(max)",
                 oldUnicode: false,
-                oldNullable: true);
+                oldNullable: true
+            );
         }
     }
 }
