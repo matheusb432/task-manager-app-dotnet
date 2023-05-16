@@ -21,9 +21,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagerApp.Infra", "src
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Tests", "5 - Tests", "{5A8EC9B3-A9C1-4EF2-A3AC-052567A7A6E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagerApp.Tests.E2E", "tests\TaskManagerApp.Tests.E2E\TaskManagerApp.Tests.E2E.csproj", "{7346A880-63D1-46F3-82B8-74A0F2A28EE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagerApp.Tests.E2E", "tests\TaskManagerApp.Tests.E2E\TaskManagerApp.Tests.E2E.csproj", "{7346A880-63D1-46F3-82B8-74A0F2A28EE6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagerApp.Tests.Unit", "tests\TaskManagerApp.Tests.Unit\TaskManagerApp.Tests.Unit.csproj", "{89582CCA-F25A-4A6B-A30D-6C2D56DE1E4C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6 - Util", "6 - Util", "{3B2E1504-EAD4-45F3-A8D1-DBFF87524B6C}"
+	ProjectSection(SolutionItems) = preProject
+		.csharpierrc = .csharpierrc
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
