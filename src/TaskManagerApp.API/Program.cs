@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.OData;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using TaskManagerApp.API.Configurations;
 using TaskManagerApp.Application.Configurations;
+using TaskManagerApp.Infra;
 using TaskManagerApp.Infra.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,8 @@ var configuration = builder.Configuration;
 var services = builder.Services;
 
 services.AddControllers().AddOData(opt => opt.Count().Filter().OrderBy().Select().SetMaxTop(50));
+
+services.AddHealthChecks().AddDbContextCheck<TaskManagerContext>();
 
 services.AddEndpointsApiExplorer();
 services.AddSwagger();
@@ -35,6 +38,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.UseExceptionHandlerMiddleware();
 
+app.UseHealthChecksConfig();
 app.MapControllers();
 
 app.Run();
