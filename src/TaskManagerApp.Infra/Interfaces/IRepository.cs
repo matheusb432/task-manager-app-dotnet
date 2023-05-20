@@ -4,8 +4,6 @@
     {
         IQueryable<T> Query();
 
-        IQueryable<T> QueryOnlyId();
-
         Task<IEnumerable<T>> GetAllAsync();
 
         Task<T?> GetByIdAsync(long id);

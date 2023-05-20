@@ -13,8 +13,7 @@ namespace TaskManagerApp.Infra.Repositories
             bool save
         )
         {
-            var entityFromDb = await _dbSet
-                .AsSplitQuery()
+            var entityFromDb = await Query()
                 .Include(x => x.Notes)
                 .Include(x => x.Tasks)
                 .Select(

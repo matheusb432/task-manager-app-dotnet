@@ -9,25 +9,25 @@ namespace TaskManagerApp.Infra.Repositories
         public UserRepository(TaskManagerContext context) : base(context) { }
 
         public async Task<User?> GetByEmailAsync(string email) =>
-            await _dbSet.FirstOrDefaultAsync(x => x.Email.ToLower() == email.ToLower());
+            await Query().FirstOrDefaultAsync(x => x.Email.ToLower() == email.ToLower());
 
         public async Task<User?> GetByUserNameAsync(string userName) =>
-            await _dbSet.FirstOrDefaultAsync(x => x.UserName.ToLower() == userName.ToLower());
+            await Query().FirstOrDefaultAsync(x => x.UserName.ToLower() == userName.ToLower());
 
         public async Task<bool> CanCreateUser(User user)
         {
-            var emailExists = await _dbSet.AnyAsync(x => x.Email.ToLower() == user.Email.ToLower());
-            var userNameExists = await _dbSet.AnyAsync(
-                x => x.UserName.ToLower() == user.UserName.ToLower()
-            );
+            var emailExists = await Query()
+                .AnyAsync(x => x.Email.ToLower() == user.Email.ToLower());
+            var userNameExists = await Query()
+                .AnyAsync(x => x.UserName.ToLower() == user.UserName.ToLower());
 
             return !emailExists && !userNameExists;
         }
 
         public async Task<bool> EmailExists(string email) =>
-            await _dbSet.AnyAsync(x => x.Email.ToLower() == email.ToLower());
+            await Query().AnyAsync(x => x.Email.ToLower() == email.ToLower());
 
         public async Task<bool> UserNameExists(string userName) =>
-            await _dbSet.AnyAsync(x => x.UserName.ToLower() == userName.ToLower());
+            await Query().AnyAsync(x => x.UserName.ToLower() == userName.ToLower());
     }
 }

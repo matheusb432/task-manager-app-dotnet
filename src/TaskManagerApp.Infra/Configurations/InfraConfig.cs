@@ -26,13 +26,13 @@ namespace TaskManagerApp.Infra.Configurations
 
         private static void AddRepositories(this IServiceCollection services)
         {
-            services.AddTransient<IGoalRepository, GoalRepository>();
-            services.AddTransient<IPresetTaskItemRepository, PresetTaskItemRepository>();
-            services.AddTransient<IProfileRepository, ProfileRepository>();
-            services.AddTransient<IProfileTypeRepository, ProfileTypeRepository>();
-            services.AddTransient<ITaskItemRepository, TaskItemRepository>();
-            services.AddTransient<ITimesheetRepository, TimesheetRepository>();
-            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddScoped<IGoalRepository, GoalRepository>();
+            services.AddScoped<IPresetTaskItemRepository, PresetTaskItemRepository>();
+            services.AddScoped<IProfileRepository, ProfileRepository>();
+            services.AddScoped<IProfileTypeRepository, ProfileTypeRepository>();
+            services.AddScoped<ITaskItemRepository, TaskItemRepository>();
+            services.AddScoped<ITimesheetRepository, TimesheetRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
         }
 
         private static void AddDatabase(

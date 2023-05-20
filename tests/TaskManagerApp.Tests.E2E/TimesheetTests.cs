@@ -54,8 +54,6 @@
             GoToCreateTimesheet(_driver);
             var date = WebDriverUtils.GetQueryParam(_driver, "date");
 
-            Console.WriteLine(date);
-
             FillTimesheetForm(_driver);
 
             SubmitTimesheet(_driver);

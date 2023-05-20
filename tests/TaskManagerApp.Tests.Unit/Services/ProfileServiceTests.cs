@@ -182,6 +182,9 @@ namespace TaskManagerApp.Tests.Unit.Services
             _repo
                 .Setup(x => x.DeleteAsync(It.IsAny<Domain.Models.Profile>(), It.IsAny<bool>()))
                 .Callback((Domain.Models.Profile p, bool _) => _profiles.Remove(p));
+            _repo
+                .Setup(x => x.ExistsAsync(It.IsAny<long>()))
+                .ReturnsAsync((long id) => _profiles.Exists((x) => x.Id == id));
 
             _profileTypeRepo.Setup(x => x.Query()).Returns(_profileTypes.AsQueryable());
             _profileTypeRepo.Setup(x => x.GetAllAsync()).ReturnsAsync(_profileTypes);

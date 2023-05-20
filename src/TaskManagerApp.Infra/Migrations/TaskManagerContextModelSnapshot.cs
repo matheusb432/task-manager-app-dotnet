@@ -72,7 +72,7 @@ namespace TaskManagerApp.Infra.Migrations
 
                     b.HasIndex("UserUpdatedId");
 
-                    b.ToTable("Goals");
+                    b.ToTable("Goals", (string)null);
                 });
 
             modelBuilder.Entity("TaskManagerApp.Domain.Models.GoalStep", b =>
@@ -124,7 +124,7 @@ namespace TaskManagerApp.Infra.Migrations
 
                     b.HasIndex("UserUpdatedId");
 
-                    b.ToTable("GoalSteps");
+                    b.ToTable("GoalSteps", (string)null);
                 });
 
             modelBuilder.Entity("TaskManagerApp.Domain.Models.GoalTaskItem", b =>
@@ -167,7 +167,7 @@ namespace TaskManagerApp.Infra.Migrations
 
                     b.HasIndex("UserUpdatedId");
 
-                    b.ToTable("GoalTaskItems");
+                    b.ToTable("GoalTaskItems", (string)null);
                 });
 
             modelBuilder.Entity("TaskManagerApp.Domain.Models.PresetTaskItem", b =>
@@ -215,7 +215,7 @@ namespace TaskManagerApp.Infra.Migrations
 
                     b.HasIndex("UserUpdatedId");
 
-                    b.ToTable("PresetTaskItems");
+                    b.ToTable("PresetTaskItems", (string)null);
                 });
 
             modelBuilder.Entity("TaskManagerApp.Domain.Models.Profile", b =>
@@ -276,7 +276,7 @@ namespace TaskManagerApp.Infra.Migrations
 
                     b.HasIndex("UserUpdatedId");
 
-                    b.ToTable("Profiles");
+                    b.ToTable("Profiles", (string)null);
                 });
 
             modelBuilder.Entity("TaskManagerApp.Domain.Models.ProfilePresetTaskItem", b =>
@@ -319,7 +319,7 @@ namespace TaskManagerApp.Infra.Migrations
 
                     b.HasIndex("UserUpdatedId");
 
-                    b.ToTable("ProfilePresetTaskItem");
+                    b.ToTable("ProfilePresetTaskItem", (string)null);
                 });
 
             modelBuilder.Entity("TaskManagerApp.Domain.Models.ProfileType", b =>
@@ -370,7 +370,7 @@ namespace TaskManagerApp.Infra.Migrations
 
                     b.HasIndex("UserUpdatedId");
 
-                    b.ToTable("ProfileTypes");
+                    b.ToTable("ProfileTypes", (string)null);
 
                     b.HasData(
                         new
@@ -475,7 +475,7 @@ namespace TaskManagerApp.Infra.Migrations
 
                     b.HasIndex("UserUpdatedId");
 
-                    b.ToTable("TaskItems");
+                    b.ToTable("TaskItems", (string)null);
                 });
 
             modelBuilder.Entity("TaskManagerApp.Domain.Models.Timesheet", b =>
@@ -523,7 +523,7 @@ namespace TaskManagerApp.Infra.Migrations
                     b.HasIndex("Date", "UserCreatedId")
                         .IsUnique();
 
-                    b.ToTable("Timesheets");
+                    b.ToTable("Timesheets", (string)null);
                 });
 
             modelBuilder.Entity("TaskManagerApp.Domain.Models.TimesheetNote", b =>
@@ -566,7 +566,7 @@ namespace TaskManagerApp.Infra.Migrations
 
                     b.HasIndex("UserUpdatedId");
 
-                    b.ToTable("TimesheetNotes");
+                    b.ToTable("TimesheetNotes", (string)null);
                 });
 
             modelBuilder.Entity("TaskManagerApp.Domain.Models.User", b =>
@@ -627,7 +627,7 @@ namespace TaskManagerApp.Infra.Migrations
 
                     b.HasIndex("UserUpdatedId");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
 
                     b.HasData(
                         new

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using System.Xml;
 using TaskManagerApp.Domain.Models;
 using TaskManagerApp.Infra.Extensions;
 using TaskManagerApp.Infra.Utils;
@@ -58,9 +59,7 @@ namespace TaskManagerApp.Infra
             CancellationToken cancellationToken = default
         )
         {
-            var userId = int.Parse(
-                _httpContextAccessor.HttpContext.User.FindFirst("UserId")?.Value ?? "-1"
-            );
+            var userId = GetHttpContextUserId();
             var now = DateTime.Now;
 
             this.SetPropOnAdded("CreatedAt", now);
@@ -72,6 +71,14 @@ namespace TaskManagerApp.Infra
             }
 
             return await base.SaveChangesAsync(true, cancellationToken).ConfigureAwait(false);
+        }
+
+        public int GetHttpContextUserId()
+        {
+            var userId = int.Parse(
+                _httpContextAccessor.HttpContext?.User?.FindFirst("UserId")?.Value ?? "-1"
+            );
+            return userId;
         }
     }
 }

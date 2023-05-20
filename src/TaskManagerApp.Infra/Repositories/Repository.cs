@@ -9,33 +9,36 @@ namespace TaskManagerApp.Infra.Repositories
     {
         protected readonly TaskManagerContext _context;
         protected readonly DbSet<T> _dbSet;
+        protected readonly int _userId;
 
         public Repository(TaskManagerContext context)
         {
             _context = context;
             _dbSet = _context.Set<T>();
+            _userId = _context.GetHttpContextUserId();
         }
 
-        public IQueryable<T> Query() => _dbSet.AsQueryable().AsSplitQuery();
+        public virtual IQueryable<T> Query() =>
+            _dbSet
+                .Where(x => x.UserCreatedId == null || x.UserCreatedId == _userId)
+                .AsQueryable()
+                .AsSplitQuery();
 
-        public IQueryable<T> QueryOnlyId() =>
-            _dbSet.Select(x => new T { Id = x.Id }).AsQueryable().AsSplitQuery();
-
-        public virtual async Task<IEnumerable<T>> GetAllAsync() => await _dbSet.ToListAsync();
+        public virtual async Task<IEnumerable<T>> GetAllAsync() => await Query().ToListAsync();
 
         public virtual async Task<T?> GetByIdAsync(long id) =>
-            await _dbSet.FirstOrDefaultAsync(e => e.Id == id);
+            await Query().FirstOrDefaultAsync(e => e.Id == id);
 
         public async Task<T?> GetByIdMinimalAsync(long id) =>
-            await _dbSet
+            await Query()
                 .AsNoTracking()
                 .Select(x => new T { Id = x.Id })
                 .FirstOrDefaultAsync(e => e.Id == id);
 
-        public async Task<bool> ExistsAsync(long id) => await _dbSet.AnyAsync(x => x.Id == id);
+        public async Task<bool> ExistsAsync(long id) => await Query().AnyAsync(x => x.Id == id);
 
         public virtual async Task<List<T>> GetManyByIdsAsync(List<int> ids) =>
-            await _dbSet.Where(x => ids.Contains(x.Id)).ToListAsync();
+            await Query().Where(x => ids.Contains(x.Id)).ToListAsync();
 
         public async Task<T> InsertAsync(T entity, bool save = true)
         {
