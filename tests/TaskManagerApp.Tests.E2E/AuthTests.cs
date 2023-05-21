@@ -6,7 +6,7 @@ namespace TaskManagerApp.Tests.E2E
     public sealed class AuthTests
     {
         private static IWebDriver _driver = null!;
-        private const string _testUserName = "test_user";
+        private const string _testUserName = "admin_user";
         private const string _testUserPassword = "AaBb_123456";
         private const string _failPassword = "---";
 

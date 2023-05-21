@@ -7,6 +7,7 @@
             Timesheets = new();
             Profiles = new();
             PresetTaskItems = new();
+            UserRoles = new();
         }
 
         public string Name { get; set; } = string.Empty;
@@ -16,5 +17,6 @@
         public List<Timesheet> Timesheets { get; set; }
         public List<Profile> Profiles { get; set; }
         public List<PresetTaskItem> PresetTaskItems { get; set; }
+        public List<UserRole> UserRoles { get; set; }
     }
 }

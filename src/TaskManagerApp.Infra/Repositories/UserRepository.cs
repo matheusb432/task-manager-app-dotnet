@@ -8,6 +8,8 @@ namespace TaskManagerApp.Infra.Repositories
     {
         public UserRepository(TaskManagerContext context) : base(context) { }
 
+        public override IQueryable<User> Query() => _dbSet.AsQueryable().AsSplitQuery();
+
         public async Task<User?> GetByEmailAsync(string email) =>
             await Query().FirstOrDefaultAsync(x => x.Email.ToLower() == email.ToLower());
 

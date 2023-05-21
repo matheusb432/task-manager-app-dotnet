@@ -18,12 +18,35 @@ namespace TaskManagerApp.Infra.Extensions
                     new User
                     {
                         Id = 1,
-                        Name = "Test User",
-                        Email = "test@example.com",
-                        UserName = "test_user",
+                        Name = "Admin User",
+                        Email = "admin@example.com",
+                        UserName = "admin_user",
                         // Hashed AaBb_123456
                         PasswordHash =
                             "AQAAAAEAACcQAAAAEP9cuKzijGwu9rDTOEX6twF0kns/esm9KijT4K+wu4xxO4+IVafQGcyxnmMFc2gyXg==",
+                    }
+                );
+            modelBuilder
+                .Entity<Role>()
+                .HasData(
+                    new Role
+                    {
+                        Id = 1,
+                        Name = "ADMIN",
+                        CreatedAt = new DateTime(2023, 04, 15),
+                        UpdatedAt = new DateTime(2023, 04, 15),
+                    }
+                );
+            modelBuilder
+                .Entity<UserRole>()
+                .HasData(
+                    new UserRole
+                    {
+                        Id = 1,
+                        UserId = 1,
+                        RoleId = 1,
+                        CreatedAt = new DateTime(2023, 04, 15),
+                        UpdatedAt = new DateTime(2023, 04, 15),
                     }
                 );
 
