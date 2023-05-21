@@ -13,6 +13,9 @@ namespace TaskManagerApp.Application.Profiles
             CreateMap<UserPutDto, User>();
             CreateMap<Signup, User>();
             CreateMap<User, UserAuthDto>();
+
+            CreateMap<Role, RoleDto>().ReverseMap();
+            CreateMap<UserRole, UserRoleDto>().ReverseMap();
         }
     }
 }

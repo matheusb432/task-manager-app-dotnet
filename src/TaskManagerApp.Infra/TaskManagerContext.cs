@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-using System.Xml;
 using TaskManagerApp.Domain.Models;
 using TaskManagerApp.Infra.Extensions;
 using TaskManagerApp.Infra.Utils;
@@ -30,6 +29,8 @@ namespace TaskManagerApp.Infra
         public DbSet<Timesheet> Timesheets { get; set; } = null!;
         public DbSet<TimesheetNote> TimesheetNotes { get; set; } = null!;
         public DbSet<User> Users { get; set; } = null!;
+        public DbSet<Role> Roles { get; set; } = null!;
+        public DbSet<UserRole> UserRoles { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

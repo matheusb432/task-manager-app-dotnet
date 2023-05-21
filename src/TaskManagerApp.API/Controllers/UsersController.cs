@@ -1,12 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TaskManagerApp.API.Configurations;
 using TaskManagerApp.Application.Dtos.User;
 using TaskManagerApp.Application.Interfaces;
+using TaskManagerApp.Application.Utils;
 using TaskManagerApp.Application.ViewModels;
 
 namespace TaskManagerApp.API.Controllers
 {
-    // TODO add admin role auth
+    [Authorize(Roles = Roles.Admin)]
     public sealed class UsersController : Controller
     {
         private readonly IUserService _service;

@@ -12,7 +12,7 @@ using TaskManagerApp.Infra;
 namespace TaskManagerApp.Infra.Migrations
 {
     [DbContext(typeof(TaskManagerContext))]
-    [Migration("20230521222115_AddUserRoles")]
+    [Migration("20230521224753_AddUserRoles")]
     partial class AddUserRoles
     {
         /// <inheritdoc />
@@ -446,19 +446,9 @@ namespace TaskManagerApp.Infra.Migrations
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("getdate()");
 
-                    b.Property<int?>("UserCreatedId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UserUpdatedId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UserCreatedId");
-
-                    b.HasIndex("UserUpdatedId");
-
-                    b.ToTable("Role");
+                    b.ToTable("Roles");
 
                     b.HasData(
                         new
@@ -654,29 +644,19 @@ namespace TaskManagerApp.Infra.Migrations
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("getdate()");
 
-                    b.Property<int?>("UserCreatedId")
-                        .HasColumnType("int");
-
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasMaxLength(100)
                         .IsUnicode(false)
                         .HasColumnType("varchar(100)");
 
-                    b.Property<int?>("UserUpdatedId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("Email")
                         .IsUnique();
 
-                    b.HasIndex("UserCreatedId");
-
                     b.HasIndex("UserName")
                         .IsUnique();
-
-                    b.HasIndex("UserUpdatedId");
 
                     b.ToTable("Users");
 
@@ -714,26 +694,16 @@ namespace TaskManagerApp.Infra.Migrations
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("getdate()");
 
-                    b.Property<int?>("UserCreatedId")
-                        .HasColumnType("int");
-
                     b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UserUpdatedId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("RoleId");
 
-                    b.HasIndex("UserCreatedId");
-
                     b.HasIndex("UserId");
 
-                    b.HasIndex("UserUpdatedId");
-
-                    b.ToTable("UserRole");
+                    b.ToTable("UserRoles");
 
                     b.HasData(
                         new
@@ -923,23 +893,6 @@ namespace TaskManagerApp.Infra.Migrations
                     b.Navigation("UserUpdated");
                 });
 
-            modelBuilder.Entity("TaskManagerApp.Domain.Models.Role", b =>
-                {
-                    b.HasOne("TaskManagerApp.Domain.Models.User", "UserCreated")
-                        .WithMany()
-                        .HasForeignKey("UserCreatedId")
-                        .OnDelete(DeleteBehavior.NoAction);
-
-                    b.HasOne("TaskManagerApp.Domain.Models.User", "UserUpdated")
-                        .WithMany()
-                        .HasForeignKey("UserUpdatedId")
-                        .OnDelete(DeleteBehavior.NoAction);
-
-                    b.Navigation("UserCreated");
-
-                    b.Navigation("UserUpdated");
-                });
-
             modelBuilder.Entity("TaskManagerApp.Domain.Models.TaskItem", b =>
                 {
                     b.HasOne("TaskManagerApp.Domain.Models.Timesheet", "Timesheet")
@@ -1012,23 +965,6 @@ namespace TaskManagerApp.Infra.Migrations
                     b.Navigation("UserUpdated");
                 });
 
-            modelBuilder.Entity("TaskManagerApp.Domain.Models.User", b =>
-                {
-                    b.HasOne("TaskManagerApp.Domain.Models.User", "UserCreated")
-                        .WithMany()
-                        .HasForeignKey("UserCreatedId")
-                        .OnDelete(DeleteBehavior.NoAction);
-
-                    b.HasOne("TaskManagerApp.Domain.Models.User", "UserUpdated")
-                        .WithMany()
-                        .HasForeignKey("UserUpdatedId")
-                        .OnDelete(DeleteBehavior.NoAction);
-
-                    b.Navigation("UserCreated");
-
-                    b.Navigation("UserUpdated");
-                });
-
             modelBuilder.Entity("TaskManagerApp.Domain.Models.UserRole", b =>
                 {
                     b.HasOne("TaskManagerApp.Domain.Models.Role", "Role")
@@ -1037,29 +973,15 @@ namespace TaskManagerApp.Infra.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("TaskManagerApp.Domain.Models.User", "UserCreated")
-                        .WithMany()
-                        .HasForeignKey("UserCreatedId")
-                        .OnDelete(DeleteBehavior.NoAction);
-
                     b.HasOne("TaskManagerApp.Domain.Models.User", "User")
                         .WithMany("UserRoles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TaskManagerApp.Domain.Models.User", "UserUpdated")
-                        .WithMany()
-                        .HasForeignKey("UserUpdatedId")
-                        .OnDelete(DeleteBehavior.NoAction);
-
                     b.Navigation("Role");
 
                     b.Navigation("User");
-
-                    b.Navigation("UserCreated");
-
-                    b.Navigation("UserUpdated");
                 });
 
             modelBuilder.Entity("TaskManagerApp.Domain.Models.Goal", b =>

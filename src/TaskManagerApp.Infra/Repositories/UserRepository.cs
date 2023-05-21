@@ -10,11 +10,15 @@ namespace TaskManagerApp.Infra.Repositories
 
         public override IQueryable<User> Query() => _dbSet.AsQueryable().AsSplitQuery();
 
+        public IQueryable<User> QueryWithRoles() =>
+            Query().Include(x => x.UserRoles).ThenInclude(x => x.Role);
+
         public async Task<User?> GetByEmailAsync(string email) =>
-            await Query().FirstOrDefaultAsync(x => x.Email.ToLower() == email.ToLower());
+            await QueryWithRoles().FirstOrDefaultAsync(x => x.Email.ToLower() == email.ToLower());
 
         public async Task<User?> GetByUserNameAsync(string userName) =>
-            await Query().FirstOrDefaultAsync(x => x.UserName.ToLower() == userName.ToLower());
+            await QueryWithRoles()
+                .FirstOrDefaultAsync(x => x.UserName.ToLower() == userName.ToLower());
 
         public async Task<bool> CanCreateUser(User user)
         {

@@ -28,7 +28,6 @@
             _driver = WebDriverUtils.InitializeTest(_driver);
 
             _driver.Navigate(5, PageUrls.HomeUrl).GoToUrl(PageUrls.TimesheetsUrl);
-            // TODO create new user on initialization
         }
 
         [TestCleanup]

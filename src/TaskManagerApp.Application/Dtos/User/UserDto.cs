@@ -1,5 +1,6 @@
 ﻿using TaskManagerApp.Application.Dtos.Profile;
 using TaskManagerApp.Application.Dtos.TaskItem;
+using TaskManagerApp.Domain.Models;
 
 namespace TaskManagerApp.Application.Dtos.User
 {
@@ -9,6 +10,7 @@ namespace TaskManagerApp.Application.Dtos.User
         {
             Profiles = new();
             PresetTaskItems = new();
+            UserRoles = new();
         }
 
         public int Id { get; set; }
@@ -17,5 +19,6 @@ namespace TaskManagerApp.Application.Dtos.User
         public string Email { get; set; } = string.Empty;
         public List<ProfileDto> Profiles { get; set; }
         public List<PresetTaskItemDto> PresetTaskItems { get; set; }
+        public List<UserRole> UserRoles { get; set; }
     }
 }

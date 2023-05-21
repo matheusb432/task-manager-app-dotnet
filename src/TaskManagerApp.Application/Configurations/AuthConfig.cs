@@ -40,18 +40,26 @@ namespace TaskManagerApp.Application.Configurations
 
         public static string CreateToken(User user)
         {
+            var claims = new ClaimsIdentity(
+                new Claim[]
+                {
+                    new Claim(ClaimTypes.Name, user.UserName),
+                    new Claim(ClaimTypes.Email, user.Email),
+                    new Claim("UserId", user.Id.ToString()),
+                }
+            );
+            List<Role> roles =
+                user.UserRoles?.Select(ur => ur.Role ?? new Role())?.ToList() ?? new List<Role>();
+
+            foreach (var roleName in roles.Select(r => r.Name))
+            {
+                claims.AddClaim(new Claim(ClaimTypes.Role, roleName));
+            }
+
             var tokenHandler = new JwtSecurityTokenHandler();
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(
-                    new Claim[]
-                    {
-                        new Claim(ClaimTypes.Name, user.UserName),
-                        new Claim(ClaimTypes.Email, user.Email),
-                        new Claim("UserId", user.Id.ToString()),
-                        // TODO add user roles logic
-                    }
-                ),
+                Subject = claims,
                 Expires = DateTime.UtcNow.AddDays(30),
                 SigningCredentials = new SigningCredentials(
                     SecurityKey,

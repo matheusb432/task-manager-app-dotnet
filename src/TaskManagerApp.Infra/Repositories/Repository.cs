@@ -11,7 +11,7 @@ namespace TaskManagerApp.Infra.Repositories
         protected readonly DbSet<T> _dbSet;
         protected readonly int _userId;
 
-        public Repository(TaskManagerContext context)
+        protected Repository(TaskManagerContext context)
         {
             _context = context;
             _dbSet = _context.Set<T>();
