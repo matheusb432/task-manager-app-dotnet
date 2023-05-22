@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using System.Security.Claims;
 using TaskManagerApp.Domain.Models;
 using TaskManagerApp.Infra.Extensions;
 using TaskManagerApp.Infra.Utils;
@@ -76,10 +77,22 @@ namespace TaskManagerApp.Infra
 
         public int GetHttpContextUserId()
         {
-            var userId = int.Parse(
+            return int.Parse(
                 _httpContextAccessor.HttpContext?.User?.FindFirst("UserId")?.Value ?? "-1"
             );
-            return userId;
+        }
+
+        public bool GetHttpContextIsAdmin()
+        {
+            var identity = _httpContextAccessor.HttpContext?.User?.Identity as ClaimsIdentity;
+            if (identity == null)
+                return false;
+            IEnumerable<Claim> claims = identity.Claims;
+            var adminClaim = claims.FirstOrDefault(
+                x => x.Type == identity.RoleClaimType && x.Value == "ADMIN"
+            );
+
+            return adminClaim != null;
         }
     }
 }

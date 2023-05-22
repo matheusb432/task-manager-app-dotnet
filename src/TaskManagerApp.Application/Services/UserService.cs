@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
 using TaskManagerApp.Application.Dtos.Profile;
 using TaskManagerApp.Application.Dtos.User;
 using TaskManagerApp.Application.Extensions;

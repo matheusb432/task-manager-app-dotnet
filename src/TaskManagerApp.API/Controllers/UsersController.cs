@@ -8,7 +8,6 @@ using TaskManagerApp.Application.ViewModels;
 
 namespace TaskManagerApp.API.Controllers
 {
-    [Authorize(Roles = Roles.Admin)]
     public sealed class UsersController : Controller
     {
         private readonly IUserService _service;
@@ -25,14 +24,17 @@ namespace TaskManagerApp.API.Controllers
             CustomResponse(_service.RolesQuery());
 
         [HttpPost]
+        [Authorize(Roles = Roles.Admin)]
         public async Task<ActionResult<PostReturnViewModel>> Post(UserPostDto viewModel) =>
             CustomResponse(await _service.Insert(viewModel));
 
         [HttpPut("{id}")]
+        [Authorize(Roles = Roles.Admin)]
         public async Task<ActionResult> Put(int id, UserPutDto viewModel) =>
             CustomResponse(await _service.Update(id, viewModel));
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = Roles.Admin)]
         public async Task<ActionResult> Delete(int id) => CustomResponse(await _service.Delete(id));
     }
 }

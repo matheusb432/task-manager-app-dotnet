@@ -34,7 +34,7 @@ namespace TaskManagerApp.Application.Services
             var authenticatedUser = await Authenticate(login);
 
             if (authenticatedUser == null)
-                return Error(HttpStatusCode.Unauthorized);
+                return Error("Invalid login credentials!", HttpStatusCode.Unauthorized);
 
             var token = AuthConfig.CreateToken(authenticatedUser);
 
@@ -45,7 +45,7 @@ namespace TaskManagerApp.Application.Services
         {
             var newUser = SignupToUserWithHashedPassword(signup);
             if (newUser == null || !EntityIsValid(new UserValidator(), newUser))
-                return Error(HttpStatusCode.Unauthorized);
+                return Error("Invalid signup data!", HttpStatusCode.Unauthorized);
 
             if (await _userRepo.EmailExists(newUser.Email))
                 return Error($"Email {newUser.Email} is already in use", HttpStatusCode.Conflict);

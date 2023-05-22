@@ -10,12 +10,14 @@ namespace TaskManagerApp.Infra.Repositories
         protected readonly TaskManagerContext _context;
         protected readonly DbSet<T> _dbSet;
         protected readonly int _userId;
+        protected readonly bool _isAdmin;
 
         protected Repository(TaskManagerContext context)
         {
             _context = context;
             _dbSet = _context.Set<T>();
             _userId = _context.GetHttpContextUserId();
+            _isAdmin = _context.GetHttpContextIsAdmin();
         }
 
         public virtual IQueryable<T> Query() =>
