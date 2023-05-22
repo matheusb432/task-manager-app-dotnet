@@ -19,6 +19,11 @@ namespace TaskManagerApp.API.Controllers
         [ODataQuery]
         public ActionResult<IQueryable<UserDto>> Query() => CustomResponse(_service.Query());
 
+        [HttpGet("roles/odata")]
+        [ODataQuery]
+        public ActionResult<IQueryable<RoleDto>> QueryRoles() =>
+            CustomResponse(_service.RolesQuery());
+
         [HttpPost]
         public async Task<ActionResult<PostReturnViewModel>> Post(UserPostDto viewModel) =>
             CustomResponse(await _service.Insert(viewModel));

@@ -33,6 +33,8 @@ namespace TaskManagerApp.Infra.Configurations
             services.AddScoped<ITaskItemRepository, TaskItemRepository>();
             services.AddScoped<ITimesheetRepository, TimesheetRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserRoleRepository, UserRoleRepository>();
+            services.AddScoped<IRoleRepository, RoleRepository>();
         }
 
         private static void AddDatabase(

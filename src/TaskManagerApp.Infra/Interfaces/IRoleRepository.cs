@@ -2,5 +2,5 @@
 
 namespace TaskManagerApp.Infra.Interfaces
 {
-    internal interface IRoleRepository : IRepository<Role> { }
+    public interface IRoleRepository : IRepository<Role> { }
 }

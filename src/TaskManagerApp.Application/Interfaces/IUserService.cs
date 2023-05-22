@@ -6,6 +6,7 @@ namespace TaskManagerApp.Application.Interfaces
     public interface IUserService
     {
         OperationResult Query();
+        OperationResult RolesQuery();
 
         Task<OperationResult> Insert(UserPostDto viewModel);
 
