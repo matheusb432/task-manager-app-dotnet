@@ -74,42 +74,42 @@
 
         public static void FillTimesheetForm(IWebDriver driver)
         {
-            driver.FindElementWithWait(By.Id("cTimesheetFormNote0")).Clear();
-            driver.FindElementWithWait(By.Id("cTimesheetFormNote0")).SendKeys("Test note");
+            driver.FindElementWithWait(By.Id("cTimesheetFormNote0Note")).Clear();
+            driver.FindElementWithWait(By.Id("cTimesheetFormNote0Note")).SendKeys("Test note");
 
             WebDriverUtils.ScrollToBottom(driver.FindElementWithWait(By.Id("cTimesheetFormNote0")));
 
             driver.FindElementWithWait(By.Id("cFormArrayAddNote")).Click();
-            driver.FindElementWithWait(By.Id("cTimesheetFormNote1")).Clear();
-            driver.FindElementWithWait(By.Id("cTimesheetFormNote1")).SendKeys("Note 2");
-            driver.FindElementWithWait(By.Id("cTimesheetFormTaskTitle0")).Clear();
-            driver.FindElementWithWait(By.Id("cTimesheetFormTaskTitle0")).SendKeys("Task 1");
-            driver.FindElementWithWait(By.Id("cTimesheetFormTaskComment0")).Clear();
-            driver.FindElementWithWait(By.Id("cTimesheetFormTaskComment0")).SendKeys("Comment 1");
-            driver.FindElementWithWait(By.Id("cTimesheetFormTaskTime0")).Clear();
-            driver.FindElementWithWait(By.Id("cTimesheetFormTaskTime0")).SendKeys("10:30");
-            driver.FindElementWithWait(By.Id("cTimesheetFormTaskRating0")).Clear();
-            driver.FindElementWithWait(By.Id("cTimesheetFormTaskRating0")).SendKeys("5");
-            driver.FindElementWithWait(By.Id("cTimesheetFormTaskImportance0")).Clear();
-            driver.FindElementWithWait(By.Id("cTimesheetFormTaskImportance0")).SendKeys("3");
+            driver.FindElementWithWait(By.Id("cTimesheetFormNote1Note")).Clear();
+            driver.FindElementWithWait(By.Id("cTimesheetFormNote1Note")).SendKeys("Note 2");
+            driver.FindElementWithWait(By.Id("cTimesheetFormTask0Title")).Clear();
+            driver.FindElementWithWait(By.Id("cTimesheetFormTask0Title")).SendKeys("Task 1");
+            driver.FindElementWithWait(By.Id("cTimesheetFormTask0Comment")).Clear();
+            driver.FindElementWithWait(By.Id("cTimesheetFormTask0Comment")).SendKeys("Comment 1");
+            driver.FindElementWithWait(By.Id("cTimesheetFormTask0Time")).Clear();
+            driver.FindElementWithWait(By.Id("cTimesheetFormTask0Time")).SendKeys("10:30");
+            driver.FindElementWithWait(By.Id("cTimesheetFormTask0Rating")).Clear();
+            driver.FindElementWithWait(By.Id("cTimesheetFormTask0Rating")).SendKeys("5");
+            driver.FindElementWithWait(By.Id("cTimesheetFormTask0Importance")).Clear();
+            driver.FindElementWithWait(By.Id("cTimesheetFormTask0Importance")).SendKeys("3");
 
             WebDriverUtils.ScrollToBottom(
-                driver.FindElementWithWait(By.Id("cTimesheetFormTaskImportance0"))
+                driver.FindElementWithWait(By.Id("cTimesheetFormTask0Importance"))
             );
 
             driver.FindElementWithWait(By.Id("cFormArrayAddTask")).Click();
-            driver.FindElementWithWait(By.Id("cTimesheetFormTaskTitle1")).Clear();
-            driver.FindElementWithWait(By.Id("cTimesheetFormTaskTitle1")).SendKeys("Task 2");
-            driver.FindElementWithWait(By.Id("cTimesheetFormTaskComment1")).Clear();
-            driver.FindElementWithWait(By.Id("cTimesheetFormTaskComment1")).SendKeys("...");
-            driver.FindElementWithWait(By.Id("cTimesheetFormTaskTime1")).Clear();
-            driver.FindElementWithWait(By.Id("cTimesheetFormTaskTime1")).SendKeys("03:00");
-            driver.FindElementWithWait(By.Id("cTimesheetFormTaskTime1")).Clear();
-            driver.FindElementWithWait(By.Id("cTimesheetFormTaskTime1")).SendKeys("03:03");
-            driver.FindElementWithWait(By.Id("cTimesheetFormTaskTime1")).Clear();
-            driver.FindElementWithWait(By.Id("cTimesheetFormTaskTime1")).SendKeys("03:30");
-            driver.FindElementWithWait(By.Id("cTimesheetFormTaskRating1")).Clear();
-            driver.FindElementWithWait(By.Id("cTimesheetFormTaskRating1")).SendKeys("3");
+            driver.FindElementWithWait(By.Id("cTimesheetFormTask1Title")).Clear();
+            driver.FindElementWithWait(By.Id("cTimesheetFormTask1Title")).SendKeys("Task 2");
+            driver.FindElementWithWait(By.Id("cTimesheetFormTask1Comment")).Clear();
+            driver.FindElementWithWait(By.Id("cTimesheetFormTask1Comment")).SendKeys("...");
+            driver.FindElementWithWait(By.Id("cTimesheetFormTask1Time")).Clear();
+            driver.FindElementWithWait(By.Id("cTimesheetFormTask1Time")).SendKeys("03:00");
+            driver.FindElementWithWait(By.Id("cTimesheetFormTask1Time")).Clear();
+            driver.FindElementWithWait(By.Id("cTimesheetFormTask1Time")).SendKeys("03:03");
+            driver.FindElementWithWait(By.Id("cTimesheetFormTask1Time")).Clear();
+            driver.FindElementWithWait(By.Id("cTimesheetFormTask1Time")).SendKeys("03:30");
+            driver.FindElementWithWait(By.Id("cTimesheetFormTask1Rating")).Clear();
+            driver.FindElementWithWait(By.Id("cTimesheetFormTask1Rating")).SendKeys("3");
         }
 
         public static void GoToCreateTimesheet(IWebDriver driver, string date = "")
