@@ -52,7 +52,7 @@ namespace TaskManagerApp.Infra.Configurations
         private static void AddEnvDatabase(this IServiceCollection services) =>
             services.AddDbContext<TaskManagerContext>(
                 opt =>
-                    opt.UseSqlServer(ConnectionStringBuilder.BuildEnvCnnStr("TaskManagerAppDB"))
+                    opt.UseSqlServer(ConnectionStringBuilder.BuildEnvCnnStr())
                         .LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Error)
             );
     }

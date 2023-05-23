@@ -10,11 +10,12 @@ namespace TaskManagerApp.Application.Configurations
     {
         public static void AddApplicationConfig(
             this IServiceCollection services,
-            IConfiguration configuration
+            IConfiguration configuration,
+            bool isEnv
         )
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-            services.AddJWTAuth(configuration);
+            services.AddJWTAuth(configuration, isEnv);
 
             services.AddServices();
         }

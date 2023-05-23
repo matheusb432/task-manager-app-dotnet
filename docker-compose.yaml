@@ -1,0 +1,29 @@
+version: '3.4'
+
+services:
+  api:
+    container_name: ${APP_NAME}
+    image: matheusb432/${APP_NAME}
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: src/TaskManagerApp.API/Dockerfile
+    ports:
+      - '${API_PORT}:80'
+
+  db:
+    container_name: tma-db
+    image: 'mcr.microsoft.com/mssql/server'
+    env_file:
+      - .env
+    environment:
+      SA_PASSWORD: '${DB_PASSWORD}'
+      ACCEPT_EULA: 'Y'
+    ports:
+      - '${DB_PORT}:1433'
+    volumes:
+      - dbdata:/var/opt/mssql
+
+volumes:
+  dbdata:

@@ -4,9 +4,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net.WebSockets;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using TaskManagerApp.Application.Utils;
 using TaskManagerApp.Domain.Models;
 
 namespace TaskManagerApp.Application.Configurations
@@ -18,10 +20,11 @@ namespace TaskManagerApp.Application.Configurations
 
         public static void AddJWTAuth(
             this IServiceCollection services,
-            IConfiguration configuration
+            IConfiguration configuration,
+            bool isEnv = false
         )
         {
-            SetCredentials(configuration);
+            SetCredentials(configuration, isEnv);
 
             services
                 .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -71,9 +74,12 @@ namespace TaskManagerApp.Application.Configurations
             return tokenHandler.WriteToken(token);
         }
 
-        private static void SetCredentials(IConfiguration configuration)
+        private static void SetCredentials(IConfiguration configuration, bool isEnv)
         {
-            var keyBytes = Encoding.UTF8.GetBytes(configuration.GetValue<string>("Jwt:Secret"));
+            var key = isEnv
+                ? EnvUtils.GetEnv("JWT_SECRET")
+                : configuration.GetValue<string>("Jwt:Secret");
+            var keyBytes = Encoding.UTF8.GetBytes(key);
             SecurityKey = new(keyBytes);
         }
     }
