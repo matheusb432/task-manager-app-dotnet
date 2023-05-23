@@ -30,10 +30,14 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    // TODO configure proper cors on production
-    //app.UseCors(x => x.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin());
+    app.UseCors(x => x.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin());
 }
-app.UseCors(x => x.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin());
+else
+{
+    var allowedOrigins =
+        Environment.GetEnvironmentVariable("ALLOWED_ORIGINS")?.Split(';') ?? Array.Empty<string>();
+    app.UseCors(x => x.WithOrigins(allowedOrigins).AllowAnyMethod().AllowAnyHeader());
+}
 
 app.UseAuthentication();
 app.UseResponseCaching();

@@ -14,7 +14,7 @@ services:
 
   db:
     container_name: tma-db
-    image: 'mcr.microsoft.com/mssql/server'
+    image: 'mcr.microsoft.com/mssql/server:2019-CU13-ubuntu-20.04'
     env_file:
       - .env
     environment:
