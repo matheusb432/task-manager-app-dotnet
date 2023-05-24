@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using TaskManagerApp.Infra.Extensions;
 using TaskManagerApp.Infra.Interfaces;
 using TaskManagerApp.Infra.Repositories;
-using TaskManagerApp.Infra.Utils;
 
 namespace TaskManagerApp.Infra.Configurations
 {
@@ -43,9 +42,7 @@ namespace TaskManagerApp.Infra.Configurations
         ) =>
             services.AddDbContext<TaskManagerContext>(
                 opt =>
-                    opt.UseSqlServer(
-                            configuration.GetConnectionString(InfraUtils.DefaultConnectionName)
-                        )
+                    opt.UseSqlServer(ConnectionStringBuilder.BuildCnnStr(configuration))
                         .LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Error)
             );
 

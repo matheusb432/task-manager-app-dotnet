@@ -1,4 +1,6 @@
-﻿using TaskManagerApp.Infra.Utils;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
+using TaskManagerApp.Infra.Utils;
 
 namespace TaskManagerApp.Infra.Extensions
 {
@@ -15,6 +17,18 @@ namespace TaskManagerApp.Infra.Extensions
                 $"Server={host}; Database={name}; User ID={user}; TrustServerCertificate=True;Password={password}";
 
             return cnnStr;
+        }
+
+        public static string BuildCnnStr(IConfiguration configuration)
+        {
+            var conStrBuilder = new SqlConnectionStringBuilder(
+                configuration.GetConnectionString(InfraUtils.DefaultConnectionName)
+            );
+            if (string.IsNullOrEmpty(conStrBuilder.Password))
+            {
+                conStrBuilder.Password = configuration["DbPassword"];
+            }
+            return conStrBuilder.ConnectionString;
         }
     }
 }

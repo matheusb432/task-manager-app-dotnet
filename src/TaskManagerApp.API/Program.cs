@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.OData;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using TaskManagerApp.API.Configurations;
 using TaskManagerApp.Application.Configurations;
@@ -34,8 +35,17 @@ if (app.Environment.IsDevelopment())
 }
 else
 {
-    var allowedOrigins =
-        Environment.GetEnvironmentVariable("ALLOWED_ORIGINS")?.Split(';') ?? Array.Empty<string>();
+    var allowedOrigins = Array.Empty<string>();
+    if (isDockerInstance)
+    {
+        allowedOrigins =
+            Environment.GetEnvironmentVariable("ALLOWED_ORIGINS")?.Split(';')
+            ?? Array.Empty<string>();
+    }
+    else
+    {
+        allowedOrigins = configuration.GetSection("AllowedOrigins").Get<string[]>();
+    }
     app.UseCors(x => x.WithOrigins(allowedOrigins).AllowAnyMethod().AllowAnyHeader());
 }
 

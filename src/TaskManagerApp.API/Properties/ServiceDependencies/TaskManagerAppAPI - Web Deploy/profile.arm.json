@@ -21,7 +21,7 @@
     },
     "resourceName": {
       "type": "string",
-      "defaultValue": "TaskManagerAppAPI20230524012127",
+      "defaultValue": "TaskManagerAppAPI",
       "metadata": {
         "description": "Name of the main resource to be created by this template."
       }
