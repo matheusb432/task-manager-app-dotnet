@@ -12,15 +12,15 @@ using TaskManagerApp.Infra;
 namespace TaskManagerApp.Infra.Migrations
 {
     [DbContext(typeof(TaskManagerContext))]
-    [Migration("20230510225709_TaskItemCommentToNullable")]
-    partial class TaskItemCommentToNullable
+    [Migration("20230523223918_TmaDb_v1")]
+    partial class TmaDb_v1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.4")
+                .HasAnnotation("ProductVersion", "7.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -422,6 +422,44 @@ namespace TaskManagerApp.Infra.Migrations
                         });
                 });
 
+            modelBuilder.Entity("TaskManagerApp.Domain.Models.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime")
+                        .HasDefaultValueSql("getdate()");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime")
+                        .HasDefaultValueSql("getdate()");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2023, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "ADMIN",
+                            UpdatedAt = new DateTime(2023, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
+                });
+
             modelBuilder.Entity("TaskManagerApp.Domain.Models.TaskItem", b =>
                 {
                     b.Property<int>("Id")
@@ -606,29 +644,19 @@ namespace TaskManagerApp.Infra.Migrations
                         .HasColumnType("datetime")
                         .HasDefaultValueSql("getdate()");
 
-                    b.Property<int?>("UserCreatedId")
-                        .HasColumnType("int");
-
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasMaxLength(100)
                         .IsUnicode(false)
                         .HasColumnType("varchar(100)");
 
-                    b.Property<int?>("UserUpdatedId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("Email")
                         .IsUnique();
 
-                    b.HasIndex("UserCreatedId");
-
                     b.HasIndex("UserName")
                         .IsUnique();
-
-                    b.HasIndex("UserUpdatedId");
 
                     b.ToTable("Users");
 
@@ -637,11 +665,54 @@ namespace TaskManagerApp.Infra.Migrations
                         {
                             Id = 1,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "test@example.com",
-                            Name = "Test User",
+                            Email = "admin@example.com",
+                            Name = "Admin User",
                             PasswordHash = "AQAAAAEAACcQAAAAEP9cuKzijGwu9rDTOEX6twF0kns/esm9KijT4K+wu4xxO4+IVafQGcyxnmMFc2gyXg==",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserName = "test_user"
+                            UserName = "admin_user"
+                        });
+                });
+
+            modelBuilder.Entity("TaskManagerApp.Domain.Models.UserRole", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime")
+                        .HasDefaultValueSql("getdate()");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime")
+                        .HasDefaultValueSql("getdate()");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2023, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RoleId = 1,
+                            UpdatedAt = new DateTime(2023, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 1
                         });
                 });
 
@@ -894,21 +965,23 @@ namespace TaskManagerApp.Infra.Migrations
                     b.Navigation("UserUpdated");
                 });
 
-            modelBuilder.Entity("TaskManagerApp.Domain.Models.User", b =>
+            modelBuilder.Entity("TaskManagerApp.Domain.Models.UserRole", b =>
                 {
-                    b.HasOne("TaskManagerApp.Domain.Models.User", "UserCreated")
-                        .WithMany()
-                        .HasForeignKey("UserCreatedId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                    b.HasOne("TaskManagerApp.Domain.Models.Role", "Role")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
-                    b.HasOne("TaskManagerApp.Domain.Models.User", "UserUpdated")
-                        .WithMany()
-                        .HasForeignKey("UserUpdatedId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                    b.HasOne("TaskManagerApp.Domain.Models.User", "User")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("UserCreated");
+                    b.Navigation("Role");
 
-                    b.Navigation("UserUpdated");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("TaskManagerApp.Domain.Models.Goal", b =>
@@ -933,6 +1006,11 @@ namespace TaskManagerApp.Infra.Migrations
                     b.Navigation("Profiles");
                 });
 
+            modelBuilder.Entity("TaskManagerApp.Domain.Models.Role", b =>
+                {
+                    b.Navigation("UserRoles");
+                });
+
             modelBuilder.Entity("TaskManagerApp.Domain.Models.TaskItem", b =>
                 {
                     b.Navigation("GoalTaskItems");
@@ -952,6 +1030,8 @@ namespace TaskManagerApp.Infra.Migrations
                     b.Navigation("Profiles");
 
                     b.Navigation("Timesheets");
+
+                    b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618
         }
