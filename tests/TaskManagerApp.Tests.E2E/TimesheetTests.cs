@@ -74,14 +74,16 @@
 
         public static void FillTimesheetForm(IWebDriver driver)
         {
-            driver.FindElementWithWait(By.Id("cTimesheetFormNote0Note")).Clear();
-            driver.FindElementWithWait(By.Id("cTimesheetFormNote0Note")).SendKeys("Test note");
+            driver.FindElementWithWait(By.Id("cTimesheetFormNote0Comment")).Clear();
+            driver.FindElementWithWait(By.Id("cTimesheetFormNote0Comment")).SendKeys("Test note");
 
-            WebDriverUtils.ScrollToBottom(driver.FindElementWithWait(By.Id("cTimesheetFormNote0")));
+            WebDriverUtils.ScrollToBottom(
+                driver.FindElementWithWait(By.Id("cTimesheetFormNote0Comment"))
+            );
 
             driver.FindElementWithWait(By.Id("cFormArrayAddNote")).Click();
-            driver.FindElementWithWait(By.Id("cTimesheetFormNote1Note")).Clear();
-            driver.FindElementWithWait(By.Id("cTimesheetFormNote1Note")).SendKeys("Note 2");
+            driver.FindElementWithWait(By.Id("cTimesheetFormNote1Comment")).Clear();
+            driver.FindElementWithWait(By.Id("cTimesheetFormNote1Comment")).SendKeys("Note 2");
             driver.FindElementWithWait(By.Id("cTimesheetFormTask0Title")).Clear();
             driver.FindElementWithWait(By.Id("cTimesheetFormTask0Title")).SendKeys("Task 1");
             driver.FindElementWithWait(By.Id("cTimesheetFormTask0Comment")).Clear();
