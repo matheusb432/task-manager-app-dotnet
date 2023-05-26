@@ -2,8 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
-using TaskManagerApp.Application.Extensions;
-using TaskManagerApp.Application.ViewModels;
+using TaskManagerApp.Application.Common.ViewModels;
 
 namespace TaskManagerApp.API.Controllers
 {

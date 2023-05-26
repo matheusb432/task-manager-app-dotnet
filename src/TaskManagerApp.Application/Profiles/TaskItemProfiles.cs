@@ -1,4 +1,4 @@
-﻿using TaskManagerApp.Application.Dtos.TaskItem;
+﻿using TaskManagerApp.Application.Common.Dtos.TaskItem;
 using TaskManagerApp.Application.Utils;
 using TaskManagerApp.Domain.Models;
 

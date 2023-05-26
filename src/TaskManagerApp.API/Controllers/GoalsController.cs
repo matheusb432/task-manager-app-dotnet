@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TaskManagerApp.API.Configurations;
-using TaskManagerApp.Application.Dtos.Goal;
-using TaskManagerApp.Application.Interfaces;
-using TaskManagerApp.Application.ViewModels;
+using TaskManagerApp.Application.Common.Dtos.Goal;
+using TaskManagerApp.Application.Common.Interfaces;
+using TaskManagerApp.Application.Common.ViewModels;
 
 namespace TaskManagerApp.API.Controllers
 {

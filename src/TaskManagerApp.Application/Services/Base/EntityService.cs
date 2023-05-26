@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using System.Net;
-using TaskManagerApp.Application.Extensions;
+using TaskManagerApp.Application.Common.ViewModels;
 using TaskManagerApp.Domain.Models;
 using TaskManagerApp.Infra.Interfaces;
 

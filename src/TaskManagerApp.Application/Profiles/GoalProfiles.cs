@@ -1,4 +1,4 @@
-﻿using TaskManagerApp.Application.Dtos.Goal;
+﻿using TaskManagerApp.Application.Common.Dtos.Goal;
 using TaskManagerApp.Domain.Models;
 
 namespace TaskManagerApp.Application.Profiles

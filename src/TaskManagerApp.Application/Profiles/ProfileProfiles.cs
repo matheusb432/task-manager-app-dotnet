@@ -1,4 +1,4 @@
-﻿using TaskManagerApp.Application.Dtos.Profile;
+﻿using TaskManagerApp.Application.Common.Dtos.Profile;
 using TaskManagerApp.Application.Utils;
 using TaskManagerApp.Domain.Models;
 

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using TaskManagerApp.Application.Dtos.Auth;
-using TaskManagerApp.Application.Interfaces;
+using TaskManagerApp.Application.Common.Dtos.Auth;
+using TaskManagerApp.Application.Common.Interfaces;
 
 namespace TaskManagerApp.API.Controllers
 {

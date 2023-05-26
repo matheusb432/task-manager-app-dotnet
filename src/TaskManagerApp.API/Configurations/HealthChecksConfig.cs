@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Newtonsoft.Json;
-using TaskManagerApp.Application.ViewModels;
+using TaskManagerApp.Application.Common.ViewModels;
 
 namespace TaskManagerApp.API.Configurations
 {

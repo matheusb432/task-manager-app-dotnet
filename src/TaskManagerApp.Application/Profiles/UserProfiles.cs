@@ -1,5 +1,5 @@
-﻿using TaskManagerApp.Application.Dtos.Auth;
-using TaskManagerApp.Application.Dtos.User;
+﻿using TaskManagerApp.Application.Common.Dtos.Auth;
+using TaskManagerApp.Application.Common.Dtos.User;
 using TaskManagerApp.Domain.Models;
 
 namespace TaskManagerApp.Application.Profiles

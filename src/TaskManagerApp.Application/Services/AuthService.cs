@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using System.Net;
+using TaskManagerApp.Application.Common.Dtos.Auth;
+using TaskManagerApp.Application.Common.Dtos.User;
+using TaskManagerApp.Application.Common.Dtos.Validators;
+using TaskManagerApp.Application.Common.Interfaces;
+using TaskManagerApp.Application.Common.ViewModels;
 using TaskManagerApp.Application.Configurations;
-using TaskManagerApp.Application.Dtos.Auth;
-using TaskManagerApp.Application.Dtos.User;
-using TaskManagerApp.Application.Dtos.Validators;
-using TaskManagerApp.Application.Extensions;
-using TaskManagerApp.Application.Interfaces;
 using TaskManagerApp.Application.Services.Base;
 using TaskManagerApp.Domain.Models;
 using TaskManagerApp.Domain.Models.Validators;
@@ -51,10 +51,12 @@ namespace TaskManagerApp.Application.Services
                 return Error($"Email {newUser.Email} is already in use", HttpStatusCode.Conflict);
 
             if (await _userRepo.UserNameExists(newUser.UserName))
+            {
                 return Error(
                     $"User name {newUser.UserName} is already in use",
                     HttpStatusCode.Conflict
                 );
+            }
 
             var createdUser = await _userRepo.InsertAsync(newUser);
 

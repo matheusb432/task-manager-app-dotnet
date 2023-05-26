@@ -1,10 +1,7 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
-using System.Security.Claims;
-using TaskManagerApp.Application.Dtos.Profile;
-using TaskManagerApp.Application.Dtos.User;
-using TaskManagerApp.Application.Extensions;
-using TaskManagerApp.Application.Interfaces;
+using TaskManagerApp.Application.Common.Dtos.User;
+using TaskManagerApp.Application.Common.Interfaces;
+using TaskManagerApp.Application.Common.ViewModels;
 using TaskManagerApp.Application.Services.Base;
 using TaskManagerApp.Domain.Models;
 using TaskManagerApp.Domain.Models.Validators;

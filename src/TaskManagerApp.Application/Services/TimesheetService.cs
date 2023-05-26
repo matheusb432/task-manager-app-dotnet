@@ -1,10 +1,9 @@
 ﻿using AutoMapper;
 using System.Net;
-using TaskManagerApp.Application.Dtos.Timesheet;
-using TaskManagerApp.Application.Extensions;
-using TaskManagerApp.Application.Interfaces;
+using TaskManagerApp.Application.Common.Dtos.Timesheet;
+using TaskManagerApp.Application.Common.Interfaces;
+using TaskManagerApp.Application.Common.ViewModels;
 using TaskManagerApp.Application.Services.Base;
-using TaskManagerApp.Application.ViewModels;
 using TaskManagerApp.Domain.Models;
 using TaskManagerApp.Domain.Models.Validators;
 using TaskManagerApp.Infra.Interfaces;

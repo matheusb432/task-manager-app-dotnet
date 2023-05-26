@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using TaskManagerApp.Application.Interfaces;
+using TaskManagerApp.Application.Common.Interfaces;
 using TaskManagerApp.Application.Services;
 
 namespace TaskManagerApp.Application.Configurations

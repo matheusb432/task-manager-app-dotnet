@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using TaskManagerApp.Application.Dtos.TaskItem;
-using TaskManagerApp.Application.Interfaces;
+using TaskManagerApp.Application.Common.Dtos.TaskItem;
+using TaskManagerApp.Application.Common.Interfaces;
 using TaskManagerApp.Application.Services.Base;
 using TaskManagerApp.Domain.Models;
 using TaskManagerApp.Domain.Models.Validators;

@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TaskManagerApp.API.Configurations;
-using TaskManagerApp.Application.Dtos.User;
-using TaskManagerApp.Application.Interfaces;
+using TaskManagerApp.Application.Common.Dtos.User;
+using TaskManagerApp.Application.Common.Interfaces;
+using TaskManagerApp.Application.Common.ViewModels;
 using TaskManagerApp.Application.Utils;
-using TaskManagerApp.Application.ViewModels;
 
 namespace TaskManagerApp.API.Controllers
 {

@@ -1,5 +1,5 @@
-﻿using TaskManagerApp.Application.Dtos.Timesheet;
-using TaskManagerApp.Application.ViewModels;
+﻿using TaskManagerApp.Application.Common.Dtos.Timesheet;
+using TaskManagerApp.Application.Common.ViewModels;
 using TaskManagerApp.Domain.Models;
 
 namespace TaskManagerApp.Application.Profiles

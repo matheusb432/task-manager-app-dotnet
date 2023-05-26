@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using Moq;
-using TaskManagerApp.Application.Dtos.Profile;
+using TaskManagerApp.Application.Common.Dtos.Profile;
+using TaskManagerApp.Application.Common.ViewModels;
 using TaskManagerApp.Application.Profiles;
 using TaskManagerApp.Application.Services;
-using TaskManagerApp.Application.ViewModels;
 using TaskManagerApp.Domain.Models;
 using TaskManagerApp.Domain.Utils;
 using TaskManagerApp.Infra.Interfaces;
