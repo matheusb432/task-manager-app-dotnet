@@ -1,10 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-#nullable disable
-
-#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
-
 namespace TaskManagerApp.Infra.Migrations
 {
     /// <inheritdoc />
@@ -433,6 +429,7 @@ namespace TaskManagerApp.Infra.Migrations
                         principalColumn: "Id");
                 });
 
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
             migrationBuilder.InsertData(
                 table: "ProfileTypes",
                 columns: new[] { "Id", "CreatedAt", "DateRangeEnd", "DateRangeStart", "Name", "Type", "UpdatedAt", "UserCreatedId", "UserUpdatedId" },
@@ -444,6 +441,7 @@ namespace TaskManagerApp.Infra.Migrations
                     { 4, new DateTime(2023, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "January 2023", "custom", new DateTime(2023, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null },
                     { 5, new DateTime(2023, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "2022", "custom", new DateTime(2023, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null }
                 });
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
 
             migrationBuilder.InsertData(
                 table: "Roles",

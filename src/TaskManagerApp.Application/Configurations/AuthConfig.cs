@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -79,6 +80,12 @@ namespace TaskManagerApp.Application.Configurations
             var key = isEnv
                 ? EnvUtils.GetEnv("JWT_SECRET")
                 : configuration.GetValue<string>("Jwt:Secret");
+
+            if (string.IsNullOrEmpty(key))
+            {
+                var env = isEnv ? "env" : "appsettings";
+                throw new Exception($"JWT Secret from `{env}` is not set");
+            }
             var keyBytes = Encoding.UTF8.GetBytes(key);
             SecurityKey = new(keyBytes);
         }

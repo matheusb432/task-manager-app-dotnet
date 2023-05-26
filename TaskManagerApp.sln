@@ -27,7 +27,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagerApp.Tests.Unit",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6 - Util", "6 - Util", "{3B2E1504-EAD4-45F3-A8D1-DBFF87524B6C}"
 	ProjectSection(SolutionItems) = preProject
+		.csharpierignore = .csharpierignore
 		.csharpierrc = .csharpierrc
+		.editorconfig = .editorconfig
 		.env.example = .env.example
 		docker-compose.yaml = docker-compose.yaml
 		README.md = README.md
