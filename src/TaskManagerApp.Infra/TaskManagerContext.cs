@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using System.Security.Claims;
+using TaskManagerApp.Application.Common.Interfaces;
 using TaskManagerApp.Domain.Models;
 using TaskManagerApp.Infra.Extensions;
 using TaskManagerApp.Infra.Utils;
@@ -10,14 +11,14 @@ namespace TaskManagerApp.Infra
 {
     public sealed class TaskManagerContext : DbContext
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
+        internal readonly ICurrentUserProvider CurrentUserProvider;
 
         public TaskManagerContext(
             DbContextOptions options,
-            IHttpContextAccessor httpContextAccessor
+            ICurrentUserProvider currentUserProvider
         ) : base(options)
         {
-            _httpContextAccessor = httpContextAccessor;
+            CurrentUserProvider = currentUserProvider;
         }
 
         public DbSet<Goal> Goals { get; set; } = null!;
@@ -61,7 +62,7 @@ namespace TaskManagerApp.Infra
             CancellationToken cancellationToken = default
         )
         {
-            var userId = GetHttpContextUserId();
+            var userId = CurrentUserProvider.UserId;
             var now = DateTime.Now;
 
             this.SetPropOnAdded("CreatedAt", now);
@@ -73,26 +74,6 @@ namespace TaskManagerApp.Infra
             }
 
             return await base.SaveChangesAsync(true, cancellationToken).ConfigureAwait(false);
-        }
-
-        public int GetHttpContextUserId()
-        {
-            return int.Parse(
-                _httpContextAccessor.HttpContext?.User?.FindFirst("UserId")?.Value ?? "-1"
-            );
-        }
-
-        public bool GetHttpContextIsAdmin()
-        {
-            var identity = _httpContextAccessor.HttpContext?.User?.Identity as ClaimsIdentity;
-            if (identity == null)
-                return false;
-            IEnumerable<Claim> claims = identity.Claims;
-            var adminClaim = claims.FirstOrDefault(
-                x => x.Type == identity.RoleClaimType && x.Value == "ADMIN"
-            );
-
-            return adminClaim != null;
         }
     }
 }

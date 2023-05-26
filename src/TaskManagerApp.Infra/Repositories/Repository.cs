@@ -16,8 +16,8 @@ namespace TaskManagerApp.Infra.Repositories
         {
             _context = context;
             _dbSet = _context.Set<T>();
-            _userId = _context.GetHttpContextUserId();
-            _isAdmin = _context.GetHttpContextIsAdmin();
+            _userId = _context.CurrentUserProvider.UserId;
+            _isAdmin = _context.CurrentUserProvider.IsAdmin;
         }
 
         public virtual IQueryable<T> Query() =>

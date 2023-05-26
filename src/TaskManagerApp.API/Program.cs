@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.OData;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using TaskManagerApp.API.Configurations;
+using TaskManagerApp.API.Services;
+using TaskManagerApp.Application.Common.Interfaces;
 using TaskManagerApp.Application.Configurations;
 using TaskManagerApp.Application.Utils;
 using TaskManagerApp.Infra;
@@ -15,6 +17,7 @@ var isDockerInstance = EnvUtils.IsDockerInstance();
 services.AddControllers().AddOData(opt => opt.Count().Filter().OrderBy().Select().SetMaxTop(50));
 
 services.AddHealthChecks().AddDbContextCheck<TaskManagerContext>();
+services.AddScoped<ICurrentUserProvider, CurrentUserProvider>();
 
 services.AddEndpointsApiExplorer();
 services.AddSwagger();
@@ -35,18 +38,14 @@ if (app.Environment.IsDevelopment())
 }
 else
 {
-    var allowedOrigins = Array.Empty<string>();
-    if (isDockerInstance)
-    {
-        allowedOrigins =
-            Environment.GetEnvironmentVariable("ALLOWED_ORIGINS")?.Split(';')
-            ?? Array.Empty<string>();
-    }
-    else
-    {
-        allowedOrigins = configuration.GetSection("AllowedOrigins").Get<string[]>();
-    }
-    app.UseCors(x => x.WithOrigins(allowedOrigins).AllowAnyMethod().AllowAnyHeader());
+    var allowedOrigins = isDockerInstance
+        ? Environment.GetEnvironmentVariable("ALLOWED_ORIGINS")?.Split(';')
+        : configuration.GetSection("AllowedOrigins").Get<string[]>();
+
+    app.UseCors(
+        x =>
+            x.WithOrigins(allowedOrigins ?? Array.Empty<string>()).AllowAnyMethod().AllowAnyHeader()
+    );
 }
 
 app.UseAuthentication();
