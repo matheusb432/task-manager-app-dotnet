@@ -115,6 +115,6 @@ namespace TaskManagerApp.Infra.Repositories
             }
         }
 
-        public async Task SaveChangesAsync() => await _context.SaveChangesAsync();
+        public virtual async Task SaveChangesAsync() => await _context.SaveChangesAsync();
     }
 }

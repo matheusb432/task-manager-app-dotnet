@@ -1,4 +1,6 @@
-﻿namespace TaskManagerApp.Domain.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace TaskManagerApp.Domain.Models
 {
     public sealed class Role : Entity
     {

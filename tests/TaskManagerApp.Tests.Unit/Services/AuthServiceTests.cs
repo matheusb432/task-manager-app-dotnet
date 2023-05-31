@@ -17,14 +17,14 @@ namespace TaskManagerApp.Tests.Unit.Services
         private readonly IMapper _mapper;
 
         private readonly Mock<IUserRepository> _userRepo;
-        private readonly Mock<IPasswordHasher<User>> _passwordHasher;
+        private readonly Mock<IPasswordService> _passwordService;
 
         private readonly List<User> _users;
 
         public AuthServiceTests()
         {
             _userRepo = new();
-            _passwordHasher = new();
+            _passwordService = new();
 
             var mappingConfig = new MapperConfiguration(mc => mc.AddProfile(new UserProfiles()));
 
@@ -34,7 +34,7 @@ namespace TaskManagerApp.Tests.Unit.Services
 
             SetupMocks();
 
-            _service = new AuthService(_userRepo.Object, _mapper, _passwordHasher.Object);
+            _service = new AuthService(_userRepo.Object, _mapper, _passwordService.Object);
         }
 
         [Fact]
@@ -163,24 +163,12 @@ namespace TaskManagerApp.Tests.Unit.Services
                 .Setup(x => x.UserNameExists(It.IsAny<string>()))
                 .ReturnsAsync((string userName) => _users.Any((x) => x.UserName == userName));
 
-            _passwordHasher
-                .Setup(x => x.HashPassword(It.IsAny<User>(), It.IsAny<string>()))
-                .Returns((User _, string pass) => pass + "-hash");
-            _passwordHasher
-                .Setup(
-                    x =>
-                        x.VerifyHashedPassword(
-                            It.IsAny<User>(),
-                            It.IsAny<string>(),
-                            It.IsAny<string>()
-                        )
-                )
-                .Returns(
-                    (User user, string _, string pass) =>
-                        user.PasswordHash == pass
-                            ? PasswordVerificationResult.Success
-                            : PasswordVerificationResult.Failed
-                );
+            _passwordService
+                .Setup(x => x.SignupToUserWithHashedPassword(It.IsAny<Signup>()))
+                .Returns((Signup signup) => new User { PasswordHash = signup.Password + "-hash" });
+            _passwordService
+                .Setup(x => x.IsCorrectPassword(It.IsAny<User>(), It.IsAny<string>()))
+                .Returns((User user, string pass) => user.PasswordHash == pass);
         }
 
         public static List<User> GetUsers() =>

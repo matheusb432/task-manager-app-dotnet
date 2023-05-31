@@ -9,5 +9,10 @@ namespace TaskManagerApp.Infra.Repositories
         public RoleRepository(TaskManagerContext context) : base(context) { }
 
         public override IQueryable<Role> Query() => _dbSet.AsQueryable().AsSplitQuery();
+
+        public async override Task SaveChangesAsync()
+        {
+            await _context.SaveChangesWithoutUserTrackingAsync();
+        }
     }
 }

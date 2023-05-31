@@ -17,16 +17,17 @@ namespace TaskManagerApp.Application.Services
     public sealed class AuthService : Service, IAuthService
     {
         private readonly IUserRepository _userRepo;
-        private readonly IPasswordHasher<User> _passwordHasher;
+
+        private readonly IPasswordService _passwordService;
 
         public AuthService(
             IUserRepository userRepo,
             IMapper mapper,
-            IPasswordHasher<User> passwordHasher
+            IPasswordService passwordService
         ) : base(mapper)
         {
             _userRepo = userRepo;
-            _passwordHasher = passwordHasher;
+            _passwordService = passwordService;
         }
 
         public async Task<OperationResult> Login(Login login)
@@ -43,7 +44,7 @@ namespace TaskManagerApp.Application.Services
 
         public async Task<OperationResult> Signup(Signup signup)
         {
-            var newUser = SignupToUserWithHashedPassword(signup);
+            var newUser = _passwordService.SignupToUserWithHashedPassword(signup);
             if (newUser == null || !EntityIsValid(new UserValidator(), newUser))
                 return Error("Invalid signup data!", HttpStatusCode.Unauthorized);
 
@@ -77,29 +78,10 @@ namespace TaskManagerApp.Application.Services
                 ? await _userRepo.GetByEmailAsync(email)
                 : await _userRepo.GetByUserNameAsync(userName);
 
-            return IsCorrectPassword(user, login.Password) ? user : null;
-        }
-
-        public User? SignupToUserWithHashedPassword(Signup signup)
-        {
-            if (!IsValid(new SignupValidator(), signup))
-                return null;
-
-            var user = Mapper.Map<User>(signup);
-            user.PasswordHash = _passwordHasher.HashPassword(user, signup.Password);
-            return user;
+            return _passwordService.IsCorrectPassword(user, login.Password) ? user : null;
         }
 
         private AuthResponse BuildResponse(User user, string token) =>
             new(Mapper.Map<UserAuthDto>(user), token);
-
-        private bool IsCorrectPassword(User? user, string password)
-        {
-            if (string.IsNullOrEmpty(user?.PasswordHash))
-                return false;
-
-            return _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, password)
-                == PasswordVerificationResult.Success;
-        }
     }
 }

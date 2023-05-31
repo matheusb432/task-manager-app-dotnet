@@ -75,5 +75,17 @@ namespace TaskManagerApp.Infra
 
             return await base.SaveChangesAsync(true, cancellationToken).ConfigureAwait(false);
         }
+
+        public async Task<int> SaveChangesWithoutUserTrackingAsync(
+            CancellationToken cancellationToken = default
+        )
+        {
+            var now = DateTime.Now;
+
+            this.SetPropOnAdded("CreatedAt", now);
+            this.UpdatePropOnChange("UpdatedAt", now);
+
+            return await base.SaveChangesAsync(true, cancellationToken).ConfigureAwait(false);
+        }
     }
 }

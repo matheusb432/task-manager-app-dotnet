@@ -9,6 +9,7 @@ using System.Net.WebSockets;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using TaskManagerApp.Application.Services;
 using TaskManagerApp.Application.Utils;
 using TaskManagerApp.Domain.Models;
 

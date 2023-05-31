@@ -28,6 +28,7 @@ namespace TaskManagerApp.Application.Configurations
             services.AddScoped<ITimesheetService, TimesheetService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IPasswordService, PasswordService>();
         }
     }
 }
