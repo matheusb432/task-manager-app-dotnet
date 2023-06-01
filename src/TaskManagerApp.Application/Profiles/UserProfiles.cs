@@ -16,6 +16,8 @@ namespace TaskManagerApp.Application.Profiles
 
             CreateMap<Role, RoleDto>().ReverseMap();
             CreateMap<UserRole, UserRoleDto>().ReverseMap();
+            CreateMap<UserRolePostDto, UserRole>().ReverseMap();
+            CreateMap<UserRolePutDto, UserRole>().ReverseMap();
         }
     }
 }

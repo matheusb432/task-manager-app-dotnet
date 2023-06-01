@@ -52,5 +52,28 @@ namespace TaskManagerApp.Application.Services
             await _repo.InsertAsync(newUser);
             return Success(newUser.Id);
         }
+
+        public override async Task<OperationResult> Update(int id, UserPutDto dto)
+        {
+            var entity = await _repo.GetByIdAsync(id);
+
+            if (entity == null)
+                return Error(HttpStatusCode.NotFound);
+
+            if (!EntityIsValid(new UserValidator(), entity))
+                return Error(HttpStatusCode.BadRequest);
+
+            entity.Name = dto.Name;
+            entity.Email = dto.Email;
+            entity.UserName = dto.UserName;
+            entity.UserRoles = Mapper.Map<List<UserRole>>(dto.UserRoles);
+            if (!string.IsNullOrEmpty(dto.PasswordReset))
+            {
+                entity.PasswordHash = _passwordService.HashPassword(entity, dto.PasswordReset);
+            }
+
+            await _repo.UpdateAsync(entity);
+            return Success();
+        }
     }
 }
