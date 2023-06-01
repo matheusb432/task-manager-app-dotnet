@@ -1,4 +1,6 @@
-﻿namespace TaskManagerApp.Infra.Interfaces
+﻿using System.Linq.Expressions;
+
+namespace TaskManagerApp.Infra.Interfaces
 {
     public interface IRepository<T>
     {
@@ -20,10 +22,16 @@
 
         Task<T> UpdateAsync(T entity, bool save = true);
 
+        Task<T> PatchAsync(T entity, bool save = true);
+
+        Task<T> PatchPropsAsync(T entity, params Expression<Func<T, object>>[] propertyExpressions);
+
         Task DeleteAsync(T entity, bool save = true);
 
         Task DeleteAllAsync(IEnumerable<T> entities, bool save = true);
 
         Task SaveChangesAsync();
+
+        void SetPropsToModified(T entity, params Expression<Func<T, object>>[] propertyExpressions);
     }
 }

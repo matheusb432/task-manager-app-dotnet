@@ -72,6 +72,31 @@ namespace TaskManagerApp.Infra.Repositories
             return entity;
         }
 
+        public async Task<T> PatchAsync(T entity, bool save = true)
+        {
+            _dbSet.Entry(entity).State = EntityState.Modified;
+            if (save)
+                await SaveChangesAsync();
+            return entity;
+        }
+
+        /// <summary>
+        /// Receives an entity and a list of property expressions to be marked as modified, only those properties will be updated.
+        /// </summary>
+        /// <example>
+        /// await _userRepo.PatchPropsAsync(entity, x => x.UserName, x => x.Name);
+        /// </example>
+        /// <returns></returns>
+        public async Task<T> PatchPropsAsync(
+            T entity,
+            params Expression<Func<T, object>>[] propertyExpressions
+        )
+        {
+            SetPropsToModified(entity, propertyExpressions);
+            await SaveChangesAsync();
+            return entity;
+        }
+
         public async Task DeleteAsync(T entity, bool save = true)
         {
             _dbSet.Remove(entity);
@@ -112,6 +137,20 @@ namespace TaskManagerApp.Infra.Repositories
             foreach (var entityToDelete in entitiesToDelete)
             {
                 _context.Entry(entityToDelete).State = EntityState.Deleted;
+            }
+        }
+
+        /// <summary>
+        /// Sets all properties in the expression parameters as modified, does not save changes.
+        /// </summary>
+        public void SetPropsToModified(
+            T entity,
+            params Expression<Func<T, object>>[] propertyExpressions
+        )
+        {
+            foreach (var propertyExpression in propertyExpressions)
+            {
+                _dbSet.Entry(entity).Property(propertyExpression).IsModified = true;
             }
         }
 

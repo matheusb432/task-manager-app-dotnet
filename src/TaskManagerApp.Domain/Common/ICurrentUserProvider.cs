@@ -4,5 +4,6 @@
     {
         int UserId { get; }
         bool IsAdmin { get; }
+        bool IsUserOrAdmin(int userId);
     }
 }

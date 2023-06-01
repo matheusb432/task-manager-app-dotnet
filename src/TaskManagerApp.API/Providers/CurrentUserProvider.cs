@@ -15,6 +15,11 @@ namespace TaskManagerApp.API.Services
         public int UserId => GetHttpContextUserId();
         public bool IsAdmin => GetHttpContextIsAdmin();
 
+        public bool IsUserOrAdmin(int userId)
+        {
+            return IsAdmin || UserId == userId;
+        }
+
         private int GetHttpContextUserId()
         {
             return int.Parse(

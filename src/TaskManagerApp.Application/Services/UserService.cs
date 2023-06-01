@@ -60,9 +60,6 @@ namespace TaskManagerApp.Application.Services
             if (entity == null)
                 return Error(HttpStatusCode.NotFound);
 
-            if (!EntityIsValid(new UserValidator(), entity))
-                return Error(HttpStatusCode.BadRequest);
-
             entity.Name = dto.Name;
             entity.Email = dto.Email;
             entity.UserName = dto.UserName;
@@ -71,6 +68,9 @@ namespace TaskManagerApp.Application.Services
             {
                 entity.PasswordHash = _passwordService.HashPassword(entity, dto.PasswordReset);
             }
+
+            if (!EntityIsValid(new UserValidator(), entity))
+                return Error(HttpStatusCode.BadRequest);
 
             await _repo.UpdateAsync(entity);
             return Success();
