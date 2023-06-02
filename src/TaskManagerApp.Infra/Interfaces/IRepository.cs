@@ -6,6 +6,8 @@ namespace TaskManagerApp.Infra.Interfaces
     {
         IQueryable<T> Query();
 
+        IQueryable<T> SelectQuery(Expression<Func<T, T>> selector);
+
         Task<IEnumerable<T>> GetAllAsync();
 
         Task<T?> GetByIdAsync(long id);

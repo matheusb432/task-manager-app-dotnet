@@ -42,9 +42,7 @@ namespace TaskManagerApp.Application.Services
                 return Error(HttpStatusCode.BadRequest);
 
             var entity = await _userRepo
-                .Query()
-                // TODO refactor with a `SelectQuery()` extension method
-                .Select(
+                .SelectQuery(
                     u =>
                         new User()
                         {

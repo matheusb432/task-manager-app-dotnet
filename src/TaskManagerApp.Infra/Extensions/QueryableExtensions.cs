@@ -6,14 +6,6 @@ namespace TaskManagerApp.Infra.Extensions
 {
     public static class QueryableExtensions
     {
-        public static IQueryable<T> SelectEntityProperties<T>(
-            this IQueryable<T> query,
-            Expression<Func<T, T>> selector
-        ) where T : Entity
-        {
-            return query.Select(selector);
-        }
-
         public static async Task<T?> RunFirstOrDefaultAsync<T>(
             this IQueryable<T> query,
             Expression<Func<T, bool>> predicate

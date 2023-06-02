@@ -26,6 +26,9 @@ namespace TaskManagerApp.Infra.Repositories
                 .AsQueryable()
                 .AsSplitQuery();
 
+        public virtual IQueryable<T> SelectQuery(Expression<Func<T, T>> selector) =>
+            Query().Select(selector);
+
         public virtual async Task<IEnumerable<T>> GetAllAsync() => await Query().ToListAsync();
 
         public virtual async Task<T?> GetByIdAsync(long id) =>
