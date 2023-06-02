@@ -1,6 +1,4 @@
-﻿using TaskManagerApp.Domain.Models;
-
-namespace TaskManagerApp.Application.Common.Dtos.User
+﻿namespace TaskManagerApp.Application.Common.Dtos.User
 {
     public sealed class UserAuthDto
     {

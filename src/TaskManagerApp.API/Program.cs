@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.OData;
-using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using TaskManagerApp.API.Configurations;
 using TaskManagerApp.API.Services;

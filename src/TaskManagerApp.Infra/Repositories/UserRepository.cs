@@ -39,7 +39,7 @@ namespace TaskManagerApp.Infra.Repositories
         public async Task<bool> UserNameExists(string userName) =>
             await BaseQuery().AnyAsync(x => x.UserName.ToLower() == userName.ToLower());
 
-        public async override Task SaveChangesAsync()
+        public override async Task SaveChangesAsync()
         {
             await _context.SaveChangesWithoutUserTrackingAsync();
         }

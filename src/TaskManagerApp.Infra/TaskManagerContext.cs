@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-using System.Security.Claims;
 using TaskManagerApp.Application.Common.Interfaces;
 using TaskManagerApp.Domain.Models;
 using TaskManagerApp.Infra.Extensions;

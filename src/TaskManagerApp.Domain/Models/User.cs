@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace TaskManagerApp.Domain.Models
+﻿namespace TaskManagerApp.Domain.Models
 {
     public sealed class User : Entity
     {

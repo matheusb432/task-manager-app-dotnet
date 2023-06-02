@@ -10,7 +10,7 @@ namespace TaskManagerApp.Infra.Repositories
 
         public override IQueryable<Role> Query() => _dbSet.AsQueryable().AsSplitQuery();
 
-        public async override Task SaveChangesAsync()
+        public override async Task SaveChangesAsync()
         {
             await _context.SaveChangesWithoutUserTrackingAsync();
         }

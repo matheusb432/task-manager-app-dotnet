@@ -1,16 +1,10 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using TaskManagerApp.Application.Common.Interfaces;
 using TaskManagerApp.Application.Common.ViewModels;
 using TaskManagerApp.Application.Common.ViewModels.Validators;
 using TaskManagerApp.Application.Services.Base;
 using TaskManagerApp.Domain.Models;
-using TaskManagerApp.Domain.Models.Validators;
 using TaskManagerApp.Infra.Extensions;
 using TaskManagerApp.Infra.Interfaces;
 

@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Identity;
 using Moq;
 using System.Net;
 using TaskManagerApp.Application.Common.Dtos.Auth;
