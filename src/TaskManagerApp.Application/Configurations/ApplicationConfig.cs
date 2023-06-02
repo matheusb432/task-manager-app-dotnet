@@ -30,6 +30,7 @@ namespace TaskManagerApp.Application.Configurations
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IPasswordService, PasswordService>();
             services.AddScoped<ISettingsService, SettingsService>();
+            services.AddScoped<IPresetTaskItemService, PresetTaskItemService>();
         }
     }
 }
