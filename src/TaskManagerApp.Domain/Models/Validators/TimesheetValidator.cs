@@ -7,6 +7,7 @@ namespace TaskManagerApp.Domain.Models.Validators
         public TimesheetValidator()
         {
             RuleFor(x => x.Date).NotEmpty();
+            RuleForEach(x => x.Tasks).SetValidator(new TaskItemValidator());
         }
     }
 }

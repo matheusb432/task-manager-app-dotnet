@@ -14,7 +14,6 @@ namespace TaskManagerApp.Domain.Models.Validators
             RuleFor(x => (int)x.Time).InclusiveBetween(1, 2400).When(x => x.Time.HasValue);
 #pragma warning restore CS8629
             RuleFor(x => (int)x.Importance).NotEmpty().InclusiveBetween(1, 3);
-            RuleFor(x => x.TimesheetId).NotEmpty();
         }
     }
 }
