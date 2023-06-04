@@ -1,4 +1,5 @@
 ﻿using TaskManagerApp.Application.Common.Dtos.TaskItem;
+using TaskManagerApp.Domain.Models;
 
 namespace TaskManagerApp.Application.Common.Dtos.Profile
 {
@@ -7,6 +8,7 @@ namespace TaskManagerApp.Application.Common.Dtos.Profile
         public ProfilePostDto()
         {
             PresetTaskItems = new();
+            ProfilePresetTaskItems = new();
         }
 
         public string Name { get; set; } = string.Empty;
@@ -15,5 +17,6 @@ namespace TaskManagerApp.Application.Common.Dtos.Profile
         public short? Priority { get; set; }
         public int ProfileTypeId { get; set; }
         public List<PresetTaskItemPostDto> PresetTaskItems { get; set; }
+        public List<ProfilePresetTaskItemPostDto> ProfilePresetTaskItems { get; set; }
     }
 }
