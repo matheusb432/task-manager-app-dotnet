@@ -9,5 +9,6 @@
         public short Importance { get; set; }
         public string? Comment { get; set; }
         public int TimesheetId { get; set; }
+        public int? PresetTaskItemId { get; set; }
     }
 }

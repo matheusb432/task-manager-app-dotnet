@@ -16,6 +16,10 @@ namespace TaskManagerApp.Infra.Configurations.EntityConfigurations
                 .HasMany(x => x.ProfilePresetTaskItems)
                 .WithOne(x => x.PresetTaskItem)
                 .HasForeignKey(x => x.PresetTaskItemId);
+            builder
+                .HasMany(x => x.TaskItems)
+                .WithOne(x => x.PresetTaskItem)
+                .HasForeignKey(x => x.PresetTaskItemId);
         }
     }
 }

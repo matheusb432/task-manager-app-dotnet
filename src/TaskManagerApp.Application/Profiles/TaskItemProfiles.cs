@@ -22,6 +22,11 @@ namespace TaskManagerApp.Application.Profiles
                 .ForMember(
                     dest => dest.Time,
                     opt => opt.MapFrom(src => TimeUtils.ConvertTimeToShort(src.Time))
+                )
+                .ForMember(
+                    dest => dest.Title,
+                    opt =>
+                        opt.MapFrom(src => src.PresetTaskItemId != null ? string.Empty : src.Title)
                 );
             CreateMap<TaskItemPutDto, TaskItem>()
                 .ForMember(
@@ -31,6 +36,11 @@ namespace TaskManagerApp.Application.Profiles
                 .ForMember(
                     dest => dest.Time,
                     opt => opt.MapFrom(src => TimeUtils.ConvertTimeToShort(src.Time))
+                )
+                .ForMember(
+                    dest => dest.Title,
+                    opt =>
+                        opt.MapFrom(src => src.PresetTaskItemId != null ? string.Empty : src.Title)
                 );
             CreateMap<PresetTaskItemDto, PresetTaskItem>()
                 .ReverseMap()
