@@ -11,6 +11,7 @@ namespace TaskManagerApp.Infra.Configurations.EntityConfigurations
             EntityTypeBuilder<ProfilePresetTaskItem> builder
         )
         {
+            builder.HasIndex(x => new { x.ProfileId, x.PresetTaskItemId }).IsUnique();
             builder
                 .HasOne(x => x.Profile)
                 .WithMany(x => x.ProfilePresetTaskItems)
