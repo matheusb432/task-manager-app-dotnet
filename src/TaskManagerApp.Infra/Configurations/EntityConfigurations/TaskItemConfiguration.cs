@@ -17,10 +17,6 @@ namespace TaskManagerApp.Infra.Configurations.EntityConfigurations
                 .HasOne(x => x.Timesheet)
                 .WithMany(x => x.Tasks)
                 .HasForeignKey(x => x.TimesheetId);
-            builder
-                .HasMany(x => x.GoalTaskItems)
-                .WithOne(x => x.TaskItem)
-                .HasForeignKey(x => x.TaskItemId);
         }
     }
 }

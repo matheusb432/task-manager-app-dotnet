@@ -19,9 +19,6 @@ namespace TaskManagerApp.Infra
             CurrentUserProvider = currentUserProvider;
         }
 
-        public DbSet<Goal> Goals { get; set; } = null!;
-        public DbSet<GoalStep> GoalSteps { get; set; } = null!;
-        public DbSet<GoalTaskItem> GoalTaskItems { get; set; } = null!;
         public DbSet<PresetTaskItem> PresetTaskItems { get; set; } = null!;
         public DbSet<Profile> Profiles { get; set; } = null!;
         public DbSet<ProfileType> ProfileTypes { get; set; } = null!;

@@ -25,7 +25,6 @@ namespace TaskManagerApp.Infra.Configurations
 
         private static void AddRepositories(this IServiceCollection services)
         {
-            services.AddScoped<IGoalRepository, GoalRepository>();
             services.AddScoped<IPresetTaskItemRepository, PresetTaskItemRepository>();
             services.AddScoped<IProfileRepository, ProfileRepository>();
             services.AddScoped<IProfileTypeRepository, ProfileTypeRepository>();

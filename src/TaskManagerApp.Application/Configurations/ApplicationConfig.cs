@@ -22,7 +22,6 @@ namespace TaskManagerApp.Application.Configurations
 
         private static void AddServices(this IServiceCollection services)
         {
-            services.AddScoped<IGoalService, GoalService>();
             services.AddScoped<IProfileService, ProfileService>();
             services.AddScoped<ITaskItemService, TaskItemService>();
             services.AddScoped<ITimesheetService, TimesheetService>();
