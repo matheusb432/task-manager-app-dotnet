@@ -8,17 +8,8 @@ namespace TaskManagerApp.Application.Profiles
     {
         public TaskItemProfiles()
         {
-            CreateMap<TaskItem, TaskItemDto>()
-                .ReverseMap()
-                .ForMember(
-                    dest => dest.Importance,
-                    opt => opt.MapFrom(src => Math.Max(1, (int)src.Importance))
-                );
+            CreateMap<TaskItem, TaskItemDto>().ReverseMap();
             CreateMap<TaskItemPostDto, TaskItem>()
-                .ForMember(
-                    dest => dest.Importance,
-                    opt => opt.MapFrom(src => Math.Max(1, (int)src.Importance))
-                )
                 .ForMember(
                     dest => dest.Time,
                     opt => opt.MapFrom(src => TimeUtils.ConvertTimeToShort(src.Time))
@@ -29,10 +20,6 @@ namespace TaskManagerApp.Application.Profiles
                         opt.MapFrom(src => src.PresetTaskItemId != null ? string.Empty : src.Title)
                 );
             CreateMap<TaskItemPutDto, TaskItem>()
-                .ForMember(
-                    dest => dest.Importance,
-                    opt => opt.MapFrom(src => Math.Max(1, (int)src.Importance))
-                )
                 .ForMember(
                     dest => dest.Time,
                     opt => opt.MapFrom(src => TimeUtils.ConvertTimeToShort(src.Time))

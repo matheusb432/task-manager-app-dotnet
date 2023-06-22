@@ -9,7 +9,6 @@ namespace TaskManagerApp.Infra.Configurations.EntityConfigurations
         public override void ConfigureOtherProperties(EntityTypeBuilder<TaskItem> builder)
         {
             builder.Property(x => x.Title).IsRequired(false).IsUnicode(false).HasMaxLength(100);
-            builder.Property(x => x.Importance).HasDefaultValue(1);
             builder.Property(x => x.Comment).IsUnicode(false).IsRequired(false);
             builder.Property(x => x.Time).IsRequired(false);
             builder.Property(x => x.Rating).IsRequired(false);
