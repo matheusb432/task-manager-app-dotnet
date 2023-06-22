@@ -1,4 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
+
+#nullable disable
+
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
 namespace TaskManagerApp.Infra.Migrations
 {
@@ -42,36 +47,6 @@ namespace TaskManagerApp.Infra.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Goals",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
-                    Image = table.Column<string>(type: "varchar(200)", unicode: false, maxLength: 200, nullable: true),
-                    Description = table.Column<string>(type: "varchar(max)", unicode: false, nullable: true),
-                    Active = table.Column<bool>(type: "bit", nullable: true, defaultValue: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "getdate()"),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "getdate()"),
-                    UserCreatedId = table.Column<int>(type: "int", nullable: true),
-                    UserUpdatedId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Goals", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Goals_Users_UserCreatedId",
-                        column: x => x.UserCreatedId,
-                        principalTable: "Users",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Goals_Users_UserUpdatedId",
-                        column: x => x.UserUpdatedId,
-                        principalTable: "Users",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "PresetTaskItems",
                 columns: table => new
                 {
@@ -79,6 +54,8 @@ namespace TaskManagerApp.Infra.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
                     Time = table.Column<short>(type: "smallint", nullable: true),
+                    Importance = table.Column<short>(type: "smallint", nullable: false, defaultValue: (short)1),
+                    Comment = table.Column<string>(type: "varchar(max)", unicode: false, nullable: true),
                     UserId = table.Column<int>(type: "int", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "getdate()"),
                     UpdatedAt = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "getdate()"),
@@ -198,42 +175,6 @@ namespace TaskManagerApp.Infra.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "GoalSteps",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Finished = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
-                    GoalId = table.Column<int>(type: "int", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "getdate()"),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "getdate()"),
-                    UserCreatedId = table.Column<int>(type: "int", nullable: true),
-                    UserUpdatedId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_GoalSteps", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_GoalSteps_Goals_GoalId",
-                        column: x => x.GoalId,
-                        principalTable: "Goals",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_GoalSteps_Users_UserCreatedId",
-                        column: x => x.UserCreatedId,
-                        principalTable: "Users",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_GoalSteps_Users_UserUpdatedId",
-                        column: x => x.UserUpdatedId,
-                        principalTable: "Users",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Profiles",
                 columns: table => new
                 {
@@ -282,12 +223,13 @@ namespace TaskManagerApp.Infra.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
+                    Title = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true),
                     Time = table.Column<short>(type: "smallint", nullable: true),
                     Rating = table.Column<short>(type: "smallint", nullable: true),
                     Importance = table.Column<short>(type: "smallint", nullable: false, defaultValue: (short)1),
                     Comment = table.Column<string>(type: "varchar(max)", unicode: false, nullable: true),
                     TimesheetId = table.Column<int>(type: "int", nullable: false),
+                    PresetTaskItemId = table.Column<int>(type: "int", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "getdate()"),
                     UpdatedAt = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "getdate()"),
                     UserCreatedId = table.Column<int>(type: "int", nullable: true),
@@ -296,6 +238,12 @@ namespace TaskManagerApp.Infra.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TaskItems", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TaskItems_PresetTaskItems_PresetTaskItemId",
+                        column: x => x.PresetTaskItemId,
+                        principalTable: "PresetTaskItems",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_TaskItems_Timesheets_TimesheetId",
                         column: x => x.TimesheetId,
@@ -388,47 +336,6 @@ namespace TaskManagerApp.Infra.Migrations
                         principalColumn: "Id");
                 });
 
-            migrationBuilder.CreateTable(
-                name: "GoalTaskItems",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    GoalId = table.Column<int>(type: "int", nullable: false),
-                    TaskItemId = table.Column<int>(type: "int", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "getdate()"),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "getdate()"),
-                    UserCreatedId = table.Column<int>(type: "int", nullable: true),
-                    UserUpdatedId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_GoalTaskItems", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_GoalTaskItems_Goals_GoalId",
-                        column: x => x.GoalId,
-                        principalTable: "Goals",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_GoalTaskItems_TaskItems_TaskItemId",
-                        column: x => x.TaskItemId,
-                        principalTable: "TaskItems",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_GoalTaskItems_Users_UserCreatedId",
-                        column: x => x.UserCreatedId,
-                        principalTable: "Users",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_GoalTaskItems_Users_UserUpdatedId",
-                        column: x => x.UserUpdatedId,
-                        principalTable: "Users",
-                        principalColumn: "Id");
-                });
-
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
             migrationBuilder.InsertData(
                 table: "ProfileTypes",
                 columns: new[] { "Id", "CreatedAt", "DateRangeEnd", "DateRangeStart", "Name", "Type", "UpdatedAt", "UserCreatedId", "UserUpdatedId" },
@@ -440,7 +347,6 @@ namespace TaskManagerApp.Infra.Migrations
                     { 4, new DateTime(2023, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "January 2023", "custom", new DateTime(2023, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null },
                     { 5, new DateTime(2023, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "2022", "custom", new DateTime(2023, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null }
                 });
-#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
 
             migrationBuilder.InsertData(
                 table: "Roles",
@@ -456,51 +362,6 @@ namespace TaskManagerApp.Infra.Migrations
                 table: "UserRoles",
                 columns: new[] { "Id", "CreatedAt", "RoleId", "UpdatedAt", "UserId" },
                 values: new object[] { 1, new DateTime(2023, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, new DateTime(2023, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Goals_UserCreatedId",
-                table: "Goals",
-                column: "UserCreatedId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Goals_UserUpdatedId",
-                table: "Goals",
-                column: "UserUpdatedId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_GoalSteps_GoalId",
-                table: "GoalSteps",
-                column: "GoalId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_GoalSteps_UserCreatedId",
-                table: "GoalSteps",
-                column: "UserCreatedId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_GoalSteps_UserUpdatedId",
-                table: "GoalSteps",
-                column: "UserUpdatedId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_GoalTaskItems_GoalId",
-                table: "GoalTaskItems",
-                column: "GoalId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_GoalTaskItems_TaskItemId",
-                table: "GoalTaskItems",
-                column: "TaskItemId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_GoalTaskItems_UserCreatedId",
-                table: "GoalTaskItems",
-                column: "UserCreatedId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_GoalTaskItems_UserUpdatedId",
-                table: "GoalTaskItems",
-                column: "UserUpdatedId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PresetTaskItems_UserCreatedId",
@@ -523,9 +384,10 @@ namespace TaskManagerApp.Infra.Migrations
                 column: "PresetTaskItemId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProfilePresetTaskItem_ProfileId",
+                name: "IX_ProfilePresetTaskItem_ProfileId_PresetTaskItemId",
                 table: "ProfilePresetTaskItem",
-                column: "ProfileId");
+                columns: new[] { "ProfileId", "PresetTaskItemId" },
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProfilePresetTaskItem_UserCreatedId",
@@ -566,6 +428,11 @@ namespace TaskManagerApp.Infra.Migrations
                 name: "IX_ProfileTypes_UserUpdatedId",
                 table: "ProfileTypes",
                 column: "UserUpdatedId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TaskItems_PresetTaskItemId",
+                table: "TaskItems",
+                column: "PresetTaskItemId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TaskItems_TimesheetId",
@@ -645,13 +512,10 @@ namespace TaskManagerApp.Infra.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "GoalSteps");
-
-            migrationBuilder.DropTable(
-                name: "GoalTaskItems");
-
-            migrationBuilder.DropTable(
                 name: "ProfilePresetTaskItem");
+
+            migrationBuilder.DropTable(
+                name: "TaskItems");
 
             migrationBuilder.DropTable(
                 name: "TimesheetNotes");
@@ -660,22 +524,16 @@ namespace TaskManagerApp.Infra.Migrations
                 name: "UserRoles");
 
             migrationBuilder.DropTable(
-                name: "Goals");
-
-            migrationBuilder.DropTable(
-                name: "TaskItems");
+                name: "Profiles");
 
             migrationBuilder.DropTable(
                 name: "PresetTaskItems");
 
             migrationBuilder.DropTable(
-                name: "Profiles");
+                name: "Timesheets");
 
             migrationBuilder.DropTable(
                 name: "Roles");
-
-            migrationBuilder.DropTable(
-                name: "Timesheets");
 
             migrationBuilder.DropTable(
                 name: "ProfileTypes");

@@ -22,154 +22,6 @@ namespace TaskManagerApp.Infra.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("TaskManagerApp.Domain.Models.Goal", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<bool?>("Active")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
-
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
-                        .HasDefaultValueSql("getdate()");
-
-                    b.Property<string>("Description")
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(max)");
-
-                    b.Property<string>("Image")
-                        .HasMaxLength(200)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(200)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
-                        .HasDefaultValueSql("getdate()");
-
-                    b.Property<int?>("UserCreatedId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UserUpdatedId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserCreatedId");
-
-                    b.HasIndex("UserUpdatedId");
-
-                    b.ToTable("Goals");
-                });
-
-            modelBuilder.Entity("TaskManagerApp.Domain.Models.GoalStep", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
-                        .HasDefaultValueSql("getdate()");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Finished")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
-                    b.Property<int>("GoalId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
-                        .HasDefaultValueSql("getdate()");
-
-                    b.Property<int?>("UserCreatedId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UserUpdatedId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GoalId");
-
-                    b.HasIndex("UserCreatedId");
-
-                    b.HasIndex("UserUpdatedId");
-
-                    b.ToTable("GoalSteps");
-                });
-
-            modelBuilder.Entity("TaskManagerApp.Domain.Models.GoalTaskItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
-                        .HasDefaultValueSql("getdate()");
-
-                    b.Property<int>("GoalId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TaskItemId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
-                        .HasDefaultValueSql("getdate()");
-
-                    b.Property<int?>("UserCreatedId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UserUpdatedId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GoalId");
-
-                    b.HasIndex("TaskItemId");
-
-                    b.HasIndex("UserCreatedId");
-
-                    b.HasIndex("UserUpdatedId");
-
-                    b.ToTable("GoalTaskItems");
-                });
-
             modelBuilder.Entity("TaskManagerApp.Domain.Models.PresetTaskItem", b =>
                 {
                     b.Property<int>("Id")
@@ -727,81 +579,6 @@ namespace TaskManagerApp.Infra.Migrations
                         });
                 });
 
-            modelBuilder.Entity("TaskManagerApp.Domain.Models.Goal", b =>
-                {
-                    b.HasOne("TaskManagerApp.Domain.Models.User", "UserCreated")
-                        .WithMany()
-                        .HasForeignKey("UserCreatedId")
-                        .OnDelete(DeleteBehavior.NoAction);
-
-                    b.HasOne("TaskManagerApp.Domain.Models.User", "UserUpdated")
-                        .WithMany()
-                        .HasForeignKey("UserUpdatedId")
-                        .OnDelete(DeleteBehavior.NoAction);
-
-                    b.Navigation("UserCreated");
-
-                    b.Navigation("UserUpdated");
-                });
-
-            modelBuilder.Entity("TaskManagerApp.Domain.Models.GoalStep", b =>
-                {
-                    b.HasOne("TaskManagerApp.Domain.Models.Goal", "Goal")
-                        .WithMany("GoalSteps")
-                        .HasForeignKey("GoalId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("TaskManagerApp.Domain.Models.User", "UserCreated")
-                        .WithMany()
-                        .HasForeignKey("UserCreatedId")
-                        .OnDelete(DeleteBehavior.NoAction);
-
-                    b.HasOne("TaskManagerApp.Domain.Models.User", "UserUpdated")
-                        .WithMany()
-                        .HasForeignKey("UserUpdatedId")
-                        .OnDelete(DeleteBehavior.NoAction);
-
-                    b.Navigation("Goal");
-
-                    b.Navigation("UserCreated");
-
-                    b.Navigation("UserUpdated");
-                });
-
-            modelBuilder.Entity("TaskManagerApp.Domain.Models.GoalTaskItem", b =>
-                {
-                    b.HasOne("TaskManagerApp.Domain.Models.Goal", "Goal")
-                        .WithMany("GoalTaskItems")
-                        .HasForeignKey("GoalId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("TaskManagerApp.Domain.Models.TaskItem", "TaskItem")
-                        .WithMany("GoalTaskItems")
-                        .HasForeignKey("TaskItemId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("TaskManagerApp.Domain.Models.User", "UserCreated")
-                        .WithMany()
-                        .HasForeignKey("UserCreatedId")
-                        .OnDelete(DeleteBehavior.NoAction);
-
-                    b.HasOne("TaskManagerApp.Domain.Models.User", "UserUpdated")
-                        .WithMany()
-                        .HasForeignKey("UserUpdatedId")
-                        .OnDelete(DeleteBehavior.NoAction);
-
-                    b.Navigation("Goal");
-
-                    b.Navigation("TaskItem");
-
-                    b.Navigation("UserCreated");
-
-                    b.Navigation("UserUpdated");
-                });
-
             modelBuilder.Entity("TaskManagerApp.Domain.Models.PresetTaskItem", b =>
                 {
                     b.HasOne("TaskManagerApp.Domain.Models.User", "UserCreated")
@@ -1002,13 +779,6 @@ namespace TaskManagerApp.Infra.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("TaskManagerApp.Domain.Models.Goal", b =>
-                {
-                    b.Navigation("GoalSteps");
-
-                    b.Navigation("GoalTaskItems");
-                });
-
             modelBuilder.Entity("TaskManagerApp.Domain.Models.PresetTaskItem", b =>
                 {
                     b.Navigation("ProfilePresetTaskItems");
@@ -1029,11 +799,6 @@ namespace TaskManagerApp.Infra.Migrations
             modelBuilder.Entity("TaskManagerApp.Domain.Models.Role", b =>
                 {
                     b.Navigation("UserRoles");
-                });
-
-            modelBuilder.Entity("TaskManagerApp.Domain.Models.TaskItem", b =>
-                {
-                    b.Navigation("GoalTaskItems");
                 });
 
             modelBuilder.Entity("TaskManagerApp.Domain.Models.Timesheet", b =>
