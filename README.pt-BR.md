@@ -135,6 +135,15 @@ Os testes E2E estão localizados em tests/TaskManagerApp.Tests.E2E, eles foram c
 
 Você pode executá-los através do Explorador de Testes do VS 2022.
 
+## Melhorias Possíveis de Baixa Prioridade
+
+Estas são algumas melhorias arquiteturais e de performance que eventualmente poderiam ser feitas na aplicação, mas não são necessárias para o funcionamento da aplicação.
+
+- Converter chaves primárias de join tables para composite keys
+- Melhorar o cache da API
+- Refatorar a API para utilizar um padrão CQRS
+- Tratar o spamming da API com um rate limiter
+
 ## Contribuindo
 
 Sinta-se à vontade para enviar um pull request com quaisquer melhorias que achar adequadas, sugestões também são bem-vindas!

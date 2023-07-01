@@ -1,5 +1,6 @@
 ﻿namespace TaskManagerApp.Domain.Models
 {
+    // TODO refactor to use composite keys
     public sealed class UserRole : Entity
     {
         public int UserId { get; set; }

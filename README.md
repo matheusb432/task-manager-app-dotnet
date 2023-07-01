@@ -133,6 +133,15 @@ E2E tests are located in tests/TaskManagerApp.Tests.E2E, they were built with [S
 
 You can run them via the VS 2022 Test Explorer
 
+## Low-Priority Possible Improvements
+
+These are some architectural and performance improvements that could be eventually made to the application, but are not necessary for the application to function.
+
+- Convert join tables primary keys to composite keys
+- Improve API caching
+- Refactor the API to use a CQRS pattern
+- Handle spamming of the API with a rate limiter
+
 ## Contributing
 
 Feel free to submit a pull request with any improvements you see fit, suggestions are also welcome!
